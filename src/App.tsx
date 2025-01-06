@@ -39,6 +39,13 @@ function App() {
 
 
     return <div className={'app'}  >
+        <nav className={'navigation'}>
+            <ul className={'navigation__list'}>
+                <li className={'navigation__list-item'}>logo</li>
+                <li className={'navigation__list-item'}>about me</li>
+                <li className={'navigation__list-item'}>designs</li>
+            </ul>
+        </nav>
         <div className={'container'}   ref={containerRef}>
             {[1,2,3,4,5].map(item=>{
                 return  <div className={`corner c-${item}`}>box-{item}</div>
