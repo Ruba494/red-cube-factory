@@ -1,0 +1,7 @@
+@use './page';
+
+.about-me{
+  @extend .page;
+  background: red;
+  display: flex;
+}

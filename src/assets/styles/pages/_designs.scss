@@ -1,0 +1,6 @@
+@use './page';
+
+.designs{
+  @extend .page;
+  background: red;
+}

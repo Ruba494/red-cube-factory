@@ -1,3 +1,6 @@
 export const AboutMe = () => {
-    return <>about me</>
+    return <div className={'about-me'}>
+        about me
+
+    </div>
 }

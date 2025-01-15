@@ -1,3 +1,5 @@
 export const Designs = () => {
-    return<>designs</>
+    return<div className={'designs'}>
+        designs
+    </div>
 }
