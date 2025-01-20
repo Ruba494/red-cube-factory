@@ -12,7 +12,7 @@
     list-style-type: none;
     padding-left: 0;
     &-item{
-      font-size: 40px;
+      font-size: 60px;
       font-weight: 1000;
       cursor: pointer;
       padding: 12px 0;
@@ -31,6 +31,10 @@
       transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
       -webkit-text-stroke: 0.1rem var(--text-stroke-color);
       text-stroke: 0.1rem var(--text-stroke-color);
+
+      &.is-active{
+        background-size: 100% !important;
+      }
     }
   }
 }
