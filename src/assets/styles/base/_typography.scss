@@ -1,11 +1,10 @@
-@font-face {
-  font-family: "Impact";
-  font-weight: 100 1000;
-  font-style: normal;
-}
+@import '../../fonts/ClashDisplay_Complete/Fonts/css/clash-display.css';
 
 :root{
-  --base-font-family:"Impact";
+  --default-regular-font-familty: 'ClashDisplay-Bold';
+  --base-font-family: var(--default-regular-font-familty), -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, Cantarell,
+  "Helvetica Neue", sans-serif;
 }
 
 body{
