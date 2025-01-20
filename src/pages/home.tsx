@@ -2,6 +2,7 @@ import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {useRef} from "react";
 import {ImageCard} from "../components/imageCard.tsx";
+import {IMAGES} from "./constants.ts";
 
 
 export const Home = () => {
@@ -36,7 +37,7 @@ export const Home = () => {
             },
         { scope: containerRef }
     ); // <-- scope is for selector text (optional)
-
+    console.log(IMAGES.length)
 
     return <div className={'home'}  >
         <div className={'container'}   ref={containerRef}>
@@ -44,7 +45,7 @@ export const Home = () => {
                 return  <div className={`corner c-${item}`}>box-{item}</div>
             })}
             <div className={'gallery'}>
-                {Array.from(Array(60).keys()).map(item=>{
+                {IMAGES.map(item=>{
                     return  <ImageCard imageInfo={item}/>
                 })}
             </div>
