@@ -1,12 +1,15 @@
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {useRef} from "react";
-import {ImageCard} from "../components/imageCard.tsx";
+import {IImageInfo, ImageCard} from "../components/imageCard.tsx";
 import {IMAGES} from "./constants.ts";
+import {Title} from "../components/GalleryComponents/title.tsx";
+// @ts-ignore
+import * as _ from "lodash";
 
 
 export const Home = () => {
-        gsap.registerPlugin(useGSAP);
+    gsap.registerPlugin(useGSAP);
 
     const containerRef = useRef(null);
 
@@ -37,7 +40,19 @@ export const Home = () => {
             },
         { scope: containerRef }
     ); // <-- scope is for selector text (optional)
-    console.log(IMAGES.length)
+
+    const addObjectToCenter = (arr:any[], newObj:any) => {
+        const middleIndex = Math.floor(arr.length / 2); // Calculate middle index
+        arr.splice(middleIndex, 0, newObj); // Insert the new object at the middle index
+        return arr;
+    };
+
+    const cards: IImageInfo[]=addObjectToCenter(_.shuffle(IMAGES),{
+        id: 'title',
+        type: 'component',
+        component: Title
+    })
+
 
     return <div className={'home'}  >
         <div className={'container'}   ref={containerRef}>
@@ -45,8 +60,8 @@ export const Home = () => {
                 return  <div className={`corner c-${item}`}>box-{item}</div>
             })}
             <div className={'gallery'}>
-                {IMAGES.map(item=>{
-                    return  <ImageCard imageInfo={item}/>
+                {cards.map((item,index)=>{
+                    return  <ImageCard imageInfo={item} index={index}/>
                 })}
             </div>
         </div>

@@ -1,5 +1,60 @@
 import {IImageInfo} from "../components/imageCard.tsx";
+import {Quote} from "../components/GalleryComponents/quote.tsx";
 
+
+export const COMPONENTS: IImageInfo[] = [
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+    {
+        type: 'component',
+        component: Quote
+    },
+]
 export const IMAGES: IImageInfo[] = [
     {
         type: 'image',
@@ -41,9 +96,6 @@ export const IMAGES: IImageInfo[] = [
     {
         type: 'image',
         imageSrc: "/posts/202210.jpg"
-    },    {
-        type: 'component',
-        component:"hii there"
     },
     {
         type: 'image',
@@ -151,5 +203,5 @@ export const IMAGES: IImageInfo[] = [
         type: 'image',
         imageSrc: "/posts/202412.jpg"
     },
-
+    ...COMPONENTS
 ]
