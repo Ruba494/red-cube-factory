@@ -5,7 +5,7 @@ export interface IImageInfo {
     type?:"image"|'component';
     imageSrc?:string;
     component?:any;
-
+    quote?:string;
 }
 
 interface IImageCard {

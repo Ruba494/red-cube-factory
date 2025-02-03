@@ -5,7 +5,8 @@ import {Quote} from "../components/GalleryComponents/quote.tsx";
 export const COMPONENTS: IImageInfo[] = [
     {
         type: 'component',
-        component: Quote
+        component: Quote,
+        quote:''
     },
     {
         type: 'component',
