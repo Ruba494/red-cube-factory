@@ -40,6 +40,7 @@ export const Navigation = () => {
             <li className={`navigation__list-item`} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.HOME])}>logo</li>
             <li className={`navigation__list-item ${pathnames==='about-me'?"is-active":""}`} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.ABOUT_ME])}>about me</li>
             <li className={`navigation__list-item ${pathnames==='designs'?"is-active":""}`} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.DESIGNS])}>designs</li>
+            <li className={`navigation__list-item ${pathnames==='designs'?"is-active":""}`} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.CANVAS])}>canvas</li>
         </ul>
     </nav>
 }

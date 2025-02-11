@@ -206,3 +206,26 @@ export const IMAGES: IImageInfo[] = [
     },
     ...COMPONENTS
 ]
+
+
+
+
+export const initialNodes = [
+    {
+        id: '1',
+        position: { x: 0, y: 0 },
+        type:'ImageNode',
+        data: {
+        imageSrc: "/posts/202201.jpg",
+        label: '1' }
+    },
+    {
+        id: '2',
+        position: { x: 0, y: 100 },
+        type:'ImageNode',
+        data: {
+        imageSrc: "/posts/202202.jpg",
+            label: '2',
+        } },
+];
+export const initialEdges = [];
