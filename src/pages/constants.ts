@@ -1,5 +1,6 @@
 import {IImageInfo} from "../components/imageCard.tsx";
 import {Quote} from "../components/GalleryComponents/quote.tsx";
+import * as _ from 'lodash';
 
 
 export const COMPONENTS: IImageInfo[] = [
@@ -81,7 +82,8 @@ export const IMAGES: IImageInfo[] = [
         type: 'image',
         imageSrc: "/posts/202206.jpg"
 
-    }, {
+    },
+    {
         type: 'image',
         imageSrc: "/posts/202207.jpg"
 
@@ -204,28 +206,48 @@ export const IMAGES: IImageInfo[] = [
         type: 'image',
         imageSrc: "/posts/202412.jpg"
     },
-    ...COMPONENTS
+    {
+        type: 'image',
+        imageSrc: "/ruba.png"
+    },
+
 ]
 
+let maxX=1000
+let size=200
 
 
-
-export const initialNodes = [
-    {
-        id: '1',
-        position: { x: 0, y: 0 },
+const IMAGES_NODES=IMAGES.map((image,index)=>{
+    return {
+        id: `image${index}`,
+        position: {
+            x: 0,
+            y: 0,
+        },
         type:'ImageNode',
         data: {
-        imageSrc: "/posts/202201.jpg",
-        label: '1' }
-    },
-    {
-        id: '2',
-        position: { x: 0, y: 100 },
-        type:'ImageNode',
+            imageSrc: image.imageSrc,
+        }
+    }
+})
+
+const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,index)=>{
+    return {
+        id: `emoji${index}`,
+        position: {
+            x: 0,
+            y: 0,
+        },
+        type:'EmojiNode',
         data: {
-        imageSrc: "/posts/202202.jpg",
-            label: '2',
-        } },
-];
+            emoji:emoji
+        }
+    }
+})
+
+const NODES= _.shuffle([
+    ..._.shuffle(IMAGES_NODES),
+    ..._.shuffle(EMOJI_NODES),
+])
+export const initialNodes = [...NODES];
 export const initialEdges = [];

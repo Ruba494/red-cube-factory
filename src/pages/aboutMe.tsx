@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import RubaImage from "../assets/images/ruba.png"
+import RubaImage from "../../public/ruba.png"
 
 const floatVariants = {
     animate: {
