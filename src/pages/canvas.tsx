@@ -2,7 +2,7 @@ import {
   Background,
   ReactFlow,
   ReactFlowProvider, useEdgesState,
-  useNodesState,
+  useNodesState, useReactFlow, useViewport,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import {initialEdges, initialNodes} from "./constants.ts";
@@ -29,8 +29,11 @@ export const Canvas = () => {
 const Flow = () => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+  const { innerWidth: width, innerHeight: height } = window;
+  const centerPoint={ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 }
   const [initialized, { toggle, isRunning }, dragEvents] =
-      useLayoutedElements();
+      useLayoutedElements(centerPoint,width,height);
+
 
   useEffect(() => {
     if(initialized&& !isRunning()) {
@@ -40,16 +43,18 @@ const Flow = () => {
     }
   }, [initialized]);
 
-  return   <ReactFlow nodes={nodes??[]} edges={edges} nodeTypes={nodeTypes}
+
+  return   <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
+
                       onNodesChange={onNodesChange}
                       onEdgesChange={onEdgesChange}
                       onNodeDragStart={dragEvents.start}
                       onNodeDrag={dragEvents.drag}
                       onNodeDragStop={dragEvents.stop}
                       fitView={true}
-                      zoomOnScroll
-                      zoomOnPinch
-                      panOnDrag>
+                      panOnDrag
+                      viewport={centerPoint}
+  >
     <Background variant="dots" gap={12} size={1} />
   </ReactFlow>
 }

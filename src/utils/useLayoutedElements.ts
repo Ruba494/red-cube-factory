@@ -1,4 +1,4 @@
-import { useNodesInitialized, useReactFlow, } from "@xyflow/react";
+import {useNodesInitialized, useReactFlow, useViewport,} from "@xyflow/react";
 import { useMemo, useRef} from "react";
 import { forceCollide, forceLink, forceManyBody, forceSimulation, forceX, forceY } from "d3-force";
 
@@ -10,10 +10,8 @@ const simulation = forceSimulation()
     .alphaTarget(0.2)
     .stop();
 
-export const useLayoutedElements = () => {
+export const useLayoutedElements = (centerPoint,width,height) => {
     const { getNodes, setNodes, getEdges,setViewport } = useReactFlow();
-    const { innerWidth: width, innerHeight: height } = window;
-
     const initialized = useNodesInitialized();
 
     const draggingNodeRef = useRef(null);
@@ -46,7 +44,7 @@ export const useLayoutedElements = () => {
     const centerNodes = (nodes) => {
         if (!nodes.length || centered.current) return;
         // Set viewport to center nodes in the middle of the screen
-        setViewport({ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 });
+        setViewport(centerPoint);
 
         centered.current = true; // Prevent multiple calls
     };
