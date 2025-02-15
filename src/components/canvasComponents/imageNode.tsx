@@ -1,6 +1,6 @@
 import {motion} from "motion/react";
 
-export const ImageNode = ({ data }) => {
+export const ImageNode = ({ data }) => {    
     return (<motion.div
                 whileHover={{
                     scale: 1.3,
@@ -18,7 +18,7 @@ export const ImageNode = ({ data }) => {
                             delay: 1 },
                     }
                 }
-                className={'image'}><img src={data?.imageSrc} alt="Image"  style={{ width: '200px', height: 'auto' }} />
+                className={'image'}><img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
     </motion.div>
     );
 }

@@ -27,25 +27,18 @@ export const Canvas = () => {
 
 
 const Flow = () => {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes,setNodes , onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { innerWidth: width, innerHeight: height } = window;
   const centerPoint={ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 }
+  
   const [initialized, { toggle, isRunning }, dragEvents] =
       useLayoutedElements(centerPoint,width,height);
 
 
-  useEffect(() => {
-    if(initialized&& !isRunning()) {
-      toggle()
-    }else {
-      console.log(nodes)
-    }
-  }, [initialized]);
-
-
   return   <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
 
+  onlyRenderVisibleElements
                       onNodesChange={onNodesChange}
                       onEdgesChange={onEdgesChange}
                       onNodeDragStart={dragEvents.start}

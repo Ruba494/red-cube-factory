@@ -224,8 +224,8 @@ const IMAGES_NODES=IMAGES.map((image,index)=>{
             x: 0,
             y: 0,
         },
-        hidden:false,
         type:'ImageNode',
+        hidden:false,
         data: {
             imageSrc: image.imageSrc,
         }
@@ -239,8 +239,8 @@ const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,
             x: 0,
             y: 0,
         },
-        hidden:false,
         type:'EmojiNode',
+        hidden:false,
         data: {
             emoji:emoji
         }

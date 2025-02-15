@@ -6,7 +6,7 @@
 .navigation{
   position: absolute;
   z-index: 999;
-  height: 100%;
+  height: max-content;
   padding: 12px 24px;
   &__list{
     list-style-type: none;

@@ -1,5 +1,5 @@
 import {useNodesInitialized, useReactFlow, useViewport,} from "@xyflow/react";
-import { useMemo, useRef} from "react";
+import { useEffect, useMemo, useRef} from "react";
 import { forceCollide, forceLink, forceManyBody, forceSimulation, forceX, forceY } from "d3-force";
 
 const simulation = forceSimulation()
@@ -36,9 +36,7 @@ export const useLayoutedElements = (centerPoint,width,height) => {
                 x: Math.random() * width - width / 2, // Spread nodes randomly across viewport
                 y: Math.random() * height - height / 2,
             },
-            hidden:false
         }))
-        console.log('reorderedNodes',reorderedNodes)
         return reorderedNodes;
     };
     const centerNodes = (nodes) => {
@@ -49,7 +47,7 @@ export const useLayoutedElements = (centerPoint,width,height) => {
         centered.current = true; // Prevent multiple calls
     };
 
-    return useMemo(() => {
+    const result=  useMemo(() => {
         let nodes = randomizePositions(getNodes())
         let edges = getEdges();
         let running = false;
@@ -108,4 +106,16 @@ export const useLayoutedElements = (centerPoint,width,height) => {
         randomized.current = true; // Mark nodes as randomized
         return [true, { toggle, isRunning }, dragEvents];
     }, [initialized, dragEvents, getNodes, getEdges, setNodes]);
+
+
+     // Use an effect to automatically trigger `toggle` when the hook is ready.
+  useEffect(() => {
+    const [isInitialized, { toggle, isRunning }, dragEvents] = result;
+    if (isInitialized && !isRunning()) {
+      toggle();
+    }
+    // We want this to run when `result` changes (typically on initialization).
+  }, [result]);
+
+  return result
 };
