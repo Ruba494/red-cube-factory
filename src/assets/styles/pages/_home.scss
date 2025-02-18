@@ -62,6 +62,8 @@
     grid-template-rows: repeat(10,minmax( var(--image-width),1fr));
     grid-gap: 12px;
 
+
+
     .image{
       background: pink;
       width: var(--image-width);

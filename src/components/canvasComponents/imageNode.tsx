@@ -1,14 +1,20 @@
 import {motion} from "motion/react";
+import {CanvasContext} from "./canvasContext.tsx";
+import {useContext, useRef} from "react";
 
-export const ImageNode = ({ data }) => {    
+export const ImageNode = ({ data }) => {
+
+    const {setSelectedNode,setIsDialogOpened, isDialogOpened} = useContext(CanvasContext);
+    const ref = useRef(null);
     return (<motion.div
-                whileHover={{
-                    scale: 1.3,
-                    transition: {
-                        duration: 1 },
-
-                }}
-                whileTap={{ scale: 0.9 }}
+            ref={ref}
+                // whileHover={{
+                //     scale: 1.3,
+                //     transition: {
+                //         duration: 1 },
+                //
+                // }}
+                // whileTap={{ scale: 0.9 }}
                 initial={{
                     opacity:0
                 }}
@@ -18,7 +24,12 @@ export const ImageNode = ({ data }) => {
                             delay: 1 },
                     }
                 }
-                className={'image'}><img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
+                onClick={()=>{
+                    setIsDialogOpened(!isDialogOpened)
+                    setSelectedNode(ref.current)
+                }}
+                className={'image-container'}>
+            <img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
     </motion.div>
     );
 }

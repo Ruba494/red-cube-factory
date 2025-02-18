@@ -10,19 +10,27 @@ import {ImageNode} from "../components/canvasComponents/imageNode.tsx";
 import { useEffect } from "react";
 import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
 import {EmojiNode} from "../components/canvasComponents/emojiNode.tsx";
+import {CanvasContextProvider} from "../components/canvasComponents/canvasContext.tsx";
+import {Dialog} from "../components/canvasComponents/Dialog.tsx";
 
 const nodeTypes = {
   ImageNode: ImageNode,
   EmojiNode:EmojiNode
 };
 export const Canvas = () => {
-  return <ReactFlowProvider>
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <Flow/>
-    </div>
-  </ReactFlowProvider>
-
+  return <div className={'canvas-container'}>
+    <CanvasContextProvider>
+      <ReactFlowProvider >
+        <div  className={'canvas'} style={{ width: '100vw', height: '100vh' }}>
+          <Flow/>
+        </div>
+      </ReactFlowProvider>
+      <Dialog/>
+    </CanvasContextProvider>
+  </div>
 }
+
+
 
 
 
