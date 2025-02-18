@@ -1,6 +1,8 @@
 import {Background, ReactFlow, ReactFlowProvider, useNodesState} from "@xyflow/react";
 import {initialNodes, nodeTypes} from "./constants.ts";
 import '@xyflow/react/dist/style.css';
+import {useEffect, useState} from "react";
+import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
 
 const getLayoutedElements = (nodes,) => {
     const getRandomPosition = (containerWidth, containerHeight, nodeWidth, nodeHeight) => {
@@ -20,7 +22,9 @@ const getLayoutedElements = (nodes,) => {
         return true;
     };
 
-    const { innerWidth: containerWidth, innerHeight: contianerHeight } = window;
+    const containerWidth= window.innerWidth
+    const contianerHeight= window.innerHeight
+
     const generateUniquePositions = () => {
         const positions = [];
         const positionedNodes = [];
@@ -30,8 +34,13 @@ const getLayoutedElements = (nodes,) => {
             let isOverlapping;
             let newRect;
 
+
+
             try {
+                let maxAttempts=10000
+                let attemps=0
                 do {
+                    attemps++;
                     position = getRandomPosition(containerWidth,contianerHeight,node.width,node.height);
                     newRect = { x: position.x, y: position.y ,width: node.width,height: node.height};
 
@@ -41,7 +50,8 @@ const getLayoutedElements = (nodes,) => {
                         }, newRect)
                     );
 
-                } while (isOverlapping);
+                    console.log('isOverlapping',isOverlapping)
+                } while (isOverlapping && attemps <= maxAttempts);
             }catch (e) {
                 console.log(e)
             }
@@ -56,21 +66,28 @@ const getLayoutedElements = (nodes,) => {
         return positionedNodes;
     }
 
-    const newNodes=generateUniquePositions()
-    return { nodes: newNodes };
+
+    if(nodes){
+        return generateUniquePositions()
+    }else{
+        return []
+    }
 };
 
-const AnotherCanvas = () => {
-    const { nodes: layoutedNodes } = getLayoutedElements(
-        initialNodes,
-    );
+const AnotherCanvas = ({layoutedNodes}) => {
 
     const [nodes,setNodes , onNodesChange] = useNodesState(layoutedNodes);
+
+    useEffect(() => {
+        setNodes(layoutedNodes)
+    }, [layoutedNodes]);
 
     return <ReactFlow nodes={nodes} edges={[]}
                nodeTypes={nodeTypes}
                onlyRenderVisibleElements
                onNodesChange={onNodesChange}
+                      onNodeClick={(e)=>{
+                          console.log(e)}}
                fitView={true}
     >
         <Background variant="dots" gap={12} size={1} />
@@ -79,9 +96,17 @@ const AnotherCanvas = () => {
 
 
 export const AnotherCanvasContainer = () => {
+
+    const [layoutedNodes, setLayoutedNodes] = useState([]);
+
+
+    useEffect(() => {
+        setLayoutedNodes(getLayoutedElements(initialNodes))
+    }, []);
+
     return <ReactFlowProvider>
         <div  className={'canvas'} id={'canvas'} style={{ width: '100vw', height: '100vh' }}>
-            <AnotherCanvas/>
+            <AnotherCanvas layoutedNodes={layoutedNodes}/>
         </div>
     </ReactFlowProvider>
 }
