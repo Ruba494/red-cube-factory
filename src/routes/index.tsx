@@ -2,7 +2,7 @@ import {Home} from "../pages/home.tsx";
 import {AboutMe} from "../pages/aboutMe.tsx";
 import {Designs} from "../pages/designs.tsx";
 import {Route, Routes} from "react-router";
-import {Canvas} from "../pages/canvas.tsx";
+import {AnotherCanvasContainer} from "../pages/anotherCanvas.tsx";
 
 export enum PATHS_CONSTANTS_ENUM {
     HOME = 'HOME',
@@ -40,7 +40,7 @@ export const ROUTES = [
     {
         id: PATHS_CONSTANTS.CANVAS,
         path: PATHS_CONSTANTS.CANVAS,
-        element: <Canvas/>,
+        element: <AnotherCanvasContainer/>,
         index: false,
     },
 ];

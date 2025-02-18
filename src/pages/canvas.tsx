@@ -2,21 +2,15 @@ import {
   Background,
   ReactFlow,
   ReactFlowProvider, useEdgesState,
-  useNodesState, useReactFlow, useViewport,
+  useNodesState,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import {initialEdges, initialNodes} from "./constants.ts";
-import {ImageNode} from "../components/canvasComponents/imageNode.tsx";
-import { useEffect } from "react";
+import {initialEdges, initialNodes, nodeTypes} from "./constants.ts";
 import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
-import {EmojiNode} from "../components/canvasComponents/emojiNode.tsx";
 import {CanvasContextProvider} from "../components/canvasComponents/canvasContext.tsx";
 import {Dialog} from "../components/canvasComponents/Dialog.tsx";
 
-const nodeTypes = {
-  ImageNode: ImageNode,
-  EmojiNode:EmojiNode
-};
+
 export const Canvas = () => {
   return <div className={'canvas-container'}>
     <CanvasContextProvider>

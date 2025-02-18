@@ -1,6 +1,8 @@
 import {IImageInfo} from "../components/imageCard.tsx";
 import {Quote} from "../components/GalleryComponents/quote.tsx";
 import * as _ from 'lodash';
+import {ImageNode} from "../components/canvasComponents/imageNode.tsx";
+import {EmojiNode} from "../components/canvasComponents/emojiNode.tsx";
 
 
 export const COMPONENTS: IImageInfo[] = [
@@ -220,6 +222,8 @@ let size=200
 const IMAGES_NODES=IMAGES.map((image,index)=>{
     return {
         id: `image${index}`,
+        width: size,
+        height: size,
         position: {
             x: 0,
             y: 0,
@@ -235,6 +239,8 @@ const IMAGES_NODES=IMAGES.map((image,index)=>{
 const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,index)=>{
     return {
         id: `emoji${index}`,
+        width: size,
+        height: size,
         position: {
             x: 0,
             y: 0,
@@ -253,3 +259,7 @@ const NODES= _.shuffle([
 ])
 export const initialNodes = [...NODES];
 export const initialEdges = [];
+export const nodeTypes = {
+    ImageNode: ImageNode,
+    EmojiNode:EmojiNode
+};
