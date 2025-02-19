@@ -8,20 +8,22 @@ import '@xyflow/react/dist/style.css';
 import {initialEdges, initialNodes, nodeTypes} from "./constants.ts";
 import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
 import {CanvasContextProvider} from "../components/canvasComponents/canvasContext.tsx";
-import {Dialog} from "../components/canvasComponents/Dialog.tsx";
+import {Modal} from "../components/canvasComponents/modal.tsx";
 
 
 export const Canvas = () => {
-  return <div className={'canvas-container'}>
-    <CanvasContextProvider>
-      <ReactFlowProvider >
-        <div  className={'canvas'} style={{ width: '100vw', height: '100vh' }}>
-          <Flow/>
-        </div>
-      </ReactFlowProvider>
-      <Dialog/>
-    </CanvasContextProvider>
-  </div>
+  return <>
+    <div className={'canvas-container'}>
+      <CanvasContextProvider>
+        <ReactFlowProvider >
+          <div  className={'canvas'} style={{ width: '100%', height: '100%' }}>
+            <Flow/>
+          </div>
+        </ReactFlowProvider>
+      </CanvasContextProvider>
+    </div>
+    <Modal/>
+  </>
 }
 
 
@@ -39,7 +41,6 @@ const Flow = () => {
 
 
   return   <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
-
   onlyRenderVisibleElements
                       onNodesChange={onNodesChange}
                       onEdgesChange={onEdgesChange}

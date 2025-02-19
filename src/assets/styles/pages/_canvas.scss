@@ -1,5 +1,7 @@
 .canvas{
   &-container{
+    width: 100vw;
+    height: 100vh;
     .dialog-container{
       &.big{
         position: fixed;
@@ -27,4 +29,48 @@
       }
     }
   }
+}
+
+.modalOverlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(1.5px);
+  text-align: center;
+  z-index: 11;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 12;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    background: white;
+    border-radius: 20px;
+  }
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #000;
+  position: relative;
 }
