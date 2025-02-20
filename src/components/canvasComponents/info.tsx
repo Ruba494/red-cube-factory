@@ -11,13 +11,13 @@ const variants = {
         }
     }
 }
-export const Info = ({isOpened,data}) => {
-    return isOpened && <motion.div
+export const Info = ({data}) => {
+    return <motion.div
+        className={'info'}
         variants={variants}
         initial={'hidden'}
         animate={'visible'}
     >
-        info here
-        kfmelkrmflkermflkemrfer felkrmflkermfl
+
     </motion.div>
 }

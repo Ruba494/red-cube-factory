@@ -25,12 +25,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     flex-direction: row;
+    grid-gap: 20px;
     width: 100%;
     img{
       width: 400px!important;
     }
     &-wrapper{
-      width: 60%;
+      width: fit-content;
       height: calc(400px + (2 * ( 40px)));
       display: flex;
       background: white;

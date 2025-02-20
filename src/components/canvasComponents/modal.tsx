@@ -7,17 +7,6 @@ import {Info} from "./info.tsx";
 import {CloseButtonLottie} from "../lottie/closeButtonLottie.tsx";
 import { motion } from "motion/react"
 
-const variants = {
-    hidden: {
-        backgroundColor:'transparent',
-    },
-    visible: {
-        backgroundColor:'white',
-        transition: {
-            delay: 2,
-        }
-    }
-}
 export const Modal = () => {
     gsap.registerPlugin(gsap)
     const overlayRef = useRef(null);
@@ -45,9 +34,8 @@ export const Modal = () => {
             height: newRect.height
         });
         let tl = gsap.timeline();
-
-        tl.to(overlayRef.current, 0, { autoAlpha: 1 });
-        tl.to(modalRef.current, 0.9, {
+        tl.to(overlayRef.current, 0.1, { autoAlpha: 1 });
+        tl.to(modalRef.current, 1, {
             x: 0,
             y: 0,
             ease: "power2.inOut",
@@ -71,7 +59,7 @@ export const Modal = () => {
                 }}><CloseButtonLottie/></div>}
                 <div className={'content'}>
                     <ImageNode data={selectedNode?.data} id={'---'} WithClickAction={false}/>
-                    <Info isOpened={isOpened} data={selectedNode?.data}/>
+                    {isOpened&&<Info data={selectedNode?.data}/>}
                 </div>
             </motion.div>
         </div>
