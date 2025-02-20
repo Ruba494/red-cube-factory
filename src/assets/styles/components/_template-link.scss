@@ -1,0 +1,36 @@
+.template-link{
+  font-family: sans-serif;
+  font-weight: 900;
+
+  width:150px ;
+  background:white;
+  border: 1px dashed rgba(0,0,0,0.4);
+  border-radius: 15px;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+          'link title title'
+          'description description description';
+  grid-gap: 4px;
+
+  .emoji {
+    grid-area: link;
+    align-self: center;
+  }
+
+  .description {
+    grid-area: description;
+    color:rgba(0,0,0,0.4);
+    font-size: 11px;
+  }
+
+  .title {
+    grid-area: title;
+
+  }
+
+  &:hover{
+    background:rgba(0,0,0,0.08);
+    transition: all 0.1s ease-in;
+  }
+}
