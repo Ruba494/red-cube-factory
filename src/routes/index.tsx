@@ -1,4 +1,4 @@
-import {Home} from "../pages/home.tsx";
+import {Gallery} from "../pages/gallery.tsx";
 import {AboutMe} from "../pages/aboutMe.tsx";
 import {Designs} from "../pages/designs.tsx";
 import {Route, Routes} from "react-router";
@@ -25,7 +25,7 @@ export const ROUTES = [
     {
         id: PATHS_CONSTANTS.HOME,
         path: PATHS_CONSTANTS.HOME,
-        element: <Home/>,
+        element: <Gallery/>,
         index: true,
     },
     {
@@ -46,12 +46,12 @@ export const ROUTES = [
         element: <Canvas/>,
         index: false,
     },
-    {
-        id: PATHS_CONSTANTS.ANOTHER_CANVAS,
-        path: PATHS_CONSTANTS.ANOTHER_CANVAS,
-        element: <AnotherCanvasContainer/>,
-        index: false,
-    },
+    // {
+    //     id: PATHS_CONSTANTS.ANOTHER_CANVAS,
+    //     path: PATHS_CONSTANTS.ANOTHER_CANVAS,
+    //     element: <AnotherCanvasContainer/>,
+    //     index: false,
+    // },
 ];
 
 

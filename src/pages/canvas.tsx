@@ -12,35 +12,31 @@ import {Modal} from "../components/canvasComponents/modal.tsx";
 
 
 export const Canvas = () => {
-  return <>
+  return<CanvasContextProvider>
     <div className={'canvas-container'}>
-      <CanvasContextProvider>
         <ReactFlowProvider >
           <div  className={'canvas'} style={{ width: '100%', height: '100%' }}>
             <Flow/>
           </div>
         </ReactFlowProvider>
-      </CanvasContextProvider>
+
     </div>
     <Modal/>
-  </>
+  </CanvasContextProvider>
 }
 
 
-
-
-
 const Flow = () => {
-  const [nodes,setNodes , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
   const { innerWidth: width, innerHeight: height } = window;
   const centerPoint={ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 }
   
-  const [initialized, { toggle, isRunning }, dragEvents] =
+  const [,, dragEvents] =
       useLayoutedElements(centerPoint,width,height);
 
 
-  return   <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
+  return <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
   onlyRenderVisibleElements
                       onNodesChange={onNodesChange}
                       onEdgesChange={onEdgesChange}

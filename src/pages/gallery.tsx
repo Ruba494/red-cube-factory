@@ -1,14 +1,14 @@
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
-import {useRef} from "react";
-import {IImageInfo, ImageCard} from "../components/imageCard.tsx";
 import {IMAGES} from "./constants.ts";
 import {Title} from "../components/GalleryComponents/title.tsx";
 // @ts-ignore
 import * as _ from "lodash";
+import {IImageInfo, ImageCard} from "../components/GalleryComponents/imageCard.tsx";
+import {useRef} from "react";
 
 
-export const Home = () => {
+export const Gallery = () => {
     gsap.registerPlugin(useGSAP);
 
     const containerRef = useRef(null);
