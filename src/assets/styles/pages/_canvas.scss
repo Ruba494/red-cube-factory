@@ -1,4 +1,7 @@
 .canvas{
+  .react-flow__pane,.react-flow__node {
+    cursor: none !important;
+  }
   &-container{
     width: 100vw;
     height: 100vh;
