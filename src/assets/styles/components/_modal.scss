@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  .content{
+  .image-node{
     display: grid;
     grid-template-columns: 1fr 1fr;
     flex-direction: row;
@@ -30,6 +30,16 @@
     img{
       width: 400px!important;
     }
+  }
+  &:has(.template-node){
+    .content-wrapper{
+      border: 1px dashed rgba(0,0,0,0.4);
+    }
+  }
+  .template-node{
+
+  }
+  .content{
     &-wrapper{
       width: fit-content;
       height: calc(400px + (2 * ( 40px)));

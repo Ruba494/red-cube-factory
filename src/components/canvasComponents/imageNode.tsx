@@ -1,6 +1,7 @@
 import {motion} from "motion/react";
 import {CanvasContext} from "./canvasContext.tsx";
 import {useContext, useRef} from "react";
+import {NodeTypesEnum} from "../../pages/constants.ts";
 
 
 
@@ -27,7 +28,7 @@ export const ImageNode = ({ id,data,WithClickAction=true }) => {
                 onClick={(e)=>{//
                     e.preventDefault()
                     if(WithClickAction) {
-                        setSelectedNode({data:data,ref:ref})
+                        setSelectedNode({data: {...data,type:NodeTypesEnum.imageNode},ref:ref})
                     }
                 }}
                 className={'image-container'}>

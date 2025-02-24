@@ -18,6 +18,5 @@ export const Info = ({data}) => {
         initial={'hidden'}
         animate={'visible'}
     >
-
     </motion.div>
 }

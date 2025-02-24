@@ -1,8 +1,7 @@
 .template-link{
   font-family: sans-serif;
   font-weight: 900;
-
-  width:150px ;
+  width:max-content ;
   background:white;
   border: 1px dashed rgba(0,0,0,0.4);
   border-radius: 15px;
@@ -30,7 +29,8 @@
   }
 
   &:hover{
-    background:rgba(0,0,0,0.08);
+    background:white;
+    filter: brightness(90%);
     transition: all 0.1s ease-in;
   }
 }

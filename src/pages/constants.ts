@@ -3,6 +3,7 @@ import {Quote} from "../components/GalleryComponents/quote.tsx";
 import * as _ from 'lodash';
 import {ImageNode} from "../components/canvasComponents/imageNode.tsx";
 import {EmojiNode} from "../components/canvasComponents/emojiNode.tsx";
+import {TemplateLink} from "../components/canvasComponents/templateLink.tsx";
 
 
 export const COMPONENTS: IImageInfo[] = [
@@ -59,6 +60,7 @@ export const COMPONENTS: IImageInfo[] = [
         component: Quote
     },
 ]
+
 export const IMAGES: IImageInfo[] = [
     {
         type: 'image',
@@ -215,10 +217,65 @@ export const IMAGES: IImageInfo[] = [
 
 ]
 
+export const LINKS = [
+    {
+
+        emoji:'🔗',
+        title:'2024 template',
+        url:'',
+        description:'test'
+    },    {
+
+        emoji:'🔗',
+        title:'2023 template',
+        url:'',
+        description:'test'
+    },   {
+
+        emoji:'🔗',
+        title:'2025 template',
+        url:'',
+        description:'test'
+    }, {
+
+        emoji:'🔗',
+        title:'2022 template',
+        url:'',
+        description:'test'
+    },{
+
+        emoji:'🔗',
+        title:'weekly template',
+        url:'',
+        description:'test'
+    },
+]
+
 let maxX=1000
 let size=200
+export enum NodeTypesEnum {
+    imageNode='image-node',
+    templateNode='template-node',
+    emojiNode='emoji-node'
+}
 
 
+const LINKS_NODES=LINKS.map((link,index)=>{
+    return {
+        id: `link${index}`,
+        width: 150,
+        height: 20,
+        position: {
+            x: 0,
+            y: 0,
+        },
+        type:NodeTypesEnum.templateNode,
+        hidden:false,
+        data: {
+            ...link
+        }
+    }
+})
 const IMAGES_NODES=IMAGES.map((image,index)=>{
     return {
         id: `image${index}`,
@@ -228,14 +285,13 @@ const IMAGES_NODES=IMAGES.map((image,index)=>{
             x: 0,
             y: 0,
         },
-        type:'ImageNode',
+        type:NodeTypesEnum.imageNode,
         hidden:false,
         data: {
             imageSrc: image.imageSrc,
         }
     }
 })
-
 const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,index)=>{
     return {
         id: `emoji${index}`,
@@ -245,7 +301,7 @@ const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,
             x: 0,
             y: 0,
         },
-        type:'EmojiNode',
+        type:NodeTypesEnum.emojiNode,
         hidden:false,
         data: {
             emoji:emoji
@@ -253,15 +309,19 @@ const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,
     }
 })
 
-const NODES= _.shuffle([
+const NODES= [
     ..._.shuffle(IMAGES_NODES),
     ..._.shuffle(EMOJI_NODES),
-])
+    ..._.shuffle(LINKS_NODES),
+]
+
 export const initialNodes = [...NODES];
 export const initialEdges = [];
+
 export const nodeTypes = {
-    ImageNode: ImageNode,
-    EmojiNode:EmojiNode
+    [NodeTypesEnum.imageNode]: ImageNode,
+    [NodeTypesEnum.emojiNode]:EmojiNode,
+    [NodeTypesEnum.templateNode]:TemplateLink
 };
 
 export const possitionsNodes=[
