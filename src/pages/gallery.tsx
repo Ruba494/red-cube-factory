@@ -1,11 +1,10 @@
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
-import {IMAGES} from "./constants.ts";
 import {Title} from "../components/GalleryComponents/title.tsx";
-// @ts-ignore
 import * as _ from "lodash";
 import {IImageInfo, ImageCard} from "../components/GalleryComponents/imageCard.tsx";
 import {useRef} from "react";
+import {IMAGES} from "./constants/images.ts";
 
 
 export const Gallery = () => {

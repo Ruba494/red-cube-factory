@@ -3,12 +3,14 @@ import {
   ReactFlow,
   ReactFlowProvider, useEdgesState,
   useNodesState,
+  BackgroundVariant
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import {initialEdges, initialNodes, nodeTypes} from "./constants.ts";
 import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
 import {CanvasContextProvider} from "../components/canvasComponents/canvasContext.tsx";
 import {Modal} from "../components/canvasComponents/modal.tsx";
+import {initialEdges, initialNodes} from "./constants/nodes.ts";
+import {nodeTypes} from "./constants.ts";
 
 
 export const Canvas = () => {
@@ -47,6 +49,6 @@ const Flow = () => {
                       panOnDrag
                       zoomOnScroll
   >
-    <Background variant="dots" gap={12} size={1} />
+    <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
   </ReactFlow>
 }

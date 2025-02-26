@@ -1,4 +1,6 @@
+// @ts-ignore
 import animationData from '../../lotties/icons8-exit-button';
+// @ts-ignore
 import Lottie from 'react-lottie';
 import {useRef, useState} from "react";
 

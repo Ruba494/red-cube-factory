@@ -6,8 +6,8 @@ import {getPosition} from "../../utils/getPosition.ts";
 import {Info} from "./info.tsx";
 import {CloseButtonLottie} from "../lottie/closeButtonLottie.tsx";
 import { motion } from "motion/react"
-import {NodeTypesEnum} from "../../pages/constants.ts";
 import {TemplateLinkModalContent} from "./templateLinkModalContent.tsx";
+import {NodeTypesEnum} from "../../pages/constants/nodes.ts";
 
 export const Modal = () => {
     gsap.registerPlugin(gsap)
@@ -59,7 +59,7 @@ export const Modal = () => {
                     setSelectedNode(null)
                     gsap.set([overlayRef.current, modalRef.current], {autoAlpha: 0});
                 }}><CloseButtonLottie/></div>}
-                <div className={`content ${selectedNode?.data?.type}`}>
+                <div className={`content ${selectedNode?.data?.type} ${isOpened?'is-opened':''}`}>
                      <ModalContent selectedNode={selectedNode} isOpened={isOpened}/>
                 </div>
             </motion.div>
@@ -70,7 +70,7 @@ export const Modal = () => {
 
 const ModalContent = ({selectedNode,isOpened}) => {
     if( selectedNode?.data?.type===NodeTypesEnum.templateNode) {
-        return <TemplateLinkModalContent  data={selectedNode?.data}/>
+        return <TemplateLinkModalContent  data={selectedNode?.data} isOpened={isOpened}/>
     } else if( selectedNode?.data?.type===NodeTypesEnum.imageNode) {
         return <>
             <ImageNode data={selectedNode?.data} id={'---'} WithClickAction={false}/>

@@ -1,10 +1,10 @@
-import {Background, ReactFlow, ReactFlowProvider, useNodesState} from "@xyflow/react";
-import {initialNodes, nodeTypes} from "./constants.ts";
+import {Background, ReactFlow, ReactFlowProvider, useNodesState,BackgroundVariant} from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 import {useEffect, useState} from "react";
-import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
+import {initialNodes} from "./constants/nodes.ts";
+import {nodeTypes} from "./constants.ts";
 
-const getLayoutedElements = (nodes,) => {
+const getLayoutedElements = (nodes) => {
     const getRandomPosition = (containerWidth, containerHeight, nodeWidth, nodeHeight) => {
         const x = Math.floor(Math.random() * (containerWidth - nodeWidth));
         const y = Math.floor(Math.random() * (containerHeight - nodeHeight));
@@ -90,7 +90,7 @@ const AnotherCanvas = ({layoutedNodes}) => {
                           console.log(e)}}
                fitView={true}
     >
-        <Background variant="dots" gap={12} size={1} />
+        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
     </ReactFlow>
 }
 

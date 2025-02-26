@@ -1,7 +1,7 @@
 import {motion} from "motion/react";
-import {NodeTypesEnum} from "../../pages/constants.ts";
 import {useContext, useRef} from "react";
 import {CanvasContext} from "./canvasContext.tsx";
+import {NodeTypesEnum} from "../../pages/constants/nodes.ts";
 
 export const TemplateLink = ({data,WithClickAction=true  }) => {
     const {setSelectedNode,} = useContext(CanvasContext);
@@ -24,12 +24,12 @@ export const TemplateLink = ({data,WithClickAction=true  }) => {
                        setSelectedNode({data: {...data,type:NodeTypesEnum.templateNode},ref:ref})
                    }else {
                    //@TODO: navigate to google drive line?
+                       window.open(data.url, "_blank", "noreferrer");
                    }
 
     }}>
         <div className={'emoji'}>{data.emoji}</div>
         <div className={'title'}>{data.title}</div>
         <div className={'description'}>{data.description}</div>
-        <div className={'description'}>{data.url}</div>
     </motion.div>
 }

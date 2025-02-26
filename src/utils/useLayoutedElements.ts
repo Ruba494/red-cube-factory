@@ -57,7 +57,7 @@ export const useLayoutedElements = (centerPoint,width,height) => {
         simulation.nodes(nodes).force(
             "link",
             forceLink(edges)
-                .id((d) => d.id)
+                .id((d) => d['id'])
                 .strength(0.05)
                 .distance(100)
         );
@@ -110,7 +110,8 @@ export const useLayoutedElements = (centerPoint,width,height) => {
 
      // Use an effect to automatically trigger `toggle` when the hook is ready.
   useEffect(() => {
-    const [isInitialized, { toggle, isRunning }, dragEvents] = result;
+    // @ts-ignore
+      const [isInitialized, { toggle, isRunning }, dragEvents] = result;
     if (isInitialized && !isRunning()) {
       toggle();
     }

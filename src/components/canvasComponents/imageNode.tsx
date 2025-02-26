@@ -1,7 +1,7 @@
 import {motion} from "motion/react";
 import {CanvasContext} from "./canvasContext.tsx";
 import {useContext, useRef} from "react";
-import {NodeTypesEnum} from "../../pages/constants.ts";
+import {NodeTypesEnum} from "../../pages/constants/nodes.ts";
 
 
 

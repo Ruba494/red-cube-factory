@@ -33,10 +33,40 @@
   }
   &:has(.template-node){
     .content-wrapper{
+      height: max-content;
       border: 1px dashed rgba(0,0,0,0.4);
     }
   }
   .template-node{
+    display: flex;
+    &.is-opened{
+      display: grid;
+      grid-template-areas:
+            'gallery info'
+            'gallery info'
+            'gallery info'
+            'gallery link'
+    ;
+      flex-direction: row;
+      grid-gap: 20px;
+    }
+
+    width: 100%;
+    .info{
+      grid-area: info;
+    }
+    .react-image-gallery{
+      grid-area: gallery;
+      .image-gallery-image{
+        height: 400px;
+        width: 400px;
+      }
+    }
+    .template-link{
+      grid-area: link;
+      margin-top: auto;
+      height: max-content;
+    }
 
   }
   .content{
