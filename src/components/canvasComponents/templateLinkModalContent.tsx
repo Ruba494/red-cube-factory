@@ -1,8 +1,13 @@
 import {TemplateLink} from "./templateLink.tsx";
 import { PreviewGallery} from "./imageGallery.tsx";
 import {Info} from "./info.tsx";
+import {INodeData} from "../../pages/constants/nodes.ts";
 
-export const TemplateLinkModalContent = ({data,isOpened}) => {
+interface ITemplateLinkModalContent {
+    data:INodeData
+    isOpened:boolean
+}
+export const TemplateLinkModalContent = ({data,isOpened}:ITemplateLinkModalContent) => {
 
     return <>
         {isOpened&& <>

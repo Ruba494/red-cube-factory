@@ -25,33 +25,9 @@ export const ROUTES = [
     {
         id: PATHS_CONSTANTS.HOME,
         path: PATHS_CONSTANTS.HOME,
-        element: <Gallery/>,
+        element:  <Canvas/>,
         index: true,
     },
-    {
-        id: PATHS_CONSTANTS.ABOUT_ME,
-        path: PATHS_CONSTANTS.ABOUT_ME,
-        element: <AboutMe/>,
-        index: false,
-    },
-    {
-        id: PATHS_CONSTANTS.DESIGNS,
-        path: PATHS_CONSTANTS.DESIGNS,
-        element: <Designs/>,
-        index: false,
-    },
-    {
-        id: PATHS_CONSTANTS.CANVAS,
-        path: PATHS_CONSTANTS.CANVAS,
-        element: <Canvas/>,
-        index: false,
-    },
-    // {
-    //     id: PATHS_CONSTANTS.ANOTHER_CANVAS,
-    //     path: PATHS_CONSTANTS.ANOTHER_CANVAS,
-    //     element: <AnotherCanvasContainer/>,
-    //     index: false,
-    // },
 ];
 
 

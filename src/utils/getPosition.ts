@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 
-export const getPosition = (elem,target) => {
+export const getPosition = (elem:any,target:any) => {
     let targetRect = target.getBoundingClientRect();
     let elemRect = elem.getBoundingClientRect();
     gsap.set(elem, {

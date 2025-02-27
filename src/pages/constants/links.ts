@@ -1,3 +1,11 @@
+
+export interface ILinkData {
+    emoji?:string
+    title?:string
+    url?:string
+    description?:string
+    previewAccessor?:LinksAccessorTypes
+}
 export enum LinksAccessorEnum {
     DIARY_2025 ='DIARY_2025',
     DIARY_2024='DIARY_2024',
@@ -6,8 +14,15 @@ export enum LinksAccessorEnum {
     WEEKLY_2021='WEEKLY_2021',
     WEEKLY_2022='WEEKLY_2022'
 }
+export type LinksAccessorTypes=
+    LinksAccessorEnum.DIARY_2023 |
+    LinksAccessorEnum.DIARY_2024 |
+    LinksAccessorEnum.DIARY_2025 |
+    LinksAccessorEnum.MB_REVIEW |
+    LinksAccessorEnum.WEEKLY_2021 |
+    LinksAccessorEnum.WEEKLY_2022 ;
 
-export const LINKS = [
+export const LINKS: ILinkData[] = [
     {
 
         emoji:'🔗',

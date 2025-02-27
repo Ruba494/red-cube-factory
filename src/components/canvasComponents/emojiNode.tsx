@@ -1,6 +1,10 @@
 import {motion} from "motion/react";
+import {INodeData} from "../../pages/constants/nodes.ts";
 
-export const EmojiNode = ({ data }) => {
+interface IEmojiNodeProps {
+    data:INodeData
+}
+export const EmojiNode = ({ data }:IEmojiNodeProps) => {
     return (
         <div className="text-updater-node">
             <motion.div

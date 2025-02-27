@@ -1,12 +1,16 @@
 import {motion} from "motion/react";
 import {CanvasContext} from "./canvasContext.tsx";
 import {useContext, useRef} from "react";
-import {NodeTypesEnum} from "../../pages/constants/nodes.ts";
+import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
 
+interface IImageNodeProps {
+    id:string;
+    data:INodeData;
+    WithClickAction:boolean
+}
 
-
-export const ImageNode = ({ id,data,WithClickAction=true }) => {
-    const {setSelectedNode,} = useContext(CanvasContext);
+export const ImageNode = ({ id,data,WithClickAction=true }:IImageNodeProps) => {
+    const {setSelectedNode} = useContext(CanvasContext);
     const ref = useRef(null);
 
     return (<motion.div
@@ -31,7 +35,7 @@ export const ImageNode = ({ id,data,WithClickAction=true }) => {
                         setSelectedNode({data: {...data,type:NodeTypesEnum.imageNode},ref:ref})
                     }
                 }}
-                className={'image-container'}>
+                className={`image-container ${data?.isProfile?"is-profile-image":""}`}>
                 <img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
             </motion.div>
     );

@@ -1,9 +1,13 @@
 import {motion} from "motion/react";
 import {useContext, useRef} from "react";
 import {CanvasContext} from "./canvasContext.tsx";
-import {NodeTypesEnum} from "../../pages/constants/nodes.ts";
+import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
 
-export const TemplateLink = ({data,WithClickAction=true  }) => {
+interface ITemplateLinkProps {
+    data:INodeData
+    WithClickAction:boolean
+}
+export const TemplateLink = ({data,WithClickAction=true  }:ITemplateLinkProps) => {
     const {setSelectedNode,} = useContext(CanvasContext);
     const ref = useRef(null);
 
@@ -23,7 +27,6 @@ export const TemplateLink = ({data,WithClickAction=true  }) => {
                    if(WithClickAction){
                        setSelectedNode({data: {...data,type:NodeTypesEnum.templateNode},ref:ref})
                    }else {
-                   //@TODO: navigate to google drive line?
                        window.open(data.url, "_blank", "noreferrer");
                    }
 

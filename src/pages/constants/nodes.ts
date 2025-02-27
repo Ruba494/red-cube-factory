@@ -1,12 +1,36 @@
 import * as _ from "lodash";
-import {LINKS} from "./links.ts";
-import {IMAGES} from "./images.ts";
+import {ILinkData, LINKS} from "./links.ts";
+import {IImageData, IMAGES} from "./images.ts";
+
 export enum NodeTypesEnum {
     imageNode='image-node',
     templateNode='template-node',
     emojiNode='emoji-node'
 }
-const LINKS_NODES=LINKS.map((link,index)=>{
+export type NodeTypes=
+    NodeTypesEnum.imageNode |
+    NodeTypesEnum.templateNode |
+    NodeTypesEnum.emojiNode ;
+
+export interface INodeData extends IImageData,ILinkData {
+
+}
+
+interface INodePosition {
+    x: number
+    y: number
+}
+export interface INode{
+    id: string
+    width: number
+    height: number
+    position:INodePosition
+    type:NodeTypes
+    hidden:boolean
+    data: INodeData
+}
+
+const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
     return {
         id: `link${index}`,
         width: 150,
@@ -14,15 +38,15 @@ const LINKS_NODES=LINKS.map((link,index)=>{
         position: {
             x: 0,
             y: 0,
-        },
-        type:NodeTypesEnum.templateNode,
+        } as INodePosition,
+        type:NodeTypesEnum.templateNode as NodeTypes,
         hidden:false,
         data: {
             ...link
-        }
+        } as INodeData
     }
 })
-const IMAGES_NODES=IMAGES.map((image,index)=>{
+const IMAGES_NODES:INode[] =IMAGES.map((image,index)=>{
     return {
         id: `image${index}`,
         width: 200,
@@ -30,15 +54,15 @@ const IMAGES_NODES=IMAGES.map((image,index)=>{
         position: {
             x: 0,
             y: 0,
-        },
-        type:NodeTypesEnum.imageNode,
+        } as INodePosition,
+        type:NodeTypesEnum.imageNode as NodeTypes,
         hidden:false,
         data: {
-            imageSrc: image.imageSrc,
-        }
+            ...image,
+        } as INodeData
     }
 })
-const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,index)=>{
+const EMOJI_NODES :INode[] =['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,index)=>{
     return {
         id: `emoji${index}`,
         width: 200,
@@ -46,21 +70,21 @@ const EMOJI_NODES=['🥳','👊🏼','🪄','😶‍🌫️','🐮'].map((emoji,
         position: {
             x: 0,
             y: 0,
-        },
-        type:NodeTypesEnum.emojiNode,
+        } as INodePosition,
+        type: NodeTypesEnum.emojiNode as NodeTypes,
         hidden:false,
         data: {
             emoji:emoji
-        }
+        } as INodeData
     }
 })
 
-const NODES= [
+const NODES:INode[] = [
     ..._.shuffle(IMAGES_NODES),
     ..._.shuffle(EMOJI_NODES),
     ..._.shuffle(LINKS_NODES),
 ]
 
-export const initialNodes = [...NODES];
+export const initialNodes:INode[] = [...NODES];
 export const initialEdges = [];
 

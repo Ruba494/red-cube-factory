@@ -3,7 +3,7 @@ import {
   ReactFlow,
   ReactFlowProvider, useEdgesState,
   useNodesState,
-  BackgroundVariant
+  BackgroundVariant,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import {useLayoutedElements} from "../utils/useLayoutedElements.ts";
@@ -29,15 +29,15 @@ export const Canvas = () => {
 
 
 const Flow = () => {
+  // @ts-ignore
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
   const { innerWidth: width, innerHeight: height } = window;
   const centerPoint={ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 }
   
-  const [,, dragEvents] =
-      useLayoutedElements(centerPoint,width,height);
+  const {dragEvents} = useLayoutedElements({centerPoint, width, height});
 
-
+  // @ts-ignore
   return <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
   onlyRenderVisibleElements
                       onNodesChange={onNodesChange}
