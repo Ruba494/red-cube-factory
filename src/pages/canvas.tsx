@@ -39,7 +39,6 @@ const Flow = () => {
 
   // @ts-ignore
   return <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
-  onlyRenderVisibleElements
                       onNodesChange={onNodesChange}
                       onEdgesChange={onEdgesChange}
                       onNodeDragStart={dragEvents.start}
