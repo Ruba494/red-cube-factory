@@ -11,24 +11,29 @@ import {CanvasContextProvider} from "../components/canvasComponents/canvasContex
 import {Modal} from "../components/canvasComponents/modal.tsx";
 import {initialEdges, initialNodes} from "./constants/nodes.ts";
 import {nodeTypes} from "./constants.ts";
+import {useState} from "react";
+import {LoadingPage} from "../components/loading/loadingPage.tsx";
 
 
 export const Canvas = () => {
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return<CanvasContextProvider>
+    {!isLoaded&&<LoadingPage/>}
     <div className={'canvas-container'}>
         <ReactFlowProvider >
           <div  className={'canvas'} style={{ width: '100%', height: '100%' }}>
-            <Flow/>
+            <Flow setIsLoaded={setIsLoaded}/>
           </div>
         </ReactFlowProvider>
-
     </div>
     <Modal/>
   </CanvasContextProvider>
 }
 
 
-const Flow = () => {
+const Flow = ({setIsLoaded}) => {
   // @ts-ignore
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
@@ -47,7 +52,12 @@ const Flow = () => {
                       fitView={true}
                       panOnDrag
                       zoomOnScroll
+                    onInit={()=>{
+                      setTimeout(()=>{
+                        setIsLoaded(true)
+                      },1000)
+                    }}
   >
-    <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+    <Background variant={BackgroundVariant.Dots} gap={12} size={1}  color="#f00" />
   </ReactFlow>
 }
