@@ -13,6 +13,7 @@ import {initialEdges, initialNodes} from "./constants/nodes.ts";
 import {nodeTypes} from "./constants.ts";
 import {useState} from "react";
 import {LoadingPage} from "../components/loading/loadingPage.tsx";
+import {SpinningCube} from "../components/spinningCube.tsx";
 
 
 export const Canvas = () => {
@@ -20,7 +21,8 @@ export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return<CanvasContextProvider>
-    {!isLoaded&&<LoadingPage setIsLoaded={setIsLoaded}/>}
+    {true&&<LoadingPage setIsLoaded={setIsLoaded}/>}
+    {/*{true && <SpinningCube/>}*/}
     <div className={'canvas-container'}>
         <ReactFlowProvider >
           <div  className={'canvas'} style={{ width: '100%', height: '100%' }}>
