@@ -13,7 +13,7 @@
 }
 
 .camera{
-  transform: rotateX(-25deg); /* This gives that above-angle look */
+  transform: rotateX(-25deg) rotateY(45deg); /* This gives that above-angle look */
   transform-style: preserve-3d;
   width: 100%;
   height: 100%;
