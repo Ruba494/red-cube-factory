@@ -20,7 +20,7 @@ export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return<CanvasContextProvider>
-    {!isLoaded&&<LoadingPage/>}
+    {!isLoaded&&<LoadingPage setIsLoaded={setIsLoaded}/>}
     <div className={'canvas-container'}>
         <ReactFlowProvider >
           <div  className={'canvas'} style={{ width: '100%', height: '100%' }}>
