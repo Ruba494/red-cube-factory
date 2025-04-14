@@ -21,7 +21,7 @@ export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return<CanvasContextProvider>
-    {true&&<LoadingPage setIsLoaded={setIsLoaded}/>}
+    {!isLoaded&&<LoadingPage setIsLoaded={setIsLoaded}/>}
     {/*{true && <SpinningCube/>}*/}
     <div className={'canvas-container'}>
         <ReactFlowProvider >
