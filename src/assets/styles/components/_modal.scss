@@ -1,3 +1,7 @@
+:root{
+  --image-size:500px
+}
+
 .modalOverlay{
   position: absolute;
   top: 0;
@@ -28,17 +32,17 @@
     grid-gap: 20px;
     width: 100%;
     img{
-      width: 400px!important;
+      width: var(--image-size) !important;
     }
     .is-profile-image{
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px;
-      height: 400px;
+      height: var(--image-size);
       width: fit-content;
       img{
-        width: calc(400px - (4 * 20px)) !important;
+        width: calc(var(--image-size) - (4 * 20px)) !important;
       }
     }
   }
@@ -69,8 +73,8 @@
     .react-image-gallery{
       grid-area: gallery;
       .image-gallery-image{
-        height: 400px;
-        width: 400px;
+        height: var(--image-size);
+        width: var(--image-size);
       }
       .empty-gallery{
         background: rgba(0,0,0,0.05);
@@ -96,7 +100,7 @@
   .content{
     &-wrapper{
       width: fit-content;
-      height: calc(400px + (2 * ( 40px)));
+      height: calc(var(--image-size) + (2 * ( 40px)));
       display: flex;
       background: white;
       border-radius: 20px;
