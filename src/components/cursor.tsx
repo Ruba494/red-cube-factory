@@ -11,7 +11,7 @@ export const Cursor = () => {
             innerStyle={{
                 borderRadius:'0'
             }}
-            color='255, 0, 0'
+            color='242, 35, 35'
             clickables={[
                 'a',
                 'button',

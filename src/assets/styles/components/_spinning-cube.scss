@@ -1,6 +1,23 @@
+:root{
+  --cube-size:150px;
+
+  --z-translate-100-px:calc(var(--cube-size) / 2);
+
+  --y-rotate-180-deg:180deg;
+  --y-rotate-90-deg:90deg;
+  --y-rotate-neg-90-deg:-90deg;
+
+  --x-rotate-90-deg:90deg;
+  --x-rotate-neg-90-deg:-90deg;
+
+  --cube-left-background-color:var(--color-ruba-red-darker);
+  --cube-right-background-color: var(--color-ruba-red-dark);
+  --cube-top-background-color:var(--color-ruba-red);
+}
+
 .scene {
-  width: 200px;
-  height: 200px;
+  width: var(--cube-size);
+  height: var(--cube-size);
   perspective: 600px;
   margin: 100px auto;
 }
@@ -13,30 +30,33 @@
 }
 
 .camera{
-  transform: rotateX(-25deg) rotateY(45deg); /* This gives that above-angle look */
+  transform: rotateX(-37.5deg) rotateY(45deg); /* This gives that above-angle look */
   transform-style: preserve-3d;
   width: 100%;
   height: 100%;
 }
 .face {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: var(--cube-size);
+  height: var(--cube-size);
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #ccc;
-  line-height: 200px;
-  font-size: 24px;
-  color: white;
   text-align: center;
-  background: black;
+  background: var(--cube-right-background-color);
+  transition: background-color 0.5s ease;
+  color: white;
 }
 
-.front  { transform: translateZ(100px);
+.front  {
+  transform: translateZ(var(--z-translate-100-px));
 }
-.back   { transform: rotateY(180deg) translateZ(100px);}
-.right  { transform: rotateY(90deg) translateZ(100px);
+.back   { transform: rotateY(var(--y-rotate-180-deg)) translateZ(var(--z-translate-100-px));}
+.right  {
+  transform: rotateY(var(--y-rotate-90-deg)) translateZ(var(--z-translate-100-px));
 }
-.left   { transform: rotateY(-90deg) translateZ(100px);
+.left   {
+  transform: rotateY(var(--y-rotate-neg-90-deg)) translateZ(var(--z-translate-100-px));
 }
-.top    { transform: rotateX(90deg) translateZ(100px);}
-.bottom { transform: rotateX(-90deg) translateZ(100px);}
+.top {
+  background:var(--cube-top-background-color);
+  transform: rotateX(var(--x-rotate-90-deg)) translateZ(var(--z-translate-100-px));}
+.bottom { transform: rotateX(var(--x-rotate-neg-90-deg)) translateZ(var(--z-translate-100-px));}

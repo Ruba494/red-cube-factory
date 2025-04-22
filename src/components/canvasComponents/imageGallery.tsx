@@ -65,7 +65,7 @@ const NavButton = ({onClick,disabled,position}:{
                          style={{
                              textOrientation:'mixed',
                              writingMode: 'vertical-rl',
-                             color:'red'
+                             color:'var(--color-ruba-red)'
                          }}
                             onClick={onClick}>
             {position}
