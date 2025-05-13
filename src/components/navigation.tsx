@@ -1,8 +1,9 @@
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
 import {useLocation, useNavigate} from "react-router";
 import gsap from "gsap";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {useGSAP} from "@gsap/react";
+import {SpinningCube} from "./spinningCube.tsx";
 
 export const Navigation = () => {
     const navigate=useNavigate()
@@ -32,9 +33,29 @@ export const Navigation = () => {
         { scope: containerRef }
     ); // <-- scope is for selector text (optional)
 
+    const [trigger, setTrigger] = useState(false);
+    const intervalRef = useRef<number | null>(null);
+    const handleMouseEnter = () => {
+        if (intervalRef.current) return; // already spinning
+        intervalRef.current = setInterval(()=>{
+            setTrigger(!trigger);
+        },500)
+
+    };
+
+    const handleMouseLeave = () => {
+        if (intervalRef.current !== null) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
+
+
     return  <nav className={'navigation'}>
         <ul className={'navigation__list'} ref={containerRef}>
-            <li className={`navigation__list-item`} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.HOME])}>logo</li>
+            <div className={`navigation__list-item navigation__list-logo`}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.HOME])}>
+                <SpinningCube counter={trigger}/>
+            </div>
         </ul>
     </nav>
 }

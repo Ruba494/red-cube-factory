@@ -6,7 +6,7 @@
 .navigation{
   position: absolute;
   z-index: 9;
-  height: max-content;
+  //height: max-content;
   padding: 12px 24px;
   &__list{
     list-style-type: none;
@@ -31,9 +31,16 @@
       -webkit-text-stroke: 0.1rem var(--text-stroke-color);
       text-stroke: 0.1rem var(--text-stroke-color);
 
+
       &.is-active{
         background-size: 100% !important;
       }
+    }
+    &-logo{
+      --cube-size:100px;
+      --z-translate-100-px:calc(var(--cube-size) / 2);
+      --scene-x-margin:10px;
+      padding:24px;
     }
   }
 }

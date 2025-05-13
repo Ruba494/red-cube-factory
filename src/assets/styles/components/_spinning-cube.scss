@@ -13,13 +13,15 @@
   --cube-left-background-color:var(--color-ruba-red-darker);
   --cube-right-background-color: var(--color-ruba-red-dark);
   --cube-top-background-color:var(--color-ruba-red);
+
+  --scene-x-margin:100px;
 }
 
 .scene {
   width: var(--cube-size);
   height: var(--cube-size);
   perspective: 600px;
-  margin: 100px auto;
+  margin: var(--scene-x-margin) auto;
 }
 
 .cube {
