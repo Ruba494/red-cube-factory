@@ -1,3 +1,64 @@
-.info{
-    width: 400px;
+:root{
+  --c-brand: #2AA967;
+}
+
+.info {
+  width: 400px;
+
+  &:has(.profile) {
+    width: 600px;
+  }
+
+  .profile {
+    //background: red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: var(--default-semibold-font-familty);
+    .title {
+      font-size: 60px;
+    }
+    .subtitle {
+      font-size: 20px;
+      font-family: var(--default-bold-font-familty);
+    }
+
+    .text {
+      font-size: 18px;
+    }
+
+    .contacts {
+      font-family: var(--default-medium-font-familty);
+      font-size: 12px;
+      margin-top: auto;
+    }
+
+    .link {
+
+    }
+  }
+}
+
+
+@keyframes letter-breathe {
+
+  /* The 'from' and 'to' keyframes establish the initial and final states of the animation, respectively, using 'font-variation-settings'. This CSS property is used with variable fonts to adjust their weight ('wght'), width ('wdth'), etc., during the animation. */
+  from,
+  to {
+    /* Starting weight; adjust the numbers according to your specific font */
+    font-variation-settings: 'wght' 300;
+  }
+
+  /* At the midpoint (50%) of the animation, the font weight changes to 900. */
+  50% {
+    /* Ending weight; adjust the numbers according to your specific font */
+    font-variation-settings: 'wght' 900;
+  }
+}
+
+@keyframes draw {
+  0% {stroke-dasharray: 1500 1500;}
+  50% {stroke-dasharray: 0 1500;}
+  100% {stroke-dasharray: 1500 1500;}
 }

@@ -1,8 +1,16 @@
 @use '../../fonts/ClashDisplay_Complete/Fonts/css/clash-display.css';
 
 :root{
-  --default-regular-font-familty: 'ClashDisplay-Bold';
-  --base-font-family: var(--default-regular-font-familty);
+  --default-bold-font-familty: 'ClashDisplay-Bold';
+  --default-semibold-font-familty: 'ClashDisplay-Semibold';
+  --default-regular-font-familty: 'ClashDisplay-Regular';
+  --default-light-font-familty: 'ClashDisplay-Light';
+  --default-medium-font-familty: 'ClashDisplay-Medium';
+  --default-variable-font-familty: 'ClashDisplay-Variable';
+
+
+
+  --base-font-family: var(--default-bold-font-familty);
 }
 
 body{

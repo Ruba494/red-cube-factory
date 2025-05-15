@@ -1,8 +1,4 @@
-import {Gallery} from "../pages/gallery.tsx";
-import {AboutMe} from "../pages/aboutMe.tsx";
-import {Designs} from "../pages/designs.tsx";
 import {Route, Routes} from "react-router";
-import {AnotherCanvasContainer} from "../pages/anotherCanvas.tsx";
 import {Canvas} from "../pages/canvas.tsx";
 
 export enum PATHS_CONSTANTS_ENUM {
