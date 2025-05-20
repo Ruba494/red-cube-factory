@@ -18,6 +18,35 @@
     font-family: var(--default-semibold-font-familty);
     .title {
       font-size: 60px;
+      margin-bottom: 10px;
+      &-highlight{
+        position: relative;
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        .underline svg{
+          width: 100%;         // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          left: 0;
+          bottom: 7px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+
+      }
+      &-mark{
+        position: relative;
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        width: 21px;
+        .exclamation-mark svg{
+          width: 100%;         // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          left: 0;
+          bottom: -7px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+
+      }
     }
     .subtitle {
       font-size: 20px;
