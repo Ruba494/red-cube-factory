@@ -5,20 +5,17 @@
 .info {
   width: 400px;
 
-  &:has(.profile) {
-    width: 600px;
-  }
-
   .profile {
-    //background: red;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     font-family: var(--default-semibold-font-familty);
+    position: relative;
+    text-wrap: wrap;
     .title {
       font-size: 60px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       &-highlight{
         position: relative;
         display: inline-block; // ✅ Makes it act like a block for positioning
@@ -30,7 +27,6 @@
           bottom: 7px;
           pointer-events: none; // optional: avoids hover conflicts
         }
-
       }
       &-mark{
         position: relative;
@@ -48,19 +44,114 @@
 
       }
     }
+
     .subtitle {
-      font-size: 20px;
+      font-size: 18px;
+      text-wrap: nowrap;
       font-family: var(--default-bold-font-familty);
+      margin-bottom: 10px;
     }
 
     .text {
       font-size: 18px;
+      &:last-of-type{
+        margin-top:20px;
+      }
     }
 
-    .contacts {
+    .ending{
+      position: relative;
+      &-hearts{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        .hearts-mark svg{
+          width: 31px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          right: -35px;
+          top: 4px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+    }
+
+    .doodles{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      &-cube{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        .cube-mark svg{
+          width: 50px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          right: -20px;
+          bottom: 50px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+      &-flower{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        .flower-mark svg{
+          width: 50px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          right: 30px;
+          bottom: 70px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+      &-arrow{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        .arrow-mark svg{
+          width: 40px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          left: 0;
+          bottom:10px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+
+      &-stars{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        .stars-mark svg{
+          width: 40px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          left: 50px;
+          top:10px;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+
+      &-home{
+        display: inline-block; // ✅ Makes it act like a block for positioning
+        height: 100%;
+        .home-mark svg{
+          width: 45px;   // Stretch across container
+          height: auto;        // Maintain aspect ratio
+          position: absolute;
+          left: 20%;
+          top:40%;
+          pointer-events: none; // optional: avoids hover conflicts
+        }
+      }
+    }
+
+
+
+    .contacts{
       font-family: var(--default-medium-font-familty);
-      font-size: 12px;
+      font-size: 11px;
       margin-top: auto;
+      text-wrap: nowrap;
+      .text {
+        font-size: 11px;
+      }
     }
 
     .link {
