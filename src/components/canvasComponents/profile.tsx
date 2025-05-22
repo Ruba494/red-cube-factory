@@ -1,24 +1,46 @@
-import {useEffect, useRef} from "react";
+import {forwardRef, useEffect, useImperativeHandle, useRef} from "react";
 import gsap from 'gsap';
 
+const DURATION=[0,0.5,0.7,1]
 
 export const Profile = () => {
+    const cubeRef = useRef(null);
+    const flowerRef = useRef(null);
+    const arrowRef = useRef(null);
+    const starsRef = useRef(null);
+    const homeRef = useRef(null);
+    const titleUnlineRef = useRef(null);
+    const titleMarkRef = useRef(null);
+    const heartsRef = useRef(null);
+
+    useEffect(() => {
+        const timeline = gsap.timeline({ defaults: { ease: "power2.out",duration:DURATION[3]} });
+        if (titleUnlineRef.current?.play) timeline.add(titleUnlineRef.current.play());
+        if (titleMarkRef.current?.play) timeline.add(titleMarkRef.current.play(), '+=0.2');
+        if (heartsRef.current?.play) timeline.add(heartsRef.current.play(), '+=0.2');
+        if (cubeRef.current.play) timeline.add(cubeRef.current.play(), '+=0.2');
+        if (flowerRef.current?.play) timeline.add(flowerRef.current.play(), '+=0.2');
+        if (arrowRef.current?.play) timeline.add(arrowRef.current.play(), '+=0.2');
+        if (starsRef.current?.play) timeline.add(starsRef.current.play(), '+=0.2');
+        if (homeRef.current?.play) timeline.add(homeRef.current.play(), '+=0.2');
+
+    }, []);
     return <div className={'profile'}>
-        <span className={'title'}> Hi, I'm <span className={'title-highlight'}>Ruba <DoodleUnderline/></span> <span className={'title-mark'}><DoodleExclamationMark/></span></span>
+        <span className={'title'}> Hi, I'm <span className={'title-highlight'}>Ruba <DoodleUnderline ref={titleUnlineRef}/></span> <span className={'title-mark'}><DoodleExclamationMark ref={titleMarkRef} /></span></span>
         <span className={'subtitle'}> I'm a software engineer who loves writing digital diaries.</span>
         <span className={'text'}>
             I created this website to share my own diary entries and the templates I design. My goal is to inspire others to start documenting their thoughts, memories, and everyday moments.
         </span>
         <span className={'text ending'}>
-             <span className={'ending-hearts'}> <DoodleHearts/></span>
+             <span className={'ending-hearts'}> <DoodleHearts ref={heartsRef}/></span>
             Feel free to explore and use anything you like—I’d love to see how you make it your own!
         </span>
         <div className={'doodles'}>
-            <span className={'doodles-cube'}> <DoodleCube/></span>
-            <span className={'doodles-flower'}> <DoodleFlower/></span>
-            <span className={'doodles-arrow'}> <DoodleArrow/></span>
-            <span className={'doodles-stars'}> <DoodleStars/></span>
-            <span className={'doodles-home'}> <DoodleHome/></span>
+            <span className={'doodles-cube'}> <DoodleCube ref={cubeRef}/></span>
+            <span className={'doodles-flower'}> <DoodleFlower ref={flowerRef}/></span>
+            <span className={'doodles-arrow'}> <DoodleArrow ref={arrowRef}/></span>
+            <span className={'doodles-stars'}> <DoodleStars ref={starsRef}/></span>
+            <span className={'doodles-home'}> <DoodleHome ref={homeRef}/></span>
         </div>
 
         <div className={'contacts'}>
@@ -30,7 +52,7 @@ export const Profile = () => {
 }
 
 
-const DoodleCube = () => {
+const DoodleCube = forwardRef((props, ref)  => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
@@ -44,7 +66,7 @@ const DoodleCube = () => {
     const path11Ref = useRef(null);
     const path12Ref = useRef(null);
 
-    useEffect(() => {
+    const animationTimeline = () => {
         const paths = [
             path1Ref.current, path2Ref.current, path3Ref.current, path4Ref.current,
             path5Ref.current, path6Ref.current, path7Ref.current, path8Ref.current,
@@ -66,13 +88,21 @@ const DoodleCube = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0]}); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'cube-mark'}>
         <svg width="42" height="38" viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={path1Ref} d="M1.46362 11.5856V36.8632" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
@@ -94,11 +124,11 @@ const DoodleCube = () => {
         </svg>
     </div>
 
-}
-const DoodleArrow = () => {
+})
+const DoodleArrow = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
 
-    useEffect(() => {
+    const animationTimeline = () => {
         const paths = [
             path1Ref.current,
         ];
@@ -118,13 +148,20 @@ const DoodleArrow = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 1,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline;
+    }
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'arrow-mark'}>
         <svg width="28" height="66" viewBox="0 0 28 66" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={path1Ref} d="M15.5345 1.88708C9.69585 7.72576 4.21055 17.9424 3.52481 26.3426C2.83557 34.7858 6.25509 40.6325 11.7102 47.0409C14.4531 50.2631 19.5053 53.2799 23.8541 51.402C30.8179 48.3949 23.1972 38.1175 17.9163 38.1175C13.7727 38.1175 8.73764 39.0198 7.6846 44.0217C6.39017 50.1703 6.285 53.4948 9.02647 59.2519C9.30312 59.8329 10.6367 61.4596 10.6367 61.9692C10.6367 62.1304 3.60391 61.3011 2.55196 60.4596C0.652935 58.9404 2.99104 60.3714 3.92737 60.9292C6.06748 62.2042 9.07233 62.7866 10.838 64.5523C11.8022 65.5165 13.7217 60.8643 14.3268 59.8557" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
@@ -132,8 +169,8 @@ const DoodleArrow = () => {
 
     </div>
 
-}
-const DoodleFlower = () => {
+})
+const DoodleFlower = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
@@ -142,7 +179,7 @@ const DoodleFlower = () => {
     const path6Ref = useRef(null);
     const path7Ref = useRef(null);
 
-    useEffect(() => {
+    const  animationTimeline= () => {
         const paths = [path1Ref.current, path2Ref.current, path3Ref.current, path4Ref.current,
             path5Ref.current, path6Ref.current, path7Ref.current];
 
@@ -161,13 +198,21 @@ const DoodleFlower = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline;
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'flower-mark'}>
         <svg width="45" height="58" viewBox="0 0 45 58" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={path1Ref} d="M19.9163 18.4534C20.2556 17.2095 22.2367 16.8349 23.2687 16.8938C24.8644 16.985 27.1105 17.2062 28.1727 18.5338C28.907 19.4518 29.0577 20.2943 29.0329 21.4601C29.0042 22.809 26.6278 23.6629 25.5117 23.6629C23.0491 23.6629 20.8851 22.6361 19.5144 20.6562C19.0204 19.9426 18.701 18.829 18.9034 18.0193" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
@@ -183,17 +228,15 @@ const DoodleFlower = () => {
             <path ref={path7Ref} d="M23.9682 22.3606C22.1274 27.8829 20.3815 33.3301 19.9967 39.1708C19.7787 42.4808 19.7567 45.7466 19.9164 49.0591C20.0065 50.9306 20.2635 52.8411 20.6399 54.6786C20.7461 55.1971 20.9293 55.6911 20.9293 56.2221" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
 
         </svg>
-
     </div>
-
-}
-const DoodleHearts = () => {
+})
+const DoodleHearts = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
     const path4Ref = useRef(null);
 
-    useEffect(() => {
+    const animationTimeline = () => {
         const paths = [path1Ref.current, path2Ref.current, path3Ref.current, path4Ref.current];
 
         const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -211,13 +254,21 @@ const DoodleHearts = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline;
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'hearts-mark'}>
         <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={path1Ref} d="M9.1026 6.99558C9.1026 5.92985 9.20919 4.78312 9.71592 3.82357C10.3213 2.67725 11.7706 1.82807 13.0636 1.89097C13.5686 1.91554 13.8905 2.1767 14.2583 2.49152C14.6641 2.83887 15.1668 3.2269 15.4019 3.72135C15.8675 4.70078 15.9699 5.85932 15.9354 6.93169C15.8999 8.03088 15.1874 9.11993 14.533 9.94718C13.7266 10.9666 12.7957 11.8761 11.9967 12.8988C11.5364 13.4879 11.0428 14.083 10.687 14.7387C10.3771 15.31 10.1678 15.8746 9.96508 16.4829" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
@@ -227,42 +278,51 @@ const DoodleHearts = () => {
         </svg>
     </div>
 
-}
-const DoodleUnderline = () => {
+})
+const DoodleUnderline = forwardRef((props, ref) => {
     const pathRef = useRef(null);
 
-    useEffect(() => {
+    const animationTimeline = () => {
+
         const path = pathRef.current;
         const length = path.getTotalLength();
 
-        // Set initial dash properties
-        gsap.set(path, {
+        //
+        const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+        timeline.set(path, {
             strokeDasharray: length,
             strokeDashoffset: length,
         });
 
         // Animate stroke drawing
-        gsap.to(path, {
+        timeline.to(path, {
             strokeDashoffset: 0,
-            duration: 1.5,
+            duration: DURATION[3],
             ease: "power2.out",
-            delay: 0.2,
         });
-    }, []);
+        return timeline
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'underline'}>
         <svg  width="133" height="7" viewBox="0 0 133 7" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={pathRef}  d="M1.02118 2.33831C1.45756 2.26558 1.75274 1.86774 2.15177 1.69973C2.71163 1.464 3.67673 1.60365 4.27163 1.58981C5.06643 1.57133 5.7652 1.62294 6.53805 1.82535C8.55708 2.35414 10.1551 3.84489 12.0863 4.54715C13.0712 4.90529 13.6266 5.09386 14.693 4.78792C16.3931 4.30017 17.9833 3.50098 19.6027 2.80939C22.1782 1.70941 25.3982 2.28665 27.6058 3.99755C28.4264 4.63353 29.6238 5.38869 30.694 5.4422C32.0881 5.5119 33.3045 5.05375 34.5621 4.49481C37.0986 3.36748 39.7646 2.03895 42.403 3.53171C43.295 4.03644 44.2123 4.60037 45.1876 4.93448C46.3027 5.31652 47.688 5.24044 48.841 5.25377C50.9461 5.2781 52.841 5.09555 54.7924 4.25927C56.4489 3.5493 58.023 2.95961 59.8172 2.75704C60.5914 2.66963 61.3323 2.56911 62.115 2.66283C62.7259 2.73596 63.0759 3.09327 63.612 3.33281C64.3991 3.68447 65.0469 4.15836 65.8941 4.41106C67.3891 4.85693 69.2322 4.57202 70.7096 4.22263C72.4099 3.82053 74.0645 3.23094 75.6507 2.5058C77.1173 1.83536 78.7351 1.26035 80.372 1.41708C81.8243 1.55613 83.1909 2.30146 84.6013 2.64189C85.6512 2.89532 86.708 3.18503 87.7732 3.36421C89.0623 3.58108 90.3753 3.56311 91.6779 3.56311C94.2865 3.56311 96.8694 2.90955 99.3722 2.20222C100.843 1.78666 102.046 1.43672 103.581 1.39091C104.882 1.35206 106.467 1.04348 107.674 1.67879C108.488 2.10749 109.196 2.69405 110.092 2.98735C111.382 3.40961 113.221 3.52026 114.536 3.19148C116.043 2.81462 117.48 2.14057 119.027 1.91957C119.689 1.82501 120.307 1.7614 120.874 2.108C121.729 2.63051 122.507 2.91465 123.507 3.03969C125.577 3.29842 127.67 2.99785 129.673 2.48486C130.116 2.37145 131.059 2.16803 131.322 1.77301" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
         </svg>
     </div>
 
-}
-const DoodleExclamationMark = () => {
+})
+const DoodleExclamationMark = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
     const path4Ref = useRef(null);
-
-    useEffect(() => {
+    const animationTimeline = () => {
         const paths = [path1Ref.current, path2Ref.current, path3Ref.current, path4Ref.current];
 
         const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -280,13 +340,21 @@ const DoodleExclamationMark = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline;
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'exclamation-mark'}>
 
         <svg width="14" height="38" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -298,13 +366,13 @@ const DoodleExclamationMark = () => {
 
     </div>
 
-}
-const DoodleStars = () => {
+})
+const DoodleStars = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
 
-    useEffect(() => {
+    const animationTimeline = () => {
         const paths = [path1Ref.current, path2Ref.current, path3Ref.current];
 
         const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -322,13 +390,21 @@ const DoodleStars = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration:DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline;
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'stars-mark'}>
 
         <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -340,14 +416,14 @@ const DoodleStars = () => {
 
     </div>
 
-}
-const DoodleHome = () => {
+})
+const DoodleHome = forwardRef((props, ref) => {
     const path1Ref = useRef(null);
     const path2Ref = useRef(null);
     const path3Ref = useRef(null);
     const path4Ref = useRef(null);
-    //
-    useEffect(() => {
+
+    const animationTimeline = () => {
         const paths = [path1Ref.current, path2Ref.current, path3Ref.current, path4Ref.current];
 
         const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -365,13 +441,21 @@ const DoodleHome = () => {
             // Animate dashoffset AND fade in opacity after small delay
             timeline.to(path, {
                 strokeDashoffset: 1,
-                duration: 0.8,
+                duration: DURATION[1],
                 onStart: () => {
-                    gsap.to(path, { opacity: 1, duration: 0.2 }); // Fade in when stroke is long enough
+                    gsap.to(path, { opacity: 1, duration: DURATION[0] }); // Fade in when stroke is long enough
                 },
             }, `+=${index === 0 ? 0 : 0.2}`);
         });
-    }, []);
+        return timeline
+    }
+
+    useImperativeHandle(ref, () => ({
+        play: () => {
+            return animationTimeline();
+        }
+    }));
+
     return <div className={'home-mark'}>
         <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path ref={path1Ref} d="M1 15C1.68126 14.4465 4.5 12 4.5 12C4.5 12 5.99595 10.5424 7.55008 9.16398C8.51671 8.30661 9.54268 7.36546 10.5 6.5C12.3314 4.84432 11.7365 5.48371 12.3314 4.84432C13.2461 3.86123 14.2881 2.99071 15.1408 1.95262C15.2987 1.76043 15.5 1.5 15.5 1.5" stroke="#CF0921" stroke-width="2" stroke-linecap="round"/>
@@ -382,5 +466,5 @@ const DoodleHome = () => {
 
     </div>
 
-}
+})
 
