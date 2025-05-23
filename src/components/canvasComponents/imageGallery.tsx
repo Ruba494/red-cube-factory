@@ -1,17 +1,15 @@
 import {useMemo, useRef,} from "react";
-import {PREVIEW_IMAGES} from "../../pages/constants/images.ts";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import {INodeData} from "../../pages/constants/nodes.ts";
 
 interface IPreviewGallery extends INodeData{
-
+    imagesSource:any
 }
-export const PreviewGallery = ({previewAccessor}:IPreviewGallery) => {
-
+export const PreviewGallery = ({previewAccessor,imagesSource}:IPreviewGallery) => {
     const imagesList= useMemo(() => {
         // @ts-ignore
-        let images:any= PREVIEW_IMAGES[previewAccessor]
+        let images:any= imagesSource[previewAccessor]
         if(images){
            return images?.map((img:string) => {
                 return {

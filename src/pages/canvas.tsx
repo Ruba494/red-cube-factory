@@ -60,6 +60,6 @@ const Flow = ({setIsLoaded}) => {
                       },1000)
                     }}
   >
-    <Background variant={BackgroundVariant.Dots} gap={12} size={1}  color="var(--color-ruba-red)" />
+    {/*<Background variant={BackgroundVariant.Dots} gap={12} size={1}  color="var(--color-ruba-red)" />*/}
   </ReactFlow>
 }

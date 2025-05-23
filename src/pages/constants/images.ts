@@ -162,9 +162,59 @@ export const IMAGES: IImageData[]= [
 
 
 export const PREVIEW_IMAGES = {
-    [LinksAccessorEnum.DIARY_2023]: [
+    [LinksAccessorEnum.DIARY_2022]: [
         "/posts/202201.jpg",
         "/posts/202202.jpg",
-        "/posts/202203.jpg"
-    ]
+        "/posts/202203.jpg",
+        "/posts/202204.jpg",
+        "/posts/202205.jpg",
+        "/posts/202206.jpg",
+        "/posts/202207.jpg",
+        "/posts/202208.jpg",
+        "/posts/202209.jpg",
+        "/posts/202210.jpg",
+        "/posts/202211.jpg",
+        "/posts/202212.jpg",
+    ],
+    [LinksAccessorEnum.DIARY_2023]: [
+        "/posts/202301.jpg",
+        "/posts/202302.jpg",
+        "/posts/202303.jpg",
+        "/posts/202304.jpg",
+        "/posts/202305.jpg",
+        "/posts/202306.jpg",
+        "/posts/202307.jpg",
+        "/posts/202308.jpg",
+        "/posts/202309.jpg",
+        "/posts/202310.jpg",
+        "/posts/202311.jpg",
+        "/posts/202312.jpg",
+    ],
+    [LinksAccessorEnum.DIARY_2024]: [
+        "/posts/202401.jpg",
+        "/posts/202402.jpg",
+        "/posts/202403.jpg",
+        "/posts/202404.jpg",
+        "/posts/202405.jpg",
+        "/posts/202406.jpg",
+        "/posts/202407.jpg",
+        "/posts/202408.jpg",
+        "/posts/202409.jpg",
+        "/posts/202410.jpg",
+        "/posts/202411.jpg",
+        "/posts/202412.jpg",
+    ],
 }
+
+export const TEMPLATE_PREVIEW_IMAGES = {
+    [LinksAccessorEnum.DIARY_2023]: [
+        "/posts/202301.jpg",
+    ],
+    [LinksAccessorEnum.DIARY_2024]: [
+        "/posts/202401.jpg",
+        "/posts/202402.jpg",
+    ],
+}
+
+
+

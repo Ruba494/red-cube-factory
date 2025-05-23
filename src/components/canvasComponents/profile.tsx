@@ -1,7 +1,7 @@
 import {forwardRef, useEffect, useImperativeHandle, useRef} from "react";
 import gsap from 'gsap';
 
-const DURATION=[0,0.5,0.7,1]
+const DURATION=[0,0.3,0.7,1]
 
 export const Profile = () => {
     const cubeRef = useRef(null);
@@ -16,13 +16,13 @@ export const Profile = () => {
     useEffect(() => {
         const timeline = gsap.timeline({ defaults: { ease: "power2.out",duration:DURATION[3]} });
         if (titleUnlineRef.current?.play) timeline.add(titleUnlineRef.current.play());
-        if (titleMarkRef.current?.play) timeline.add(titleMarkRef.current.play(), '+=0.2');
-        if (heartsRef.current?.play) timeline.add(heartsRef.current.play(), '+=0.2');
-        if (cubeRef.current.play) timeline.add(cubeRef.current.play(), '+=0.2');
-        if (flowerRef.current?.play) timeline.add(flowerRef.current.play(), '+=0.2');
-        if (arrowRef.current?.play) timeline.add(arrowRef.current.play(), '+=0.2');
-        if (starsRef.current?.play) timeline.add(starsRef.current.play(), '+=0.2');
-        if (homeRef.current?.play) timeline.add(homeRef.current.play(), '+=0.2');
+        if (titleMarkRef.current?.play) timeline.add(titleMarkRef.current.play(), '+=0.1');
+        if (heartsRef.current?.play) timeline.add(heartsRef.current.play(), '+=0.1');
+        if (cubeRef.current.play) timeline.add(cubeRef.current.play(), '+=0.1');
+        if (flowerRef.current?.play) timeline.add(flowerRef.current.play(), '+=0.1');
+        if (arrowRef.current?.play) timeline.add(arrowRef.current.play(), '+=0.1');
+        if (starsRef.current?.play) timeline.add(starsRef.current.play(), '+=0.1');
+        if (homeRef.current?.play) timeline.add(homeRef.current.play(), '+=0.1');
 
     }, []);
     return <div className={'profile'}>
