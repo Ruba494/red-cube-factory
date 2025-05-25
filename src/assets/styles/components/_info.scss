@@ -3,8 +3,9 @@
 }
 
 .info {
-  width: 400px;
-
+  &:has(.profile){
+    width: 400px;
+  }
   .profile {
     display: flex;
     flex-direction: column;

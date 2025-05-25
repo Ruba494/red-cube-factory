@@ -34,4 +34,24 @@
     filter: brightness(90%);
     transition: all 0.1s ease-in;
   }
+
+  &:has(.navigate-to){
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-ruba-red);
+    .navigate-to{
+      width: 100%;
+      height: 100%;
+      margin-bottom: -4px;
+    }
+    svg,svg *{
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-ruba-red);
+      fill: var(--color-ruba-red);
+    }
+
+  }
 }

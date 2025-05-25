@@ -22,7 +22,6 @@ export const Templates = () => {
 }
 
 export const TemplateNode = ({data,withOpenModal=true}) => {
-    console.log(data,withOpenModal)
     const navigate = useNavigate();
     const handleClick = (e,id) => {
         e.preventDefault()
