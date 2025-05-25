@@ -7,20 +7,13 @@ interface IPreviewGallery extends INodeData{
     imagesSource:any
 }
 export const PreviewGallery = ({previewAccessor,imagesSource}:IPreviewGallery) => {
-    const imagesList= useMemo(() => {
-        // @ts-ignore
-        let images:any= imagesSource[previewAccessor]
-        if(images){
-           return images?.map((img:string) => {
-                return {
-                    original: img,
-                    thumbnail: img,
-                }
-            })
-        }else {
-           return []
+    const imagesList= imagesSource[previewAccessor]?
+        imagesSource[previewAccessor]?.map((img:string) => {
+        return {
+            original: img,
+            thumbnail: img,
         }
-    }, [previewAccessor]);
+    }):[]
 
     return  <div className={'react-image-gallery'}>
         {imagesList.length===0?

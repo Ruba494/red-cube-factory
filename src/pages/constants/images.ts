@@ -207,14 +207,16 @@ export const PREVIEW_IMAGES = {
 }
 
 export const TEMPLATE_PREVIEW_IMAGES = {
-    [LinksAccessorEnum.DIARY_2023]: [
-        "/posts/202301.jpg",
-    ],
-    [LinksAccessorEnum.DIARY_2024]: [
-        "/posts/202401.jpg",
-        "/posts/202402.jpg",
-    ],
+    [LinksAccessorEnum.DIARY_2023]: Array.from({ length: 13 }).map((_,i)=>{
+        const index= i+1 <10 ? `0${i+1}`:i+1
+        return `/templates/${LinksAccessorEnum.DIARY_2023}/${LinksAccessorEnum.DIARY_2023}-${index}.png`
+    }),
+    [LinksAccessorEnum.DIARY_2024]: Array.from({ length: 15 }).map((_,i)=>{
+        const index= i+1 <10 ? `0${i+1}`:i+1
+        return `/templates/${LinksAccessorEnum.DIARY_2024}/${LinksAccessorEnum.DIARY_2024}-${index}.png`
+        }),
+    [LinksAccessorEnum.DIARY_2025]:Array.from({ length: 28 }).map((_,i)=>{
+        const index= i+1 <10 ? `0${i+1}`:i+1
+        return `/templates/${LinksAccessorEnum.DIARY_2025}/${LinksAccessorEnum.DIARY_2025}-${index}.png`
+        }),
 }
-
-
-
