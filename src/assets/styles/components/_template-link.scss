@@ -3,7 +3,7 @@
   font-weight: 900;
   width:max-content ;
   background:white;
-  border: 1px dashed rgba(0,0,0,0.4);
+  border: 1px dashed var(--color-ruba-red);
   border-radius: 15px;
   padding: 10px;
   display: grid;
@@ -22,11 +22,12 @@
     grid-area: description;
     color:rgba(0,0,0,0.4);
     font-size: 11px;
+    width: max-content;
   }
 
   .title {
     grid-area: title;
-
+    color: var(--color-ruba-red);
   }
 
   &:hover{

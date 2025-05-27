@@ -1,0 +1,97 @@
+:root {
+  --tag-color-red: var(--color-ruba-red);
+  --tag-color-blue: #4AB7E9;
+  --tag-color-green: #1bbc1b;
+  --tag-color-yellow: #ffd900;
+  --tag-color-pink: pink;
+  --tag-color-purple: #7c4b9e;
+  --tag-color-gray: #a09d9d;
+  --tag-border-radius: 22px
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+  font-size: 10px;
+  font-family: ClashDisplay-Medium;
+
+  &-item {
+    padding: 1px 4px;
+    border-radius: var(--tag-border-radius);
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--tag-border-radius);
+      opacity: 15%;
+    }
+
+    &.red {
+      color: var(--tag-color-red);
+      border: 1px solid var(--tag-color-red);
+
+      &:before {
+        background-color: var(--tag-color-red);
+      }
+    }
+
+    &.blue {
+      color: var(--tag-color-blue);
+      border: 1px solid var(--tag-color-blue);
+
+      &:before {
+        background-color: var(--tag-color-blue);
+      }
+    }
+
+    &.green {
+      color: var(--tag-color-green);
+      border: 1px solid var(--tag-color-green);
+
+      &:before {
+        background-color: var(--tag-color-green);
+      }
+    }
+
+    &.yellow {
+      color: var(--tag-color-yellow);
+      border: 1px solid var(--tag-color-yellow);
+
+      &:before {
+        background-color: var(--tag-color-yellow);
+      }
+    }
+
+    &.pink {
+      color: var(--tag-color-pink);
+      border: 1px solid var(--tag-color-pink);
+
+      &:before {
+        background-color: var(--tag-color-pink);
+      }
+    }
+
+    &.purple {
+      color: var(--tag-color-purple);
+      border: 1px solid var(--tag-color-purple);
+
+      &:before {
+        background-color: var(--tag-color-purple);
+      }
+    }
+
+    &.gray {
+      color: var(--tag-color-gray);
+      border: 1px solid var(--tag-color-gray);
+
+      &:before {
+        background-color: var(--tag-color-gray);
+      }
+    }
+  }
+}

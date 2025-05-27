@@ -4,6 +4,7 @@ import {CanvasContext} from "./canvasContext.tsx";
 import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../../routes";
 import {useNavigate} from "react-router";
+import {Tags} from "../Tags.tsx";
 
 interface ITemplateLinkProps {
     data:INodeData
@@ -41,7 +42,7 @@ export const TemplateLink = ({data,WithClickAction=true  }:ITemplateLinkProps) =
         <>
             <div className={'emoji'}>{data.emoji}</div>
             <div className={'title'}>{data.title}</div>
-            <div className={'description'}>{data.description}</div>
+            <div className={'description'}><Tags tags={data.description}/></div>
         </>:
             <div className={'navigate-to'}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

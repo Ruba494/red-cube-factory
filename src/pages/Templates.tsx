@@ -4,6 +4,7 @@ import {Modal} from "../components/templatesComponents/modal.tsx";
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
 import {useNavigate} from "react-router";
 import {TemplateContextProvider} from "../components/templatesComponents/templateContext.tsx";
+import {Tags} from "../components/Tags.tsx";
 
 export const Templates = () => {
     return <div className={'templates'}>
@@ -29,6 +30,7 @@ export const TemplateNode = ({data,withOpenModal=true}) => {
         const templatePath = routeTemplate.replace(":id?", id); // "/templates/123"
         withOpenModal?navigate(templatePath):window.open(data.url, "_blank", "noreferrer");
     };
+    console.log('description',data?.description)
 
     return  <motion.div className={'template-link'}
                         data-node-id={data?.previewAccessor}
@@ -42,6 +44,6 @@ export const TemplateNode = ({data,withOpenModal=true}) => {
                         onClick={(e)=>handleClick(e,data?.previewAccessor)}>
         <div className={'emoji'}>{data?.emoji}</div>
         <div className={'title'}>{data?.title}</div>
-        <div className={'description'}>{data?.description}</div>
+        <div className={'description'}><Tags tags={data?.description}/></div>
     </motion.div>
 }
