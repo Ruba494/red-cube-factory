@@ -5,14 +5,16 @@ import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
 import {useNavigate} from "react-router";
 import {TemplateContextProvider} from "../components/templatesComponents/templateContext.tsx";
 import {Tags} from "../components/Tags.tsx";
-
+import InflatedRuba from '../../public/InflatedText.png'
 export const Templates = () => {
     return <div className={'templates'}>
         <TemplateContextProvider>
 
 
             <div className={'templates-title'}>
-                <div className={'templates-title-title'}>Ruba's</div>
+                <div className={'templates-title-title'}>
+                    <img src={InflatedRuba} alt="Ruba's" height={400}/>
+                </div>
                 <div className={'templates-title-subtitle'}>  red cube factory</div>
 
             </div>

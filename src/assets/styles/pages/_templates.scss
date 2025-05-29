@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 10px;
 
   &-items{
     display: grid;
@@ -21,12 +21,12 @@
     align-items: center;
     flex-direction: column;
     &-title{
-      font-family: var(--cute-font-familty);
-      font-size: 150px;
-      font-weight: 1000;
-      color: var(--color-ruba-red-dark);
+
     }
     &-subtitle{
+      position: absolute;
+      bottom: 50px;
+
       font-family: var(--pixel-font-familty);
       font-size: 40px;
       margin-top: -60px;
