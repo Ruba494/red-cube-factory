@@ -25,42 +25,68 @@ export type LinksAccessorTypes=
     LinksAccessorEnum.MB_REVIEW |
     LinksAccessorEnum.WEEKLY_VERTICAL |
     LinksAccessorEnum.WEEKLY_2021 ;
+
+
+const LinksTags={
+    [LinksAccessorEnum.DIARY_2022] : [
+        {tag:'A-hong', color:Colors.BLUE},
+        {tag:'textured', color:Colors.GREEN},
+    ],
+    [LinksAccessorEnum.DIARY_2023] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'مربع', color:Colors.BLUE},
+        {tag:'かわいい', color:Colors.GREEN},
+        {tag:'colorful', color:Colors.YELLOW},
+        {tag:'DIARY OF 2023', color:Colors.PINK},
+        {tag:'MONTHLY', color:Colors.GRAY},
+
+    ],
+    [LinksAccessorEnum.DIARY_2024] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'MY RED 2024', color:Colors.PINK},
+        {tag:'مربع', color:Colors.BLUE},
+        {tag:'MONTHLY', color:Colors.GRAY},
+
+    ],
+    [LinksAccessorEnum.DIARY_2025] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'just memories and feelings', color:Colors.BLUE},
+        {tag:'مربع', color:Colors.PURPLE},
+        {tag:'Grid', color:Colors.YELLOW},
+        {tag:'MONTHLY+WEEKLY', color:Colors.GRAY},
+    ]
+}
+
+
+
 export const LINKS: ILinkData[] = [
     {
 
         emoji:'🔗',
         title:'2024 template',
         url:'https://drive.google.com/file/d/1AX080sh9WAa8VW1jLl1bumP0n5gUBC2x/view?usp=drivesdk',
-        description:[
-            {tag:'test', color:Colors.RED},
-            {tag:'test', color:Colors.BLUE},
-            {tag:'test', color:Colors.GREEN},
-            {tag:'test', color:Colors.YELLOW},
-            {tag:'test', color:Colors.PINK},
-            {tag:'test', color:Colors.PURPLE},
-            {tag:'test', color:Colors.GRAY},
-        ],
+        description:LinksTags[LinksAccessorEnum.DIARY_2024],
         previewAccessor:LinksAccessorEnum.DIARY_2024
     },    {
 
         emoji:'🔗',
         title:'2023 template',
         url:'https://drive.google.com/file/d/170QjA0TcV2nKpcfskfm5rMVyw_dOdOu1/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2023],
         previewAccessor:LinksAccessorEnum.DIARY_2023
     },   {
 
         emoji:'🔗',
         title:'2022 template',
         url:'https://www.youtube.com/watch?app=desktop&v=SbU37scy-uE&t=82s',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2022],
         previewAccessor:LinksAccessorEnum.DIARY_2022
     },   {
 
         emoji:'🔗',
         title:'2025 template',
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2025],
         previewAccessor:LinksAccessorEnum.DIARY_2025
     },
 ]
@@ -72,14 +98,14 @@ export const TEMPLATES_LINKS: ILinkData[] = [
         emoji:'🔗',
         title:'2023 template',
         url:'https://drive.google.com/file/d/170QjA0TcV2nKpcfskfm5rMVyw_dOdOu1/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2023],
         previewAccessor:LinksAccessorEnum.DIARY_2023
     },
     {
         emoji:'🔗',
         title:'2024 template',
         url:'https://drive.google.com/file/d/1AX080sh9WAa8VW1jLl1bumP0n5gUBC2x/view?usp=drivesdk',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2024],
         previewAccessor:LinksAccessorEnum.DIARY_2024
     },
     {
@@ -87,7 +113,7 @@ export const TEMPLATES_LINKS: ILinkData[] = [
         emoji:'🔗',
         title:'2025 template',
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.DIARY_2025],
         previewAccessor:LinksAccessorEnum.DIARY_2025
     },  {
 
