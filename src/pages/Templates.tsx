@@ -9,6 +9,13 @@ import {Tags} from "../components/Tags.tsx";
 export const Templates = () => {
     return <div className={'templates'}>
         <TemplateContextProvider>
+
+
+            <div className={'templates-title'}>
+                <div className={'templates-title-title'}>Ruba's</div>
+                <div className={'templates-title-subtitle'}>  red cube factory</div>
+
+            </div>
         <div className={'templates-items'}>
             {TEMPLATES_LINKS.map((item)=> <TemplateNode data={{
                 previewAccessor:item.previewAccessor,
@@ -32,18 +39,15 @@ export const TemplateNode = ({data,withOpenModal=true}) => {
     };
     console.log('description',data?.description)
 
-    return  <motion.div className={'template-link'}
-                        data-node-id={data?.previewAccessor}
-                        initial={{opacity: 0}}
-                          animate={{
-                              opacity: 1,
-                              transition: {
-                                  delay: 1
-                              },
-                          }}
-                        onClick={(e)=>handleClick(e,data?.previewAccessor)}>
-        <div className={'emoji'}>{data?.emoji}</div>
-        <div className={'title'}>{data?.title}</div>
-        <div className={'description'}><Tags tags={data?.description}/></div>
-    </motion.div>
+    return <motion.div className={'template-link'}
+                    data-node-id={data?.previewAccessor}
+                    initial={{opacity: 0}}
+                    animate={{
+                        opacity: 1,
+                    }}
+                    onClick={(e)=>handleClick(e,data?.previewAccessor)}>
+            <div className={'emoji'}>{data?.emoji}</div>
+            <div className={'title'}>{data?.title}</div>
+            <div className={'description'}><Tags tags={data?.description}/></div>
+        </motion.div>
 }

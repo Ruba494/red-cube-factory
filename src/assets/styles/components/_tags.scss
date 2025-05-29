@@ -11,21 +11,18 @@
 
 .tags {
   display: flex;
+  align-items:start;
+  justify-content: start;
   flex-wrap: wrap;
-  gap: 4px;
+  column-gap: 4px;
+  row-gap: 3px;
   font-size: 10px;
   font-family: ClashDisplay-Medium;
-  width:100%;
+  width: 200px;
   &-item {
     padding: 1px 4px;
     border-radius: var(--tag-border-radius);
     position: relative;
-    width: max-content;
-
-    &-item:nth-child(3n) {
-      flex-basis: 100%;
-      height: 0;
-    }
     &:before {
       content: '';
       position: absolute;

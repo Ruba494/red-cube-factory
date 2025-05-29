@@ -34,26 +34,33 @@ const LinksTags={
     ],
     [LinksAccessorEnum.DIARY_2023] : [
         {tag:'red-cube-factory', color:Colors.RED},
-        {tag:'مربع', color:Colors.BLUE},
         {tag:'かわいい', color:Colors.GREEN},
         {tag:'colorful', color:Colors.YELLOW},
         {tag:'DIARY OF 2023', color:Colors.PINK},
-        {tag:'MONTHLY', color:Colors.GRAY},
 
     ],
     [LinksAccessorEnum.DIARY_2024] : [
         {tag:'red-cube-factory', color:Colors.RED},
         {tag:'MY RED 2024', color:Colors.PINK},
-        {tag:'مربع', color:Colors.BLUE},
-        {tag:'MONTHLY', color:Colors.GRAY},
+        {tag:'مره احمر', color:Colors.PURPLE},
 
     ],
     [LinksAccessorEnum.DIARY_2025] : [
         {tag:'red-cube-factory', color:Colors.RED},
         {tag:'just memories and feelings', color:Colors.BLUE},
-        {tag:'مربع', color:Colors.PURPLE},
         {tag:'Grid', color:Colors.YELLOW},
-        {tag:'MONTHLY+WEEKLY', color:Colors.GRAY},
+    ],
+    [LinksAccessorEnum.WEEKLY_2021] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'初デザイン', color:Colors.YELLOW},
+    ],
+    [LinksAccessorEnum.MB_REVIEW] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'not my favorite', color:Colors.BLUE},
+    ],
+    [LinksAccessorEnum.WEEKLY_VERTICAL] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'UN-DATED', color:Colors.GRAY},
     ]
 }
 
@@ -120,21 +127,21 @@ export const TEMPLATES_LINKS: ILinkData[] = [
         emoji:'🔗',
         title:'2022 weekly template',
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.WEEKLY_2021],
         previewAccessor:LinksAccessorEnum.WEEKLY_2021
     }, {
 
         emoji:'🔗',
         title:'movies/books review',
         url:'https://drive.google.com/file/d/1UgA9XUSwDvUPTpv44fMkQddX-PEIx_iw/view',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.MB_REVIEW],
         previewAccessor:LinksAccessorEnum.MB_REVIEW
     },{
 
         emoji:'🔗',
         title:'weekly vertical',
         url:'https://drive.google.com/drive/folders/1EMh6tQvyVxf-5vkZs7-si8Y9qbZkLWsn',
-        description:[{tag:'test', color:Colors.RED}],
+        description:LinksTags[LinksAccessorEnum.WEEKLY_VERTICAL],
         previewAccessor:LinksAccessorEnum.WEEKLY_VERTICAL
     },
 ]

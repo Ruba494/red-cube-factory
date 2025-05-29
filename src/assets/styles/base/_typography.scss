@@ -1,4 +1,5 @@
 @use '../../fonts/ClashDisplay_Complete/Fonts/css/clash-display.css';
+@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Molle&family=Pixelify+Sans:wght@400..700&display=swap');
 
 :root{
   --default-bold-font-familty: 'ClashDisplay-Bold';
@@ -7,7 +8,8 @@
   --default-light-font-familty: 'ClashDisplay-Light';
   --default-medium-font-familty: 'ClashDisplay-Medium';
   --default-variable-font-familty: 'ClashDisplay-Variable';
-
+  --pixel-font-familty:  "Pixelify Sans", sans-serif;
+  --cute-font-familty: "Meow Script", cursive;
 
 
   --base-font-family: var(--default-bold-font-familty);

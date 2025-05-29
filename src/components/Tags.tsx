@@ -1,10 +1,13 @@
+import {Fragment} from "react";
+
 export const Tags = ({tags}) => {
-    console.log(tags)
     return <div className={'tags'}>
-        {tags?.map((tag) => (
-            <div className={`tags-item ${tag.color}`} >
-                {tag.tag}
-            </div>
+        {tags?.map((tag, index) => (
+            <Fragment key={index}>
+                <div className={`tags-item ${tag.color}`}>
+                    {tag.tag}
+                </div>
+            </Fragment>
         ))}
     </div>
 }
