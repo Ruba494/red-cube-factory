@@ -15,21 +15,22 @@
   }
 
   &-title{
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    will-change: transform;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     &-title{
-
     }
     &-subtitle{
-      position: absolute;
-      bottom: 50px;
-
+      bottom: 10px;
       font-family: var(--pixel-font-familty);
       font-size: 40px;
-      margin-top: -60px;
+      margin-top: -20px;
+      margin-bottom: 20px;
       color: var(--color-ruba-red);
     }
 

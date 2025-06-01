@@ -34,7 +34,7 @@ const LinksTags={
     ],
     [LinksAccessorEnum.DIARY_2023] : [
         {tag:'red-cube-factory', color:Colors.RED},
-        {tag:'かわいい', color:Colors.GREEN},
+        {tag:'かわいい', color:Colors.GREEN,lang:'jp'},
         {tag:'colorful', color:Colors.YELLOW},
         {tag:'DIARY OF 2023', color:Colors.PINK},
 
@@ -42,7 +42,7 @@ const LinksTags={
     [LinksAccessorEnum.DIARY_2024] : [
         {tag:'red-cube-factory', color:Colors.RED},
         {tag:'MY RED 2024', color:Colors.PINK},
-        {tag:'مره احمر', color:Colors.PURPLE},
+        {tag:'مره احمر', color:Colors.PURPLE ,lang:'ar'},
 
     ],
     [LinksAccessorEnum.DIARY_2025] : [
@@ -52,7 +52,7 @@ const LinksTags={
     ],
     [LinksAccessorEnum.WEEKLY_2021] : [
         {tag:'red-cube-factory', color:Colors.RED},
-        {tag:'初デザイン', color:Colors.YELLOW},
+        {tag:'初デザイン', color:Colors.YELLOW,lang:'jp'},
     ],
     [LinksAccessorEnum.MB_REVIEW] : [
         {tag:'red-cube-factory', color:Colors.RED},

@@ -1,5 +1,5 @@
 @use '../../fonts/ClashDisplay_Complete/Fonts/css/clash-display.css';
-@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Molle&family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&family=Pixelify+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kiwi+Maru&display=swap');
 
 :root{
   --default-bold-font-familty: 'ClashDisplay-Bold';
@@ -10,6 +10,8 @@
   --default-variable-font-familty: 'ClashDisplay-Variable';
   --pixel-font-familty:  "Pixelify Sans", sans-serif;
   --cute-font-familty: "Meow Script", cursive;
+  --arabic-font-familty: "IBM Plex Sans Arabic", sans-serif;
+  --japanese-font-familty: 'Kiwi Maru', sans-serif;
 
 
   --base-font-family: var(--default-bold-font-familty);
@@ -17,4 +19,16 @@
 
 body{
   font-family: var(--base-font-family);
+
+}
+
+*:lang(ar) {
+  font-family: var(--arabic-font-familty);
+  font-weight: 1000;
+  font-style: normal;
+}
+*:lang(jp) {
+  font-family: var(--japanese-font-familty);
+  font-weight: 1000;
+  font-style: normal;
 }

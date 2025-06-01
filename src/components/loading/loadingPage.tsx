@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {SpinningCube} from "../spinningCube.tsx";
 
 export const LoadingPage = ({ setIsLoaded }) => {

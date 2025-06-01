@@ -1,4 +1,5 @@
-import {motion} from "motion/react";
+import {motion,useMotionValue,
+    useSpring} from "motion/react";
 import {TEMPLATES_LINKS} from "./constants/links.ts";
 import {Modal} from "../components/templatesComponents/modal.tsx";
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
@@ -6,18 +7,31 @@ import {useNavigate} from "react-router";
 import {TemplateContextProvider} from "../components/templatesComponents/templateContext.tsx";
 import {Tags} from "../components/Tags.tsx";
 import InflatedRuba from '../../public/InflatedText.png'
+import {useEffect, useRef, useState} from "react";
+import {LoadingPage} from "../components/loading/loadingPage.tsx";
 export const Templates = () => {
+
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        document.fonts.ready.then(() => {
+            setTimeout(()=>{
+                setIsLoaded(true)
+            },1000)
+        });
+    }, []);
+
     return <div className={'templates'}>
+        {!isLoaded&&<LoadingPage setIsLoaded={setIsLoaded}/>}
         <TemplateContextProvider>
-
-
-            <div className={'templates-title'}>
+            <motion.div
+                className={'templates-title'}>
                 <div className={'templates-title-title'}>
-                    <img src={InflatedRuba} alt="Ruba's" height={400}/>
+                    <img src={InflatedRuba} alt="Ruba's" height={250}/>
                 </div>
                 <div className={'templates-title-subtitle'}>  red cube factory</div>
 
-            </div>
+            </motion.div>
         <div className={'templates-items'}>
             {TEMPLATES_LINKS.map((item)=> <TemplateNode data={{
                 previewAccessor:item.previewAccessor,
@@ -39,7 +53,6 @@ export const TemplateNode = ({data,withOpenModal=true}) => {
         const templatePath = routeTemplate.replace(":id?", id); // "/templates/123"
         withOpenModal?navigate(templatePath):window.open(data.url, "_blank", "noreferrer");
     };
-    console.log('description',data?.description)
 
     return <motion.div className={'template-link'}
                     data-node-id={data?.previewAccessor}
