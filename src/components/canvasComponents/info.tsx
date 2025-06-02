@@ -1,6 +1,7 @@
 import { motion } from "motion/react"
 import {INodeData} from "../../pages/constants/nodes.ts";
 import {Profile} from "./profile.tsx";
+import { GoToInstagram} from "./goToInstagram.tsx";
 
 const variants = {
     hidden: {
@@ -21,7 +22,7 @@ export const Info = ({data}: { data:INodeData }) => {
         animate={'visible'}
     >
         {data.isProfile?<Profile/>:
-        <></>
+        <GoToInstagram/>
         }
     </motion.div>
 }

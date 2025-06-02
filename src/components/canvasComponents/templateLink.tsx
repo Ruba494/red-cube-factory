@@ -22,7 +22,13 @@ export const TemplateLink = ({data,WithClickAction=true  }:ITemplateLinkProps) =
         }else {
             const routeTemplate = PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.TEMPLATES]; // "/templates/:id?"
             const templatePath = routeTemplate.replace(":id?", id); // "/templates/123"
-            navigate(templatePath)
+
+            if(data?.isOriginalContent){
+                navigate(templatePath)
+            }else {
+                window.open(data.url, "_blank", "noreferrer");
+            }
+
         }
     };
 

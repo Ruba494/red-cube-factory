@@ -159,6 +159,32 @@
 
     }
   }
+  .go-to-instagram{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    border: 2px solid var(--color-ruba-red);
+
+    &:hover{
+      background:var(--color-ruba-red);
+      transform: rotate(45deg);
+      transition: all 0.5s ease-in 0.2s;
+      svg *{
+        stroke: white;
+        fill: white;
+        transition: all 0.3s ease-in 0.2s;
+      }
+    }
+    svg,svg *{
+      width: 20px;
+      height: 20px;
+      stroke-width: 10px;
+      stroke: var(--color-ruba-red);
+      fill: var(--color-ruba-red);
+    }
+  }
 }
 
 

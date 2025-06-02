@@ -49,6 +49,18 @@
       height: 100%;
       margin-bottom: -4px;
     }
+
+    &:hover{
+      background:var(--color-ruba-red);
+      transform: rotate(45deg);
+      transition: all 0.5s ease-in 0.2s;
+      svg *{
+        stroke: white;
+        fill: white;
+        transition: all 0.3s ease-in 0.2s;
+      }
+    }
+
     svg,svg *{
       width: 20px;
       height: 20px;

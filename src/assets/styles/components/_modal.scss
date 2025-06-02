@@ -54,6 +54,7 @@
   }
   .template-node{
     display: flex;
+    gap:20px;
     &.is-opened{
       display: grid;
       grid-template-areas:
@@ -99,7 +100,10 @@
   }
   .content{
     &-wrapper{
-      width: fit-content;
+      &:has(.profile){
+        width: fit-content;
+      }
+      width: min-content;
       height: calc(var(--image-size) + (2 * ( 40px)));
       display: flex;
       background: white;

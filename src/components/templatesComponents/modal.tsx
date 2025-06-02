@@ -15,7 +15,7 @@ interface IModalContentProps {
     selectedNode:ISelectedNode | null
     isOpened:boolean
 }
-export const Modal = () => {
+export const Modal = ({isLoaded}) => {
     gsap.registerPlugin(gsap)
     const overlayRef = useRef(null);
     const modalRef = useRef(null);
@@ -25,7 +25,7 @@ export const Modal = () => {
 
     const navigate=useNavigate()
     useEffect(() => {
-        if (id) {
+        if (id && isLoaded) {
             const el = document.querySelector(`[data-node-id="${id}"]`);
             if (el) {
                 // You might want to improve this with actual data resolution logic
@@ -33,7 +33,7 @@ export const Modal = () => {
                 setSelectedNode({ data: dummyData, ref: { current: el } });
             }
         }
-    }, [id]);
+    }, [id,isLoaded]);
 
     // ✨ Animate modal on selectedNode change
     useEffect(() => {

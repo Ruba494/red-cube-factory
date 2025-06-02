@@ -40,7 +40,7 @@ export const Templates = () => {
                 description:item.description
             }}/>)}
         </div>
-        <Modal/>
+        <Modal isLoaded={isLoaded}/>
         </TemplateContextProvider>
     </div>
 }
