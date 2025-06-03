@@ -13,7 +13,6 @@ export const TemplateLinkModalContent = ({data,isOpened}:ITemplateLinkModalConte
     return <>
         {isOpened&& <>
             <PreviewGallery previewAccessor={data.previewAccessor} imagesSource={PREVIEW_IMAGES}  />
-            <Info data={data}/>
         </>}
         <TemplateLink data={data} WithClickAction={false}/>
     </>
