@@ -18,6 +18,10 @@
       font-size: 60px;
       margin-bottom: 20px;
       &-highlight{
+        color: var(--color-ruba-red);
+        font-family: var(--pixel-font-familty);
+        font-weight: 700;
+        font-size: 75px;
         position: relative;
         display: inline-block; // ✅ Makes it act like a block for positioning
         .underline svg{
@@ -146,13 +150,26 @@
 
 
     .contacts{
-      font-family: var(--default-medium-font-familty);
-      font-size: 11px;
+      font-size: 18px;
       margin-top: auto;
-      text-wrap: nowrap;
-      .text {
-        font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        list-style: none;
+
+        li{
+          width: 100%;
+        }
       }
+
+
     }
 
     .link {

@@ -1,52 +1,36 @@
 import {forwardRef, useEffect, useImperativeHandle, useRef} from "react";
 import gsap from 'gsap';
+import {PixelatedComponent} from "../PixelatedComponent.tsx";
 
 const DURATION=[0,0.3,0.7,1]
 
 export const Profile = () => {
-    const cubeRef = useRef(null);
-    const flowerRef = useRef(null);
-    const arrowRef = useRef(null);
-    const starsRef = useRef(null);
-    const homeRef = useRef(null);
-    const titleUnlineRef = useRef(null);
-    const titleMarkRef = useRef(null);
-    const heartsRef = useRef(null);
-
-    useEffect(() => {
-        const timeline = gsap.timeline({ defaults: { ease: "power2.out",duration:DURATION[3]} });
-        if (titleUnlineRef.current?.play) timeline.add(titleUnlineRef.current.play());
-        if (titleMarkRef.current?.play) timeline.add(titleMarkRef.current.play(), '+=0.1');
-        if (heartsRef.current?.play) timeline.add(heartsRef.current.play(), '+=0.1');
-        if (cubeRef.current.play) timeline.add(cubeRef.current.play(), '+=0.1');
-        if (flowerRef.current?.play) timeline.add(flowerRef.current.play(), '+=0.1');
-        if (arrowRef.current?.play) timeline.add(arrowRef.current.play(), '+=0.1');
-        if (starsRef.current?.play) timeline.add(starsRef.current.play(), '+=0.1');
-        if (homeRef.current?.play) timeline.add(homeRef.current.play(), '+=0.1');
-
-    }, []);
     return <div className={'profile'}>
-        <span className={'title'}> Hi, I'm <span className={'title-highlight'}>Ruba <DoodleUnderline ref={titleUnlineRef}/></span> <span className={'title-mark'}><DoodleExclamationMark ref={titleMarkRef} /></span></span>
+        <span className={'title'}> Hi, I'm  <span className={'title-highlight'}>Ruba!</span></span>
         <span className={'subtitle'}> I'm a software engineer who loves writing digital diaries.</span>
         <span className={'text'}>
             I created this website to share my own diary entries and the templates I design. My goal is to inspire others to start documenting their thoughts, memories, and everyday moments.
         </span>
         <span className={'text ending'}>
-             <span className={'ending-hearts'}> <DoodleHearts ref={heartsRef}/></span>
+             <span className={'ending-hearts'}> </span>
             Feel free to explore and use anything you like—I’d love to see how you make it your own!
         </span>
         <div className={'doodles'}>
-            <span className={'doodles-cube'}> <DoodleCube ref={cubeRef}/></span>
-            <span className={'doodles-flower'}> <DoodleFlower ref={flowerRef}/></span>
-            <span className={'doodles-arrow'}> <DoodleArrow ref={arrowRef}/></span>
-            <span className={'doodles-stars'}> <DoodleStars ref={starsRef}/></span>
-            <span className={'doodles-home'}> <DoodleHome ref={homeRef}/></span>
+            <span className={'doodles-cube'}> </span>
+            <span className={'doodles-flower'}> </span>
+            <span className={'doodles-arrow'}> </span>
+            <span className={'doodles-stars'}> </span>
+            <span className={'doodles-home'}> </span>
         </div>
 
         <div className={'contacts'}>
             <span className={'text'}>Whether it's a question, an idea, or just a hello—feel free to reach out on </span>
-            <a className={'link'} href={'https://www.instagram.com/ruu.diary'}>ruu.diary</a>
-            <a className={'link'} href={'https://sa.linkedin.com/in/ruba-almutairi-2000/en'}>Ruba Almutairi</a>
+            <ul>
+                <li>
+                    <a className={'link'} href={'https://www.instagram.com/ruu.diary'}>ruu.diary</a>
+                </li>
+                <li> <a className={'link'} href={'https://sa.linkedin.com/in/ruba-almutairi-2000/en'}>Ruba Almutairi</a></li>
+            </ul>
         </div>
     </div>
 }
