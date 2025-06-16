@@ -2,6 +2,20 @@
   --image-size:500px
 }
 
+/* Tablet and below */
+@media (max-width: 768px) {
+  :root {
+   --image-size:350px
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  :root {
+   --image-size:200px
+  }
+}
+
 .modalOverlay{
   position: absolute;
   top: 0;

@@ -1,5 +1,5 @@
 :root{
-  --cube-size:150px;
+  --cube-size:100px;
 
   --z-translate-100-px:calc(var(--cube-size) / 2);
 
@@ -14,24 +14,24 @@
   --cube-right-background-color: var(--color-ruba-red-dark);
   --cube-top-background-color:var(--color-ruba-red);
 
-  --scene-x-margin:100px;
+  --scene-x-margin:50px;
 }
 
 /* Tablet and below */
 @media (max-width: 768px) {
   :root {
-    --cube-size: 100px;
-    --scene-x-margin: 50px;
+    --cube-size: 50px;
+    --scene-x-margin: 0px;
   }
 }
 
-/* Mobile phones */
-@media (max-width: 480px) {
+@media (min-width: 1200px) {
   :root {
-    --cube-size: 80px;
-    --scene-x-margin: 30px;
+    --cube-size: 150px;
+    --scene-x-margin: 100px;
   }
 }
+
 .scene {
   width: var(--cube-size);
   height: var(--cube-size);
