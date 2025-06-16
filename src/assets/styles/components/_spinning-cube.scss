@@ -17,6 +17,21 @@
   --scene-x-margin:100px;
 }
 
+/* Tablet and below */
+@media (max-width: 768px) {
+  :root {
+    --cube-size: 100px;
+    --scene-x-margin: 50px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  :root {
+    --cube-size: 80px;
+    --scene-x-margin: 30px;
+  }
+}
 .scene {
   width: var(--cube-size);
   height: var(--cube-size);

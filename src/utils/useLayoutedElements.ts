@@ -1,5 +1,5 @@
 import {useNodesInitialized, useReactFlow} from "@xyflow/react";
-import { useEffect, useMemo, useRef} from "react";
+import { useEffect, useMemo, useRef, useCallback} from "react";
 import { forceCollide, forceLink, forceManyBody, forceSimulation, forceX, forceY } from "d3-force";
 
 const simulation = forceSimulation()
@@ -33,7 +33,8 @@ export const useLayoutedElements = ({centerPoint, width, height}:IUseLayoutedEle
 
     const draggingNodeRef = useRef<any>(null);
     const centered = useRef(false);
-    const randomized = useRef(false); // Prevent multiple randomizations
+    const randomized = useRef(false);
+    const runningRef = useRef(false);
 
     const dragEvents:{
         start:any
@@ -48,37 +49,30 @@ export const useLayoutedElements = ({centerPoint, width, height}:IUseLayoutedEle
         []
     );
 
-    const randomizePositions = (nodes:any) => {
-        if (randomized.current) return nodes; // Ensure it runs only once per refresh
+    const randomizePositions = useCallback((nodes:any) => {
+        if (randomized.current) return nodes;
 
         let reorderedNodes= nodes.map((node:any) => ({
             ...node,
             position: {
-                x: Math.random() * width - width / 2, // Spread nodes randomly across viewport
+                x: Math.random() * width - width / 2,
                 y: Math.random() * height - height / 2,
             },
         }))
         return reorderedNodes;
-    };
-    const centerNodes = (nodes:any) => {
+    }, [width, height]);
+
+    const centerNodes = useCallback((nodes:any) => {
         if (!nodes.length || centered.current) return;
-        // Set viewport to center nodes in the middle of the screen
         setViewport(centerPoint);
+        centered.current = true;
+    }, [centerPoint, setViewport]);
 
-        centered.current = true; // Prevent multiple calls
-    };
+    const toggle = useCallback(() => {
+        const nodes = randomizePositions(getNodes());
+        const edges = getEdges();
 
-    const result=  useMemo(() => {
-        let nodes = randomizePositions(getNodes())
-        let edges = getEdges();
-        let running = false;
-
-        if (!initialized || nodes.length === 0) return{
-            isInitialized:true,
-            toggle:()=>{},
-            isRunning:()=>false,
-            dragEvents:dragEvents
-        };
+        if (!initialized || nodes.length === 0) return;
 
         simulation.nodes(nodes).force(
             "link",
@@ -111,48 +105,39 @@ export const useLayoutedElements = ({centerPoint, width, height}:IUseLayoutedEle
                 })
             );
 
-            centerNodes(nodes)
-            if (running) window.requestAnimationFrame(tick);
+            centerNodes(nodes);
+            if (runningRef.current) window.requestAnimationFrame(tick);
         };
 
-        const toggle = () => {
-            if (!running) {
-                getNodes().forEach((node, index) => {
-                    let simNode = nodes[index];
-                    Object.assign(simNode, node);
-                    simNode.x = node.position.x;
-                    simNode.y = node.position.y;
-                });
-            }
-            running = !running;
-            if (running) window.requestAnimationFrame(tick);
-        };
+        if (!runningRef.current) {
+            getNodes().forEach((node, index) => {
+                let simNode = nodes[index];
+                Object.assign(simNode, node);
+                simNode.x = node.position.x;
+                simNode.y = node.position.y;
+            });
+        }
 
-        const isRunning = () => running;
-        randomized.current = true; // Mark nodes as randomized
-        return {
-            isInitialized:true,
-            toggle:toggle,
-            isRunning:isRunning,
-            dragEvents:dragEvents
-        };
-    }, [initialized, dragEvents, getNodes, getEdges, setNodes]);
+        runningRef.current = !runningRef.current;
+        randomized.current = true;
 
+        if (runningRef.current) window.requestAnimationFrame(tick);
+    }, [initialized, randomizePositions, centerNodes, getNodes, getEdges, setNodes]);
 
-     // Use an effect to automatically trigger `toggle` when the hook is ready.
-  useEffect(() => {
-    // @ts-ignore
-      const {isInitialized, toggle, isRunning, dragEvents} = result;
-    if (isInitialized && !isRunning()) {
-      toggle();
-    }
-    // We want this to run when `result` changes (typically on initialization).
-  }, [result]);
+    const isRunning = useCallback(() => runningRef.current, []);
 
-  return {
-      isInitialized:result.isInitialized,
-      toggle:result.toggle,
-      isRunning:result.isRunning,
-      dragEvents:result.dragEvents
-  }
+    const result = useMemo(() => ({
+        isInitialized: initialized,
+        toggle,
+        isRunning,
+        dragEvents
+    }), [initialized, toggle, isRunning, dragEvents]);
+
+    useEffect(() => {
+        if (initialized && !runningRef.current) {
+            toggle();
+        }
+    }, [initialized]);
+
+    return result;
 };

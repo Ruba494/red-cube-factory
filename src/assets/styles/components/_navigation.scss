@@ -37,10 +37,31 @@
       }
     }
     &-logo{
-      --cube-size:100px;
-      --z-translate-100-px:calc(var(--cube-size) / 2);
       --scene-x-margin:10px;
       padding:24px;
+    }
+  }
+}
+
+
+/* Tablet and below - responsive padding for logo */
+@media (max-width: 768px) {
+  .navigation {
+    &__list {
+      &-logo {
+        padding: 16px; /* Smaller padding on tablets */
+      }
+    }
+  }
+}
+
+/* Mobile phones - smaller padding for logo */
+@media (max-width: 480px) {
+  .navigation {
+    &__list {
+      &-logo {
+        padding: 12px; /* Even smaller padding on mobile */
+      }
     }
   }
 }
