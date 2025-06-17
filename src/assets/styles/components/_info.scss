@@ -16,7 +16,7 @@
     text-wrap: wrap;
     .title {
       font-size: 60px;
-      margin-bottom: 20px;
+      //margin-bottom: 20px;
       &-highlight{
         color: var(--color-ruba-red);
         font-family: var(--pixel-font-familty);
@@ -48,6 +48,9 @@
         }
 
       }
+    }
+    .extra-info{
+      margin-top: -10px;
     }
 
     .subtitle {
@@ -157,18 +160,21 @@
       width: 100%;
 
       ul{
-        display: flex;
         justify-content: center;
-        align-items: center;
         gap: 20px;
-        width: 100%;
-        list-style: none;
-
-        li{
-          width: 100%;
-        }
       }
+    }
 
+    ul{
+      display: flex;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      a{
+        text-decoration: none;
+        color: unset;
+      }
 
     }
 
