@@ -1,19 +1,55 @@
 :root{
-  --image-size:500px
+  --image-size:500px;
+  --padding:40px;
+  --grid-gap:20px;
 }
 
 /* Tablet and below */
 @media (max-width: 768px) {
   :root {
-   --image-size:350px
+   --image-size:350px;
+    --padding:32px;
+    --grid-gap:15px;
   }
+
 }
 
 /* Mobile phones */
 @media (max-width: 480px) {
   :root {
-   --image-size:200px
+   --image-size:300px;
+    --padding:32px;
+    --grid-gap:15px;
   }
+  .modal{
+    .image-node{
+      display: grid;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: 1fr auto;
+      .info{
+        display: flex;
+        justify-content: end;
+      }
+    }
+    .template-node{
+      display: flex;
+      gap:20px;
+      &.is-opened{
+        display: grid;
+        grid-template-areas:
+            'gallery gallery'
+            'gallery gallery'
+            'gallery gallery'
+            'info link' !important;
+      }}
+
+    .content{
+      &-wrapper{
+        height: min-content !important;
+      }
+    }
+  }
+
 }
 
 .modalOverlay{
@@ -43,7 +79,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     flex-direction: row;
-    grid-gap: 20px;
+    grid-gap: var(--grid-gap);
     width: 100%;
     img{
       width: var(--image-size) !important;
@@ -68,7 +104,7 @@
   }
   .template-node{
     display: flex;
-    gap:20px;
+    gap:var(--grid-gap);
     &.is-opened{
       display: grid;
       grid-template-areas:
@@ -78,7 +114,7 @@
             'gallery link'
     ;
       flex-direction: row;
-      grid-gap: 20px;
+      grid-gap: var(--grid-gap);
     }
 
     width: 100%;
@@ -119,11 +155,11 @@
       }
       width: min-content;
       border: 1px dashed var(--color-ruba-red);
-      height: calc(var(--image-size) + (2 * ( 40px)));
+      height: calc(var(--image-size) + (2 * ( var(--padding))));
       display: flex;
       background: white;
       border-radius: 20px;
-      padding: 40px;
+      padding: var(--padding);
       position: relative;
       .close-btn{
         height: 40px;
