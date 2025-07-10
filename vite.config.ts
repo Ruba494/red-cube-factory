@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, "src");
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: '/red-cube-factory/',
   plugins: [
     viteTsconfigPaths(),
     react()],
