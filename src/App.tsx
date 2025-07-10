@@ -4,6 +4,7 @@ import {PageRoutes, PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "./routes";
 import {Cursor} from "./components/cursor.tsx";
 import {GoToTemplates} from "./components/templatesComponents/goToTemplates.tsx";
 function App() {
+    console.log("React mounted")
     const location = useLocation();
     const isTemplatePage = location.pathname === PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.TEMPLATES];
     return<div className={'app'}  >
