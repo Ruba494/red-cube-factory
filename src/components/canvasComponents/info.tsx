@@ -22,7 +22,7 @@ export const Info = ({data}: { data:INodeData }) => {
         animate={'visible'}
     >
         {data.isProfile?<Profile/>:
-        <GoToInstagram/>
+        <GoToInstagram data={data}/>
         }
     </motion.div>
 }
