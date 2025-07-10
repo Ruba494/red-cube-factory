@@ -1,7 +1,5 @@
-import {forwardRef, useEffect, useImperativeHandle, useRef} from "react";
+import {forwardRef, useImperativeHandle, useRef} from "react";
 import gsap from 'gsap';
-import {PixelatedComponent} from "../PixelatedComponent.tsx";
-import {Tags} from "../Tags.tsx";
 import {Colors} from "../../pages/constants/colors.ts";
 
 const DURATION=[0,0.3,0.7,1]
@@ -55,8 +53,10 @@ export const Profile = () => {
             <ul className={'tags'}>
                 {
                     ContactsTags.map((tag, index) => (
-                        <li className={`tags-item ${tag.color} `} lang={tag?.lang??'en'} key={index}>
-                            <a className={'link'} href={tag.link}>{tag.tag}</a>
+                        <li className={`tags-item ${tag.color} `} lang={tag?.lang??'en'} key={index} onClick={()=>{
+                            window.open(tag.link, "_blank", "noreferrer")
+                        }}>
+                            <a className={'link'}>{tag.tag}</a>
                         </li>
                     ))
                 }
