@@ -10,8 +10,8 @@ export const PreviewGallery = ({previewAccessor,imagesSource}:IPreviewGallery) =
     const imagesList= imagesSource[previewAccessor]?
         imagesSource[previewAccessor]?.map((img:string) => {
         return {
-            original: img,
-            thumbnail: img,
+            original: import.meta.env.BASE_URL+img,
+            thumbnail: import.meta.env.BASE_URL+img,
         }
     }):[]
 
