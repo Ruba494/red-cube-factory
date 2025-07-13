@@ -5,7 +5,7 @@ Built to inspire others to start writing and cherishing their own thoughts, memo
 
 ## 🌐 Live Site
 
-Visit it here: [https://yourusername.github.io/red-cube-factory](https://yourusername.github.io/red-cube-factory)
+Visit it here: [https://ruba494.github.io/red-cube-factory](https://ruba494.github.io/red-cube-factory)
 
 ## 🚀 Tech Stack
 
