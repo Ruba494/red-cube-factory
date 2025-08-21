@@ -23,7 +23,7 @@ export const Modal = () => {
     useEffect(() => {
         if(selectedNode!==null){
             gsap.set([overlayRef.current, modalRef.current], { autoAlpha: 1 });
-            handelModalExpand(selectedNode.ref)
+            handelModalExpand(selectedNode?.ref)
         }else {
             gsap.set([overlayRef.current, modalRef.current], {autoAlpha: 0});
         }
@@ -32,12 +32,17 @@ export const Modal = () => {
 
     const handelModalExpand = (ref:any) => {
         setIsOpened(false)
-        let newRect = getPosition(modalRef.current, ref.current);
+        let newRect =ref?.current? getPosition(modalRef.current, ref?.current):{
+            left:0,
+            top:0,
+            width:0,
+            height:0
+        };
         gsap.set(modalRef.current, {
-            x: newRect.left,
-            y: newRect.top,
-            width: newRect.width,
-            height: newRect.height
+            x: newRect?.left,
+            y: newRect?.top,
+            width: newRect?.width,
+            height: newRect?.height
         });
         let tl = gsap.timeline();
         tl.to(overlayRef.current, 0.1, { autoAlpha: 1 });

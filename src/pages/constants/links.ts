@@ -71,7 +71,7 @@ export const LINKS: ILinkData[] = [
     {
 
         emoji:'🔗',
-        title:'2024 template',
+        title:'MY 2024',
         url:'https://drive.google.com/file/d/1AX080sh9WAa8VW1jLl1bumP0n5gUBC2x/view?usp=drivesdk',
         description:LinksTags[LinksAccessorEnum.DIARY_2024],
         previewAccessor:LinksAccessorEnum.DIARY_2024,
@@ -79,7 +79,7 @@ export const LINKS: ILinkData[] = [
     },    {
 
         emoji:'🔗',
-        title:'2023 template',
+        title:'MY 2023',
         url:'https://drive.google.com/file/d/170QjA0TcV2nKpcfskfm5rMVyw_dOdOu1/view',
         description:LinksTags[LinksAccessorEnum.DIARY_2023],
         previewAccessor:LinksAccessorEnum.DIARY_2023,
@@ -87,7 +87,7 @@ export const LINKS: ILinkData[] = [
     },   {
 
         emoji:'🔗',
-        title:'2022 template',
+        title:'MY 2022',
         url:'https://www.youtube.com/watch?app=desktop&v=SbU37scy-uE&t=82s',
         description:LinksTags[LinksAccessorEnum.DIARY_2022],
         previewAccessor:LinksAccessorEnum.DIARY_2022,
@@ -95,7 +95,7 @@ export const LINKS: ILinkData[] = [
     },   {
 
         emoji:'🔗',
-        title:'2025 template',
+        title:'MY 2025',
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
         description:LinksTags[LinksAccessorEnum.DIARY_2025],
         previewAccessor:LinksAccessorEnum.DIARY_2025,

@@ -1,12 +1,16 @@
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
 import {useLocation, useNavigate} from "react-router";
 import gsap from "gsap";
-import {Fragment, memo, useRef, useState} from "react";
+import {Fragment, memo, useContext, useRef, useState} from "react";
 import {useGSAP} from "@gsap/react";
 import {SpinningCube} from "./spinningCube.tsx";
 import {Tags} from "./Tags.tsx";
 import {Colors} from "../pages/constants/colors.ts";
 import {ClickableTags} from "./clickableTags.tsx";
+import {CanvasContext} from "./canvasComponents/canvasContext.tsx";
+import {LINKS_NODES, NODES, NodeTypesEnum, TEMPLATE_LINKS_NODES} from "../pages/constants/nodes.ts";
+import {TEMPLATES_LINKS} from "../pages/constants/links.ts";
+import * as _ from "lodash";
 
 export const Navigation = memo(() => {
     const navigate=useNavigate()
@@ -63,12 +67,29 @@ export const Navigation = memo(() => {
         {tag:'2025',color:Colors.RED},
     ]
 
-    // ✅ Tag selection state
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const { setCanvasNodes, selectedTag, setSelectedTag,setSelectedNode} = useContext(CanvasContext);
 
     // Click handler for tags
     const handleTagClick = (_e: any, tag: { tag: string }) => {
-        setSelectedTag(tag.tag===selectedTag?null:tag.tag); // set clicked tag as selected
+        const newTag=tag.tag===selectedTag?null:tag.tag
+
+        switch (tag.tag) {
+            case "template":
+                setCanvasNodes(TEMPLATE_LINKS_NODES)
+                break;
+            case "2022":
+            case "2023":
+            case "2024":
+            case "2025":
+                setCanvasNodes(NODES.filter(item=>item.year===Number(tag.tag)))
+                break;
+            default:
+                setSelectedNode({data: {... {
+                            isProfile:true,
+                            imageSrc: "/ruba.png"
+                        },type:NodeTypesEnum.imageNode},ref:null})
+        }
+        setSelectedTag(newTag); // set clicked tag as selected
     };
 
     // Selection checker

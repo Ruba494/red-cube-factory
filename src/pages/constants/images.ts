@@ -1,9 +1,11 @@
 import {LinksAccessorEnum} from "./links.ts";
 
+
 export interface IImageData {
     imageSrc?:string;
     link?:string;
     isProfile?:boolean;
+
 }
 
 

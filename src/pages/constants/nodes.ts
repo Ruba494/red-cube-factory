@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import {ILinkData, LINKS} from "./links.ts";
+import {ILinkData, LINKS, TEMPLATES_LINKS} from "./links.ts";
 import {IImageData, IMAGES} from "./images.ts";
 
 export enum NodeTypesEnum {
@@ -28,9 +28,26 @@ export interface INode{
     type:NodeTypes
     hidden:boolean
     data: INodeData
+    year: number
 }
 
-const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
+export const TEMPLATE_LINKS_NODES:INode[] =TEMPLATES_LINKS.map((link,index)=>{
+    return {
+        id: `link${index}`,
+        width: 150,
+        height: 20,
+        position: {
+            x: 0,
+            y: 0,
+        } as INodePosition,
+        type:NodeTypesEnum.templateNode as NodeTypes,
+        hidden:false,
+        data: {
+            ...link
+        } as INodeData
+    }
+})
+export const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
     return {
         id: `link${index}`,
         width: 150,
@@ -47,6 +64,13 @@ const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
     }
 })
 const IMAGES_NODES:INode[] =IMAGES.map((image,index)=>{
+    // Extract filename from path
+    const filename = image?.imageSrc.split("/").pop() ?? "";
+
+    // Extract first 4 digits as year and convert to number
+    const yearMatch = filename.match(/^(\d{4})/);
+    const year = yearMatch ? Number(yearMatch[1]) : undefined;
+
     return {
         id: `image${index}`,
         width: 200,
@@ -57,6 +81,7 @@ const IMAGES_NODES:INode[] =IMAGES.map((image,index)=>{
         } as INodePosition,
         type:NodeTypesEnum.imageNode as NodeTypes,
         hidden:false,
+        year:year, // extracted year as number
         data: {
             ...image,
         } as INodeData
@@ -79,10 +104,11 @@ const EMOJI_NODES :INode[] =['🥳','👊🏼','🪄','😶‍🌫️','🐮'].m
     }
 })
 
-const NODES:INode[] = [
+export const NODES:INode[] = [
     ..._.shuffle(IMAGES_NODES),
     ..._.shuffle(EMOJI_NODES),
     ..._.shuffle(LINKS_NODES),
+    ..._.shuffle(TEMPLATE_LINKS_NODES),
 ]
 
 export const initialNodes:INode[] = [...NODES];

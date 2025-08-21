@@ -61,7 +61,8 @@
     }
     &[aria-selected="false"] {
       &:before {
-        opacity: 0;
+        --tag-bg:white;
+        opacity: 1;
         background-color: var(--tag-bg);
       }
     }
