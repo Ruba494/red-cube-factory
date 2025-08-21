@@ -11,33 +11,25 @@
   &__list{
     list-style-type: none;
     padding-left: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     &-item{
-      font-size: 60px;
-      font-weight: 1000;
-      padding: 12px 0;
-
-
-      background: linear-gradient(
-                      to right,
-                      var(--text-fill-color),
-                      var(--text-fill-color)
-      )
-      no-repeat;
-      -webkit-background-clip: text;
-      background-clip: text;
-      background-size: 0%;
-      color: var(--text-color);
-      transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
-      -webkit-text-stroke: 0.1rem var(--text-stroke-color);
-      text-stroke: 0.1rem var(--text-stroke-color);
-
-
-      &.is-active{
-        background-size: 100% !important;
+      display: flex;
+      width: auto;
+      gap: 12px;
+      .tags{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 6px;
+        font-size: 16px;
+        line-height: 16px;
       }
     }
     &-logo{
-      --cube-size:100px;
+      --cube-size:80px;
       --z-translate-100-px:calc(var(--cube-size) / 2);
       --scene-x-margin:0px;
       padding:24px;

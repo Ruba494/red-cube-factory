@@ -1,5 +1,6 @@
 :root{
   --cube-size:100px;
+  --scene-x-margin:50px;
 
   --z-translate-100-px:calc(var(--cube-size) / 2);
 
@@ -14,7 +15,7 @@
   --cube-right-background-color: var(--color-ruba-red-dark);
   --cube-top-background-color:var(--color-ruba-red);
 
-  --scene-x-margin:50px;
+
 }
 
 @media (min-width: 1200px) {

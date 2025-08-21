@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { Physics2DPlugin } from "gsap/Physics2DPlugin";
-
 import { INodeData } from "../../pages/constants/nodes";
 
 gsap.registerPlugin(Physics2DPlugin);
@@ -15,10 +14,7 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
     const emitterRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const emitterSize = 100;
     const dotQuantity = 30;
-    const dotSizeMax = 30;
-    const dotSizeMin = 10;
     const speed = 1;
     const gravity = 1;
 
@@ -39,7 +35,7 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
         // Get emitter bounds and font size
         const bounds = emitterRef.current.getBoundingClientRect();
         const emitterFontSize = parseFloat(
-            window.getComputedStyle(emitterRef.current).fontSize || "10"
+            window.getComputedStyle(emitterRef.current).fontSize
         );
 
         // Set explosion container position
@@ -51,27 +47,30 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
         const tl = gsap.timeline();
         const dots: HTMLElement[] = [];
 
-        // Calculate dot size as 60% of clicked emoji size
-        const dotSize = emitterFontSize * 0.6;
-
         for (let i = 0; i < dotQuantity; i++) {
             const dot = document.createElement("div");
             dot.textContent = data.emoji;
             dot.style.position = "absolute";
-            dot.style.fontSize = `${dotSize}px`;
+
+            // 🎨 Randomize size per dot
+            const baseSize = emitterFontSize * 0.5;
+            const size = baseSize * (0.5 + Math.random() * 0.7); // 50%–120%
+            dot.style.fontSize = `${size}px`;
+
             dot.style.opacity = "1";
             container.appendChild(dot);
             dots.push(dot);
 
             const angle = Math.random() * Math.PI * 2;
-            const length = Math.random() * (emitterSize / 2);
+            const distance = Math.random() * (emitterFontSize * 0.5);
 
             gsap.set(dot, {
-                x: Math.cos(angle) * length,
-                y: Math.sin(angle) * length,
+                x: Math.cos(angle) * distance,
+                y: Math.sin(angle) * distance,
                 xPercent: -50,
                 yPercent: -50,
                 force3D: true,
+                // rotation: Math.random() * 360, // 🔄 random initial rotation
             });
 
             tl.to(
@@ -79,17 +78,21 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
                 {
                     physics2D: {
                         angle: (angle * 180) / Math.PI,
-                        velocity: (100 + Math.random() * 250) * speed,
-                        gravity: 500 * gravity,
+                        velocity: (100 + Math.random() * 300) * speed,
+                        gravity: (400 + Math.random() * 200) * gravity,
                     },
-                    duration: 1 + Math.random(),
+                    // rotation: `+=${180 + Math.random() * 360}`, // spin while flying
+                    duration: 1.2 + Math.random(),
+                    ease: "power1.out",
                 },
                 0
             ).to(
                 dot,
                 {
                     opacity: 0,
-                    duration: 0.4,
+                    scale: 0.5,
+                    duration: 0.6,
+                    ease: "power1.in",
                 },
                 0.7
             );
@@ -98,12 +101,12 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
         // Remove dots after animation
         tl.call(() => {
             dots.forEach((dot) => dot.remove());
+            if (container.childElementCount === 0) {
+                container.remove();
+                containerRef.current = null;
+            }
         });
     };
-
-
-    const getRandom = (min: number, max: number) =>
-        min + Math.random() * (max - min);
 
     return (
         <div className="text-updater-node">

@@ -6,12 +6,12 @@
   --tag-color-pink: pink;
   --tag-color-purple: #7c4b9e;
   --tag-color-gray: #a09d9d;
-  --tag-border-radius: 22px
+  --tag-border-radius: 22px;
 }
 
 .tags {
   display: flex;
-  align-items:start;
+  align-items: start;
   justify-content: start;
   flex-wrap: wrap;
   column-gap: 4px;
@@ -20,10 +20,24 @@
   line-height: 12px;
   font-family: ClashDisplay-Medium;
   width: 200px;
+
   &-item {
     padding: 1px 4px;
     border-radius: var(--tag-border-radius);
     position: relative;
+    z-index: 0;
+
+
+
+    /* Colors */
+    &.red { --tag-bg: var(--tag-color-red); color: var(--tag-color-red); border: 1px solid var(--tag-color-red); }
+    &.blue { --tag-bg: var(--tag-color-blue); color: var(--tag-color-blue); border: 1px solid var(--tag-color-blue); }
+    &.green { --tag-bg: var(--tag-color-green); color: var(--tag-color-green); border: 1px solid var(--tag-color-green); }
+    &.yellow { --tag-bg: var(--tag-color-yellow); color: var(--tag-color-yellow); border: 1px solid var(--tag-color-yellow); }
+    &.pink { --tag-bg: var(--tag-color-pink); color: var(--tag-color-pink); border: 1px solid var(--tag-color-pink); }
+    &.purple { --tag-bg: var(--tag-color-purple); color: var(--tag-color-purple); border: 1px solid var(--tag-color-purple); }
+    &.gray { --tag-bg: var(--tag-color-gray); color: var(--tag-color-gray); border: 1px solid var(--tag-color-gray); }
+
     &:before {
       content: '';
       position: absolute;
@@ -32,69 +46,23 @@
       width: 100%;
       height: 100%;
       border-radius: var(--tag-border-radius);
-      opacity: 15%;
+      opacity: 0.15; /* default light background for all tags */
+      z-index: -1;
+      transition: opacity 0.2s, background-color 0.2s;
+      background-color: var(--tag-bg);
     }
 
-    &.red {
-      color: var(--tag-color-red);
-      border: 1px solid var(--tag-color-red);
-
+    &[aria-selected="true"] {
+      color: white;
       &:before {
-        background-color: var(--tag-color-red);
+        opacity: 1;
+        background-color: var(--tag-bg);
       }
     }
-
-    &.blue {
-      color: var(--tag-color-blue);
-      border: 1px solid var(--tag-color-blue);
-
+    &[aria-selected="false"] {
       &:before {
-        background-color: var(--tag-color-blue);
-      }
-    }
-
-    &.green {
-      color: var(--tag-color-green);
-      border: 1px solid var(--tag-color-green);
-
-      &:before {
-        background-color: var(--tag-color-green);
-      }
-    }
-
-    &.yellow {
-      color: var(--tag-color-yellow);
-      border: 1px solid var(--tag-color-yellow);
-
-      &:before {
-        background-color: var(--tag-color-yellow);
-      }
-    }
-
-    &.pink {
-      color: var(--tag-color-pink);
-      border: 1px solid var(--tag-color-pink);
-
-      &:before {
-        background-color: var(--tag-color-pink);
-      }
-    }
-
-    &.purple {
-      color: var(--tag-color-purple);
-      border: 1px solid var(--tag-color-purple);
-
-      &:before {
-        background-color: var(--tag-color-purple);
-      }
-    }
-
-    &.gray {
-      color: var(--tag-color-gray);
-      border: 1px solid var(--tag-color-gray);
-
-      &:before {
-        background-color: var(--tag-color-gray);
+        opacity: 0;
+        background-color: var(--tag-bg);
       }
     }
   }
