@@ -36,7 +36,7 @@ export const ImageNode = ({ id,data,WithClickAction=true }:IImageNodeProps) => {
                     }
                 }}
                 className={`image-container ${data?.isProfile?"is-profile-image":""}`}>
-                <img src={import.meta.env.BASE_URL+data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
+                <img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
             </motion.div>
     );
 }

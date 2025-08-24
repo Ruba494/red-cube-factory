@@ -69,26 +69,30 @@ export const Navigation = memo(() => {
 
     const { setCanvasNodes, selectedTag, setSelectedTag,setSelectedNode} = useContext(CanvasContext);
 
-    // Click handler for tags
+// Click handler for tags
     const handleTagClick = (_e: any, tag: { tag: string }) => {
-        const newTag=tag.tag===selectedTag?null:tag.tag
+        const newTag = tag.tag === selectedTag ? null : tag.tag;
 
-        switch (tag.tag) {
-            case "template":
-                setCanvasNodes(TEMPLATE_LINKS_NODES)
-                break;
-            case "2022":
-            case "2023":
-            case "2024":
-            case "2025":
-                setCanvasNodes(NODES.filter(item=>item.year===Number(tag.tag)))
-                break;
-            default:
-                setSelectedNode({data: {... {
-                            isProfile:true,
-                            imageSrc: "/ruba.png"
-                        },type:NodeTypesEnum.imageNode},ref:null})
+        if (newTag === null) {
+            // Deselecting - restore all nodes
+            setCanvasNodes(NODES);
+        } else {
+            // Selecting a tag - filter nodes
+            switch (tag.tag) {
+                case "template":
+                    setCanvasNodes(TEMPLATE_LINKS_NODES);
+                    break;
+                case "2022":
+                case "2023":
+                case "2024":
+                case "2025":
+                    setCanvasNodes(NODES.filter(item => item.year === Number(tag.tag)));
+                    break;
+                default: // "about me" case
+                    setCanvasNodes(NODES.filter(item => item?.data?.isProfile === true));
+            }
         }
+
         setSelectedTag(newTag); // set clicked tag as selected
     };
 

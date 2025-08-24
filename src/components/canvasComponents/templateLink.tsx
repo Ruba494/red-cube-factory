@@ -1,30 +1,32 @@
 import {motion} from "motion/react";
 import {useContext, useRef} from "react";
 import {CanvasContext} from "./canvasContext.tsx";
-import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
+import {INodeData, NODES, NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes.ts";
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../../routes";
 import {useNavigate} from "react-router";
 import {Tags} from "../Tags.tsx";
+import {template} from "lodash";
 
 interface ITemplateLinkProps {
     data:INodeData
     WithClickAction:boolean
+    type:NodeTypes
 }
-export const TemplateLink = ({data,WithClickAction=true  }:ITemplateLinkProps) => {
+export const TemplateLink = ({data,WithClickAction=true  ,type=NodeTypesEnum.templateNode }:ITemplateLinkProps) => {
     const {setSelectedNode,} = useContext(CanvasContext);
     const ref = useRef(null);
 
-    const navigate = useNavigate();
+    console.log('templateLink type', type)
     const handleClick = (e,id) => {
         e.preventDefault()
         if(WithClickAction){
-            setSelectedNode({data: {...data,type:NodeTypesEnum.templateNode},ref:ref})
+            console.log('handleClick',type)
+            setSelectedNode({data: {...data,type:type},ref:ref})
         }else {
-            const routeTemplate = PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.TEMPLATES]; // "/templates/:id?"
-            const templatePath = routeTemplate.replace(":id?", id); // "/templates/123"
 
+            // setSelectedNode({data: {...NODES.find(item=>item.data.previewAccessor === id),type:NodeTypesEnum.templateNode},ref:ref})
             if(data?.isOriginalContent){
-                navigate(templatePath)
+                // navigate(templatePath)
             }else {
                 window.open(data.url, "_blank", "noreferrer");
             }

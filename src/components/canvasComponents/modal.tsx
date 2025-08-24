@@ -78,8 +78,9 @@ export const Modal = () => {
 
 
 const ModalContent = ({selectedNode,isOpened}:IModalContentProps) => {
-    if( selectedNode?.data?.type===NodeTypesEnum.templateNode) {
-        return <TemplateLinkModalContent  data={selectedNode?.data} isOpened={isOpened}/>
+    if( selectedNode?.data?.type===NodeTypesEnum.templateNode || selectedNode?.data?.type===NodeTypesEnum.galleryNode) {
+        console.log(selectedNode?.data?.type)
+        return <TemplateLinkModalContent  data={selectedNode?.data} isOpened={isOpened} type={selectedNode?.data?.type}/>
     } else if( selectedNode?.data?.type===NodeTypesEnum.imageNode) {
         return <>
             <ImageNode data={selectedNode?.data} id={'---'} WithClickAction={false}/>

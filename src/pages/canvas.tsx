@@ -15,7 +15,7 @@ import { Modal } from "../components/canvasComponents/modal.tsx";
 import {
   nodeTypes,
 } from "./constants.ts";
-import { useContext, useState, useEffect } from "react";
+import {useContext, useState, useEffect, useRef} from "react";
 import { LoadingPage } from "../components/loading/loadingPage.tsx";
 import {initialEdges, initialNodes, NodeTypesEnum} from "./constants/nodes.ts";
 import {Profile} from "../components/canvasComponents/profile.tsx";
@@ -25,22 +25,16 @@ import {Info} from "../components/canvasComponents/info.tsx";
 export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-    const {selectedTag} = useContext(CanvasContext);
-
     return (
       <>
         {!isLoaded && <LoadingPage setIsLoaded={setIsLoaded} />}
         <div className={"canvas-container"}>
-            {selectedTag!==null? <ReactFlowProvider>
-                <div className={"canvas"} style={{ width: "100%", height: "100%" }}>
-                    <GridFlow setIsLoaded={setIsLoaded} />
-                </div>
-            </ReactFlowProvider>:  <ReactFlowProvider>
+            <ReactFlowProvider>
                 <div className={"canvas"} style={{ width: "100%", height: "100%" }}>
                     <AnimatedFlow setIsLoaded={setIsLoaded} />
                 </div>
             </ReactFlowProvider>
-            }
+
         </div>
         <Modal />
       </>
@@ -49,23 +43,39 @@ export const Canvas = () => {
 
 const AnimatedFlow = ({setIsLoaded}) => {
   // @ts-ignore
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes,setNodes , onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  const {selectedTag,canvasEdges, canvasNodes} = useContext(CanvasContext);
+
+
   const { innerWidth: width, innerHeight: height } = window;
   const centerPoint={ x:  width / 2 - 100, y:  height / 2 - 70, zoom: 1 }
-  
-  const {dragEvents} = useLayoutedElements({centerPoint, width, height});
+
+  const {dragEvents} = useLayoutedElements({centerPoint, width, height,selectedTag});
+
+  useEffect(() => {
+    if(selectedTag){
+      console.log(canvasNodes)
+      setNodes(canvasNodes)
+      setEdges(canvasEdges)
+    } else {
+      // When deselecting, restore all nodes
+      setNodes(initialNodes)
+      setEdges(canvasEdges)
+    }
+  }, [selectedTag]);
 
   // @ts-ignore
   return <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
-                      onNodesChange={onNodesChange}
-                      onEdgesChange={onEdgesChange}
-                      onNodeDragStart={dragEvents.start}
-                      onNodeDrag={dragEvents.drag}
-                      onNodeDragStop={dragEvents.stop}
-                      fitView={true}
-                      panOnDrag
-                      zoomOnScroll
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
+                    onNodeDragStart={dragEvents.start}
+                    onNodeDrag={dragEvents.drag}
+                    onNodeDragStop={dragEvents.stop}
+                    fitView={true}
+                    panOnDrag
+                    zoomOnScroll
                     onInit={()=>{
                       setTimeout(()=>{
                         setIsLoaded(true)
@@ -75,7 +85,6 @@ const AnimatedFlow = ({setIsLoaded}) => {
     <Background variant={BackgroundVariant.Dots} gap={12} size={1}  color="var(--color-ruba-red)" />
   </ReactFlow>
 }
-
 const GridFlow = ({ setIsLoaded }) => {
     const { canvasEdges, canvasNodes } = useContext(CanvasContext);
 

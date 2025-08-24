@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useCallback} from "react";
 import { forceCollide, forceLink, forceManyBody, forceSimulation, forceX, forceY } from "d3-force";
 
 const simulation = forceSimulation()
-    .force("charge", forceManyBody().strength(-1000))
+    .force("charge", forceManyBody().strength(-1400))
     .force("x", forceX().x(0).strength(0.05))
     .force("y", forceY().y(0).strength(0.1))
     .force("collide", forceCollide)
@@ -25,10 +25,11 @@ interface IUseLayoutedElementsProps {
     }
     width:number
     height:number
+    selectedTag:any;
 }
 
-export const useLayoutedElements = ({centerPoint, width, height}:IUseLayoutedElementsProps) :IUseLayoutedElementsResults=> {
-    const { getNodes, setNodes, getEdges,setViewport } = useReactFlow();
+export const useLayoutedElements = ({centerPoint, width, height,selectedTag}:IUseLayoutedElementsProps) :IUseLayoutedElementsResults=> {
+    const { getNodes, setNodes, getEdges,setViewport} = useReactFlow();
     const initialized = useNodesInitialized();
 
     const draggingNodeRef = useRef<any>(null);
@@ -138,6 +139,33 @@ export const useLayoutedElements = ({centerPoint, width, height}:IUseLayoutedEle
             toggle();
         }
     }, [initialized]);
+
+    useEffect(() => {
+        if(selectedTag){
+            //retrigger with updated nodes
+            if (runningRef.current && initialized) {
+                // Just restart the simulation with current nodes
+                runningRef.current = false;
+                setTimeout(() => {
+                    if (!runningRef.current) {
+                        toggle();
+                    }
+                }, 50);
+            }
+        } else {
+            // When deselecting, reset randomized to allow new nodes to be positioned from borders
+            if (initialized) {
+                randomized.current = false;
+                centered.current = false;
+                runningRef.current = false;
+                setTimeout(() => {
+                    if (!runningRef.current) {
+                        toggle();
+                    }
+                }, 50);
+            }
+        }
+    }, [selectedTag]);
 
     return result;
 };

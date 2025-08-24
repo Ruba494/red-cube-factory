@@ -7,5 +7,6 @@ import {NodeTypesEnum} from "./constants/nodes.ts";
 export const nodeTypes = {
     [NodeTypesEnum.imageNode]: ImageNode,
     [NodeTypesEnum.emojiNode]:EmojiNode,
-    [NodeTypesEnum.templateNode]:TemplateLink
+    [NodeTypesEnum.templateNode]:TemplateLink,
+    [NodeTypesEnum.galleryNode]:TemplateLink
 };

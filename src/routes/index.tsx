@@ -1,6 +1,5 @@
 import {Route, Routes} from "react-router";
 import {Canvas} from "../pages/canvas.tsx";
-import {Templates} from "../pages/Templates.tsx";
 
 export enum PATHS_CONSTANTS_ENUM {
     HOME = 'HOME',
@@ -17,7 +16,6 @@ export const PATHS_CONSTANTS = {
     [PATHS_CONSTANTS_ENUM.ANOTHER_CANVAS]: "/another-canvas",
     [PATHS_CONSTANTS_ENUM.ABOUT_ME]: "/about-me",
     [PATHS_CONSTANTS_ENUM.DESIGNS]: "/designs/:id?",
-    [PATHS_CONSTANTS_ENUM.TEMPLATES]: "/templates/:id?",
 };
 
 export const ROUTES = [
@@ -26,12 +24,7 @@ export const ROUTES = [
         path: PATHS_CONSTANTS.HOME,
         element:  <Canvas/>,
         index: true,
-    }, {
-        id: PATHS_CONSTANTS.TEMPLATES,
-        path: PATHS_CONSTANTS.TEMPLATES,
-        element:  <Templates/>,
-        index: true,
-    },
+    }
 ];
 
 

@@ -5,11 +5,13 @@ import {IImageData, IMAGES} from "./images.ts";
 export enum NodeTypesEnum {
     imageNode='image-node',
     templateNode='template-node',
+    galleryNode='gallery-node',
     emojiNode='emoji-node'
 }
 export type NodeTypes=
     NodeTypesEnum.imageNode |
     NodeTypesEnum.templateNode |
+    NodeTypesEnum.galleryNode |
     NodeTypesEnum.emojiNode ;
 
 export interface INodeData extends IImageData,ILinkData {
@@ -33,7 +35,7 @@ export interface INode{
 
 export const TEMPLATE_LINKS_NODES:INode[] =TEMPLATES_LINKS.map((link,index)=>{
     return {
-        id: `link${index}`,
+        id: `template-link${index}`,
         width: 150,
         height: 20,
         position: {
@@ -56,7 +58,7 @@ export const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
             x: 0,
             y: 0,
         } as INodePosition,
-        type:NodeTypesEnum.templateNode as NodeTypes,
+        type:NodeTypesEnum.galleryNode as NodeTypes,
         hidden:false,
         data: {
             ...link
