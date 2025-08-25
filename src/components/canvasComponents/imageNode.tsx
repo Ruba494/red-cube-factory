@@ -2,6 +2,7 @@ import {motion} from "motion/react";
 import { useRef} from "react";
 import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes";
 import {useCanvasStore} from "../../stores/canvasStore";
+import { getAsset } from "../../utils/getAsset";
 
 interface IImageNodeProps {
     id:string;
@@ -36,7 +37,7 @@ export const ImageNode = ({ id,data,WithClickAction=true }:IImageNodeProps) => {
                     }
                 }}
                 className={`image-container ${data?.isProfile?"is-profile-image":""}`}>
-                <img src={data?.imageSrc} alt="Image"  style={{width: '200px', height: 'auto' }} />
+                <img src={getAsset(data?.imageSrc)} alt="Image"  style={{width: '200px', height: 'auto' }} />
             </motion.div>
     );
 }

@@ -2,6 +2,7 @@ import {useRef,} from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import {INodeData} from "../../pages/constants/nodes";
+import {getAsset} from "../../utils/getAsset.ts";
 
 interface IPreviewGallery extends INodeData{
     imagesSource:any
@@ -10,8 +11,8 @@ export const PreviewGallery = ({previewAccessor,imagesSource}:IPreviewGallery) =
     const imagesList= imagesSource[previewAccessor]?
         imagesSource[previewAccessor]?.map((img:string) => {
         return {
-            original:img,
-            thumbnail: img,
+            original: getAsset(img),
+            thumbnail: getAsset(img),
         }
     }):[]
 
