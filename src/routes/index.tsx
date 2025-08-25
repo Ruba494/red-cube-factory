@@ -3,19 +3,10 @@ import {Canvas} from "../pages/canvas.tsx";
 
 export enum PATHS_CONSTANTS_ENUM {
     HOME = 'HOME',
-    CANVAS = 'CANVAS',
-    ANOTHER_CANVAS = 'ANOTHER_CANVAS',
-    ABOUT_ME = 'ABOUT_ME',
-    DESIGNS = 'DESIGNS',
-    TEMPLATES = 'TEMPLATES'
 }
 
 export const PATHS_CONSTANTS = {
     [PATHS_CONSTANTS_ENUM.HOME]: "/",
-    [PATHS_CONSTANTS_ENUM.CANVAS]: "/canvas",
-    [PATHS_CONSTANTS_ENUM.ANOTHER_CANVAS]: "/another-canvas",
-    [PATHS_CONSTANTS_ENUM.ABOUT_ME]: "/about-me",
-    [PATHS_CONSTANTS_ENUM.DESIGNS]: "/designs/:id?",
 };
 
 export const ROUTES = [
@@ -31,6 +22,7 @@ export const ROUTES = [
 export const PageRoutes = () => {
     return (
         <Routes>
+
             {
                 ROUTES.map(route => {
                     return <Route

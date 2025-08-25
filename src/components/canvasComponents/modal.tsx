@@ -1,13 +1,14 @@
 import gsap from "gsap";
-import {useContext, useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState} from "react";
 import {ImageNode} from "./imageNode.tsx";
-import {CanvasContext, ISelectedNode} from "./canvasContext.tsx";
+import { ISelectedNode} from "./canvasContext.tsx";
 import {getPosition} from "../../utils/getPosition.ts";
 import {Info} from "./info.tsx";
 import {CloseButtonLottie} from "../lottie/closeButtonLottie.tsx";
 import { motion } from "motion/react"
 import {TemplateLinkModalContent} from "./templateLinkModalContent.tsx";
 import { NodeTypesEnum} from "../../pages/constants/nodes.ts";
+import {useCanvasStore} from "../../stores/canvasStore.ts";
 
 interface IModalContentProps {
     selectedNode:ISelectedNode | null
@@ -17,7 +18,7 @@ export const Modal = () => {
     gsap.registerPlugin(gsap)
     const overlayRef = useRef(null);
     const modalRef = useRef(null);
-    const {selectedNode,setSelectedNode} = useContext(CanvasContext);
+    const {selectedNode,setSelectedNode} = useCanvasStore();
     const [isOpened, setIsOpened] = useState(false);
 
     useEffect(() => {
@@ -79,7 +80,6 @@ export const Modal = () => {
 
 const ModalContent = ({selectedNode,isOpened}:IModalContentProps) => {
     if( selectedNode?.data?.type===NodeTypesEnum.templateNode || selectedNode?.data?.type===NodeTypesEnum.galleryNode) {
-        console.log(selectedNode?.data?.type)
         return <TemplateLinkModalContent  data={selectedNode?.data} isOpened={isOpened} type={selectedNode?.data?.type}/>
     } else if( selectedNode?.data?.type===NodeTypesEnum.imageNode) {
         return <>

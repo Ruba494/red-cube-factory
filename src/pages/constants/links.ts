@@ -7,6 +7,7 @@ export interface ILinkData {
     description?: { tag:string, color:Colors }[]
     previewAccessor?:LinksAccessorTypes,
     isOriginalContent?:boolean,
+    year?:number,
 }
 export enum LinksAccessorEnum {
     DIARY_2025 ='DIARY_2025',
@@ -76,6 +77,7 @@ export const LINKS: ILinkData[] = [
         description:LinksTags[LinksAccessorEnum.DIARY_2024],
         previewAccessor:LinksAccessorEnum.DIARY_2024,
         isOriginalContent:true,
+        year:2024
     },    {
 
         emoji:'🔗',
@@ -83,7 +85,8 @@ export const LINKS: ILinkData[] = [
         url:'https://drive.google.com/file/d/170QjA0TcV2nKpcfskfm5rMVyw_dOdOu1/view',
         description:LinksTags[LinksAccessorEnum.DIARY_2023],
         previewAccessor:LinksAccessorEnum.DIARY_2023,
-        isOriginalContent:true
+        isOriginalContent:true,
+        year:2023
     },   {
 
         emoji:'🔗',
@@ -92,6 +95,7 @@ export const LINKS: ILinkData[] = [
         description:LinksTags[LinksAccessorEnum.DIARY_2022],
         previewAccessor:LinksAccessorEnum.DIARY_2022,
         isOriginalContent:false,
+        year:2022
     },   {
 
         emoji:'🔗',
@@ -99,7 +103,8 @@ export const LINKS: ILinkData[] = [
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
         description:LinksTags[LinksAccessorEnum.DIARY_2025],
         previewAccessor:LinksAccessorEnum.DIARY_2025,
-        isOriginalContent:true
+        isOriginalContent:true,
+        year:2025
     },
 ]
 

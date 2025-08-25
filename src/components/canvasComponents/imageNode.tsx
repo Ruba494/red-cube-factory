@@ -1,7 +1,7 @@
 import {motion} from "motion/react";
-import {CanvasContext} from "./canvasContext.tsx";
-import {useContext, useRef} from "react";
+import { useRef} from "react";
 import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
+import {useCanvasStore} from "../../stores/canvasStore.ts";
 
 interface IImageNodeProps {
     id:string;
@@ -10,7 +10,7 @@ interface IImageNodeProps {
 }
 
 export const ImageNode = ({ id,data,WithClickAction=true }:IImageNodeProps) => {
-    const {setSelectedNode} = useContext(CanvasContext);
+    const {setSelectedNode} = useCanvasStore();
     const ref = useRef(null);
 
     return (<motion.div

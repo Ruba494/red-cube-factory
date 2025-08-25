@@ -1,11 +1,8 @@
 import {motion} from "motion/react";
-import {useContext, useRef} from "react";
-import {CanvasContext} from "./canvasContext.tsx";
-import {INodeData, NODES, NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes.ts";
-import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../../routes";
-import {useNavigate} from "react-router";
+import { useRef} from "react";
+import {INodeData,  NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes.ts";
 import {Tags} from "../Tags.tsx";
-import {template} from "lodash";
+import {useCanvasStore} from "../../stores/canvasStore.ts";
 
 interface ITemplateLinkProps {
     data:INodeData
@@ -13,24 +10,16 @@ interface ITemplateLinkProps {
     type:NodeTypes
 }
 export const TemplateLink = ({data,WithClickAction=true  ,type=NodeTypesEnum.templateNode }:ITemplateLinkProps) => {
-    const {setSelectedNode,} = useContext(CanvasContext);
+    const {setSelectedNode,} = useCanvasStore();
     const ref = useRef(null);
 
-    console.log('templateLink type', type)
     const handleClick = (e,id) => {
         e.preventDefault()
         if(WithClickAction){
             console.log('handleClick',type)
             setSelectedNode({data: {...data,type:type},ref:ref})
         }else {
-
-            // setSelectedNode({data: {...NODES.find(item=>item.data.previewAccessor === id),type:NodeTypesEnum.templateNode},ref:ref})
-            if(data?.isOriginalContent){
-                // navigate(templatePath)
-            }else {
-                window.open(data.url, "_blank", "noreferrer");
-            }
-
+            window.open(data.url, "_blank", "noreferrer");
         }
     };
 

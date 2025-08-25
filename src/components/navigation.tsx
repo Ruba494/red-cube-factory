@@ -1,16 +1,13 @@
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
-import {useLocation, useNavigate} from "react-router";
+import { useNavigate} from "react-router";
 import gsap from "gsap";
-import {Fragment, memo, useContext, useRef, useState} from "react";
+import { memo,  useRef, useState} from "react";
 import {useGSAP} from "@gsap/react";
 import {SpinningCube} from "./spinningCube.tsx";
-import {Tags} from "./Tags.tsx";
 import {Colors} from "../pages/constants/colors.ts";
 import {ClickableTags} from "./clickableTags.tsx";
-import {CanvasContext} from "./canvasComponents/canvasContext.tsx";
-import {LINKS_NODES, NODES, NodeTypesEnum, TEMPLATE_LINKS_NODES} from "../pages/constants/nodes.ts";
-import {TEMPLATES_LINKS} from "../pages/constants/links.ts";
-import * as _ from "lodash";
+import { NODES,  TEMPLATE_LINKS_NODES} from "../pages/constants/nodes.ts";
+import {useCanvasStore} from "../stores/canvasStore.ts";
 
 export const Navigation = memo(() => {
     const navigate=useNavigate()
@@ -67,7 +64,7 @@ export const Navigation = memo(() => {
         {tag:'2025',color:Colors.RED},
     ]
 
-    const { setCanvasNodes, selectedTag, setSelectedTag,setSelectedNode} = useContext(CanvasContext);
+   const {setCanvasNodes, selectedTag, setSelectedTag}= useCanvasStore()
 
 // Click handler for tags
     const handleTagClick = (_e: any, tag: { tag: string }) => {
@@ -92,7 +89,6 @@ export const Navigation = memo(() => {
                     setCanvasNodes(NODES.filter(item => item?.data?.isProfile === true));
             }
         }
-
         setSelectedTag(newTag); // set clicked tag as selected
     };
 
