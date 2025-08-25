@@ -51,7 +51,6 @@ export const TEMPLATE_LINKS_NODES:INode[] =TEMPLATES_LINKS.map((link,index)=>{
     }
 })
 export const LINKS_NODES:INode[] =LINKS.map((link,index)=>{
-    console.log(link)
     return {
         id: `link${index}`,
         width: 150,
