@@ -1,19 +1,19 @@
 import {Route, Routes} from "react-router";
-import {Canvas} from "../pages/canvas.tsx";
+import Layout from "../layout.tsx";
 
 export enum PATHS_CONSTANTS_ENUM {
     HOME = 'HOME',
 }
 
 export const PATHS_CONSTANTS = {
-    [PATHS_CONSTANTS_ENUM.HOME]: "/",
+    [PATHS_CONSTANTS_ENUM.HOME]: "/:tag?",
 };
 
 export const ROUTES = [
     {
         id: PATHS_CONSTANTS.HOME,
         path: PATHS_CONSTANTS.HOME,
-        element:  <Canvas/>,
+        element:  <Layout/>,
         index: true,
     }
 ];

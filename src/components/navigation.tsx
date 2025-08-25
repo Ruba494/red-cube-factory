@@ -1,7 +1,7 @@
 import {PATHS_CONSTANTS, PATHS_CONSTANTS_ENUM} from "../routes";
-import { useNavigate} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import gsap from "gsap";
-import { memo,  useRef, useState} from "react";
+import {memo, useEffect, useRef, useState} from "react";
 import {useGSAP} from "@gsap/react";
 import {SpinningCube} from "./spinningCube.tsx";
 import {Colors} from "../pages/constants/colors.ts";
@@ -10,6 +10,27 @@ import { NODES,  TEMPLATE_LINKS_NODES} from "../pages/constants/nodes.ts";
 import {useCanvasStore} from "../stores/canvasStore.ts";
 
 export const Navigation = memo(() => {
+    const {setCanvasNodes, selectedTag, setSelectedTag}= useCanvasStore()
+
+    const { tag: urlTag } = useParams<{ tag?: string }>();
+    // --- Track if we've already used the URL once ---
+    const [urlConsumed, setUrlConsumed] = useState(false);
+
+    useEffect(() => {
+        // Only apply URL filter on first mount
+        if (!urlConsumed) {
+            if (urlTag) {
+                setSelectedTag(urlTag);
+                updateNodes(urlTag, urlTag);
+            } else {
+                setSelectedTag(null);
+                setCanvasNodes(NODES);
+            }
+            setUrlConsumed(true); // mark as consumed
+        }
+    }, [urlTag, urlConsumed]);
+
+
     const navigate=useNavigate()
     const onNavigation = (e:any,path:any) => {
         e.preventDefault()
@@ -64,18 +85,28 @@ export const Navigation = memo(() => {
         {tag:'2025',color:Colors.RED},
     ]
 
-   const {setCanvasNodes, selectedTag, setSelectedTag}= useCanvasStore()
 
 // Click handler for tags
     const handleTagClick = (_e: any, tag: { tag: string }) => {
+        // First click after URL init → clear URL and switch to local mode
+        if (urlTag) {
+            navigate("/"); // reset URL
+        }
         const newTag = tag.tag === selectedTag ? null : tag.tag;
+        updateNodes(newTag,tag.tag)
+        setSelectedTag(newTag); // set clicked tag as selected
+    };
 
+    // Selection checker
+    const isTagSelected = (tag: { tag: string }) => selectedTag === tag.tag;
+
+    const updateNodes = (newTag,tag) => {
         if (newTag === null) {
             // Deselecting - restore all nodes
             setCanvasNodes(NODES);
         } else {
             // Selecting a tag - filter nodes
-            switch (tag.tag) {
+            switch (tag) {
                 case "template":
                     setCanvasNodes(TEMPLATE_LINKS_NODES);
                     break;
@@ -83,17 +114,13 @@ export const Navigation = memo(() => {
                 case "2023":
                 case "2024":
                 case "2025":
-                    setCanvasNodes(NODES.filter(item => item.year === Number(tag.tag)));
+                    setCanvasNodes(NODES.filter(item => item.year === Number(tag)));
                     break;
                 default: // "about me" case
                     setCanvasNodes(NODES.filter(item => item?.data?.isProfile === true));
             }
         }
-        setSelectedTag(newTag); // set clicked tag as selected
-    };
-
-    // Selection checker
-    const isTagSelected = (tag: { tag: string }) => selectedTag === tag.tag;
+    }
 
     return  <nav className={'navigation'}>
         <ul className={'navigation__list'}>
