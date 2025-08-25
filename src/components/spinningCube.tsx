@@ -1,5 +1,5 @@
-import AutoFitText from "./autoFitText.tsx";
-import {useRotatingCube} from "../utils/useRotatingCube.ts";
+import AutoFitText from "./autoFitText";
+import {useRotatingCube} from "../utils/useRotatingCube";
 
 export const SpinningCube = ({counter}) => {
     const {

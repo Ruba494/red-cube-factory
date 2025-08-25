@@ -1,14 +1,13 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState} from "react";
-import {ImageNode} from "./imageNode.tsx";
-import { ISelectedNode} from "./canvasContext.tsx";
-import {getPosition} from "../../utils/getPosition.ts";
-import {Info} from "./info.tsx";
-import {CloseButtonLottie} from "../lottie/closeButtonLottie.tsx";
+import {ImageNode} from "./imageNode";
+import {getPosition} from "../../utils/getPosition";
+import {Info} from "./info";
+import {CloseButtonLottie} from "../lottie/closeButtonLottie";
 import { motion } from "motion/react"
-import {TemplateLinkModalContent} from "./templateLinkModalContent.tsx";
-import { NodeTypesEnum} from "../../pages/constants/nodes.ts";
-import {useCanvasStore} from "../../stores/canvasStore.ts";
+import {TemplateLinkModalContent} from "./templateLinkModalContent";
+import { NodeTypesEnum} from "../../pages/constants/nodes";
+import {ISelectedNode, useCanvasStore} from "../../stores/canvasStore";
 
 interface IModalContentProps {
     selectedNode:ISelectedNode | null

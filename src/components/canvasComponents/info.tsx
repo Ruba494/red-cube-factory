@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
-import {INodeData} from "../../pages/constants/nodes.ts";
-import {Profile} from "./profile.tsx";
-import { GoToInstagram} from "./goToInstagram.tsx";
+import {INodeData} from "../../pages/constants/nodes";
+import {Profile} from "./profile";
+import { GoToInstagram} from "./goToInstagram";
 
 const variants = {
     hidden: {

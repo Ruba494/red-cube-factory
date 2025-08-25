@@ -1,5 +1,5 @@
 import {Route, Routes} from "react-router";
-import Layout from "../layout.tsx";
+import Layout from "../layout";
 
 export enum PATHS_CONSTANTS_ENUM {
     HOME = 'HOME',

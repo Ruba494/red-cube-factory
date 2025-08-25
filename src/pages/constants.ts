@@ -1,7 +1,7 @@
-import {ImageNode} from "../components/canvasComponents/imageNode.tsx";
-import {EmojiNode} from "../components/canvasComponents/emojiNode.tsx";
-import {TemplateLink} from "../components/canvasComponents/templateLink.tsx";
-import {NodeTypesEnum} from "./constants/nodes.ts";
+import {NodeTypesEnum} from "./constants/nodes";
+import {ImageNode} from "../components/canvasComponents/imageNode";
+import {EmojiNode} from "../components/canvasComponents/emojiNode";
+import {TemplateLink} from "../components/canvasComponents/templateLink";
 
 
 export const nodeTypes = {

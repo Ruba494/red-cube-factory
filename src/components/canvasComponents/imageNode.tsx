@@ -1,7 +1,7 @@
 import {motion} from "motion/react";
 import { useRef} from "react";
-import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes.ts";
-import {useCanvasStore} from "../../stores/canvasStore.ts";
+import {INodeData, NodeTypesEnum} from "../../pages/constants/nodes";
+import {useCanvasStore} from "../../stores/canvasStore";
 
 interface IImageNodeProps {
     id:string;

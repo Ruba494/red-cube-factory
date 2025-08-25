@@ -1,7 +1,7 @@
-import {TemplateLink} from "./templateLink.tsx";
-import { PreviewGallery} from "./imageGallery.tsx";
-import {INodeData, NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes.ts";
-import {PREVIEW_IMAGES, TEMPLATE_PREVIEW_IMAGES} from "../../pages/constants/images.ts";
+import {TemplateLink} from "./templateLink";
+import { PreviewGallery} from "./imageGallery";
+import {INodeData, NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes";
+import {PREVIEW_IMAGES, TEMPLATE_PREVIEW_IMAGES} from "../../pages/constants/images";
 
 interface ITemplateLinkModalContent {
     data:INodeData

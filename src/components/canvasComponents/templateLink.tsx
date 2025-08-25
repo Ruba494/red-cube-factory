@@ -1,8 +1,8 @@
 import {motion} from "motion/react";
 import { useRef} from "react";
-import {INodeData,  NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes.ts";
-import {Tags} from "../Tags.tsx";
-import {useCanvasStore} from "../../stores/canvasStore.ts";
+import {INodeData,  NodeTypes, NodeTypesEnum} from "../../pages/constants/nodes";
+import {Tags} from "../Tags";
+import {useCanvasStore} from "../../stores/canvasStore";
 
 interface ITemplateLinkProps {
     data:INodeData

@@ -1,6 +1,6 @@
-import {Navigation} from "./components/navigation.tsx";
-import {Cursor} from "./components/cursor.tsx";
-import {Canvas} from "./pages/canvas.tsx";
+import {Navigation} from "./components/navigation";
+import {Cursor} from "./components/cursor";
+import {Canvas} from "./pages/canvas";
 
 function Layout() {
     return <>

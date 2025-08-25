@@ -1,6 +1,7 @@
 import * as _ from "lodash";
-import {ILinkData, LINKS, TEMPLATES_LINKS} from "./links.ts";
-import {IImageData, IMAGES} from "./images.ts";
+import {ILinkData, LINKS, TEMPLATES_LINKS} from "./links";
+import {IImageData, IMAGES} from "./images";
+
 
 export enum NodeTypesEnum {
     imageNode='image-node',
@@ -30,7 +31,7 @@ export interface INode{
     type:NodeTypes
     hidden:boolean
     data: INodeData
-    year: number
+    year?: number
 }
 
 export const TEMPLATE_LINKS_NODES:INode[] =TEMPLATES_LINKS.map((link,index)=>{

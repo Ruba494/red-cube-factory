@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import {initialEdges, initialNodes, INodeData, NodeTypes} from "../pages/constants/nodes.ts";
+import {initialEdges, initialNodes, INodeData, NodeTypes} from "../pages/constants/nodes";
 
 interface ISelectedNodeData extends INodeData{
     type:NodeTypes

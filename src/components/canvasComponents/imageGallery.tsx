@@ -1,7 +1,7 @@
-import {useMemo, useRef,} from "react";
+import {useRef,} from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import {INodeData} from "../../pages/constants/nodes.ts";
+import {INodeData} from "../../pages/constants/nodes";
 
 interface IPreviewGallery extends INodeData{
     imagesSource:any

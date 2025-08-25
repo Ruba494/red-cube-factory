@@ -1,5 +1,5 @@
 import { useRef} from "react";
-import {useAutoFontSize} from "../utils/useAutoFontSize.ts";
+import {useAutoFontSize} from "../utils/useAutoFontSize";
 
 const AutoFitText = ({ children }) => {
     const containerRef = useRef(null);

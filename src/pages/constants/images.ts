@@ -1,4 +1,4 @@
-import {LinksAccessorEnum} from "./links.ts";
+import {LinksAccessorEnum} from "./links";
 
 
 export interface IImageData {

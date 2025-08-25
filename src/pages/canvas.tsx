@@ -7,15 +7,14 @@ import {
   BackgroundVariant,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { useLayoutedElements } from "../utils/useLayoutedElements.ts";
-import { Modal } from "../components/canvasComponents/modal.tsx";
-import {
-  nodeTypes,
-} from "./constants.ts";
-import { useState, useEffect, } from "react";
-import { LoadingPage } from "../components/loading/loadingPage.tsx";
-import {initialEdges, initialNodes, } from "./constants/nodes.ts";
-import {useCanvasStore} from "../stores/canvasStore.ts";
+import {LoadingPage} from "../components/loading/loadingPage";
+import {initialEdges,initialNodes} from "./constants/nodes";
+import {useCanvasStore} from "../stores/canvasStore";
+import {useLayoutedElements} from "../utils/useLayoutedElements";
+import {nodeTypes} from "./constants";
+import {useEffect, useState} from "react";
+import {Modal} from "../components/canvasComponents/modal";
+
 
 export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +28,6 @@ export const Canvas = () => {
                     <AnimatedFlow setIsLoaded={setIsLoaded} />
                 </div>
             </ReactFlowProvider>
-
         </div>
         <Modal />
       </>
@@ -55,13 +53,15 @@ const AnimatedFlow = ({setIsLoaded}) => {
       setEdges(canvasEdges)
     } else {
       // When deselecting, restore all nodes
+        // @ts-ignore
       setNodes(initialNodes)
       setEdges(canvasEdges)
     }
   }, [selectedTag]);
 
-  // @ts-ignore
-  return <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes}
+  return <ReactFlow nodes={nodes} edges={edges}
+                     // @ts-ignore
+                    nodeTypes={nodeTypes}
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     onNodeDragStart={dragEvents.start}

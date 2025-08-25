@@ -3,11 +3,12 @@ import {useNavigate, useParams} from "react-router";
 import gsap from "gsap";
 import {memo, useEffect, useRef, useState} from "react";
 import {useGSAP} from "@gsap/react";
-import {SpinningCube} from "./spinningCube.tsx";
-import {Colors} from "../pages/constants/colors.ts";
-import {ClickableTags} from "./clickableTags.tsx";
-import { NODES,  TEMPLATE_LINKS_NODES} from "../pages/constants/nodes.ts";
-import {useCanvasStore} from "../stores/canvasStore.ts";
+import {SpinningCube} from "./spinningCube";
+import {Colors} from "../pages/constants/colors";
+import {ClickableTags} from "./clickableTags";
+import { NODES,  TEMPLATE_LINKS_NODES} from "../pages/constants/nodes";
+import {useCanvasStore} from "../stores/canvasStore";
+import {ITag, NAVIGATION_PAGES, NAVIGATION_YEARS, NavigationsLabelEnum} from "../pages/constants/links.ts";
 
 export const Navigation = memo(() => {
     const {setCanvasNodes, selectedTag, setSelectedTag}= useCanvasStore()
@@ -32,9 +33,10 @@ export const Navigation = memo(() => {
 
 
     const navigate=useNavigate()
-    const onNavigation = (e:any,path:any) => {
+    const navigateToHome = (e:any) => {
         e.preventDefault()
-        navigate(path)
+        setSelectedTag(null);
+        navigate("/"); // reset URL
     }
     const containerRef = useRef(null);
 
@@ -74,16 +76,7 @@ export const Navigation = memo(() => {
             intervalRef.current = null;
         }
     };
-    const pages=[
-        {tag:'template',color:Colors.RED},
-        {tag:'about me',color:Colors.RED},
-    ]
-    const years=[
-        {tag:'2022',color:Colors.RED},
-        {tag:'2023',color:Colors.RED},
-        {tag:'2024',color:Colors.RED},
-        {tag:'2025',color:Colors.RED},
-    ]
+
 
 
 // Click handler for tags
@@ -107,29 +100,32 @@ export const Navigation = memo(() => {
         } else {
             // Selecting a tag - filter nodes
             switch (tag) {
-                case "template":
+                case NavigationsLabelEnum.TEMPLATES:
                     setCanvasNodes(TEMPLATE_LINKS_NODES);
                     break;
-                case "2022":
-                case "2023":
-                case "2024":
-                case "2025":
+                case NavigationsLabelEnum._2022:
+                case NavigationsLabelEnum._2023:
+                case NavigationsLabelEnum._2024:
+                case NavigationsLabelEnum._2025:
                     setCanvasNodes(NODES.filter(item => item.year === Number(tag)));
                     break;
-                default: // "about me" case
+                case NavigationsLabelEnum.ABOUT_ME:
                     setCanvasNodes(NODES.filter(item => item?.data?.isProfile === true));
+                    break;
+                default:
+                    setCanvasNodes(NODES);
             }
         }
     }
 
     return  <nav className={'navigation'}>
         <ul className={'navigation__list'}>
-            <div className={`navigation__list-item navigation__list-logo`}  ref={containerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e)=>onNavigation(e,PATHS_CONSTANTS[PATHS_CONSTANTS_ENUM.HOME])}>
+            <div className={`navigation__list-item navigation__list-logo`}  ref={containerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={(e)=>navigateToHome(e)}>
                 <SpinningCube counter={trigger}/>
             </div>
             <div className={`navigation__list-item`}>
-                <ClickableTags tags={years} handleTagClick={handleTagClick} isTagSelected={isTagSelected}/>
-                <ClickableTags tags={pages} handleTagClick={handleTagClick} isTagSelected={isTagSelected}/>
+                <ClickableTags tags={NAVIGATION_YEARS} handleTagClick={handleTagClick} isTagSelected={isTagSelected}/>
+                <ClickableTags tags={NAVIGATION_PAGES} handleTagClick={handleTagClick} isTagSelected={isTagSelected}/>
             </div>
 
         </ul>

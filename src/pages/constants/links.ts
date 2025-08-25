@@ -1,5 +1,12 @@
-import {Colors} from "./colors.ts";
+import {Colors} from "./colors";
 
+
+export interface ITag {
+    tag:string
+    color:Colors
+    lang?:'ar'|'jp'
+    link?:string
+}
 export interface ILinkData {
     emoji?:string
     title?:string
@@ -29,7 +36,7 @@ export type LinksAccessorTypes=
     LinksAccessorEnum.WEEKLY_2021 ;
 
 
-const LinksTags={
+const LinksTags: Record<LinksAccessorEnum, ITag[]>={
     [LinksAccessorEnum.DIARY_2022] : [
         {tag:'A-hong', color:Colors.BLUE},
         {tag:'textured', color:Colors.GREEN},
@@ -65,7 +72,6 @@ const LinksTags={
         {tag:'UN-DATED', color:Colors.GRAY},
     ]
 }
-
 
 
 export const LINKS: ILinkData[] = [
@@ -162,3 +168,26 @@ export const TEMPLATES_LINKS: ILinkData[] = [
     },
 ]
 
+
+
+export enum NavigationsLabelEnum {
+    _2025 ='2025',
+    _2024='2024',
+    _2023='2023',
+    _2022='2022',
+    TEMPLATES='templates',
+    ABOUT_ME='about-me',
+}
+
+
+
+export const NAVIGATION_PAGES:ITag[]=[
+    {tag:NavigationsLabelEnum.TEMPLATES,color:Colors.RED},
+    {tag:NavigationsLabelEnum.ABOUT_ME,color:Colors.RED},
+]
+export const NAVIGATION_YEARS:ITag[]=[
+    {tag:NavigationsLabelEnum._2022,color:Colors.RED},
+    {tag:NavigationsLabelEnum._2023,color:Colors.RED},
+    {tag:NavigationsLabelEnum._2024,color:Colors.RED},
+    {tag:NavigationsLabelEnum._2025,color:Colors.RED},
+]
