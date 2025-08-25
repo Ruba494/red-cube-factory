@@ -21,14 +21,17 @@ export const Canvas = () => {
 
     return (
       <>
-        {!isLoaded && <LoadingPage setIsLoaded={setIsLoaded} />}
-        <div className={"canvas-container"}>
-            <ReactFlowProvider>
-                <div className={"canvas"} style={{ width: "100%", height: "100%" }}>
-                    <AnimatedFlow setIsLoaded={setIsLoaded} />
-                </div>
-            </ReactFlowProvider>
-        </div>
+        {!isLoaded ? <LoadingPage setIsLoaded={setIsLoaded} />
+        :
+            <div className={"canvas-container"}>
+      <ReactFlowProvider>
+          <div className={"canvas"} style={{ width: "100%", height: "100%" }}>
+              <AnimatedFlow setIsLoaded={setIsLoaded} />
+          </div>
+      </ReactFlowProvider>
+      </div>
+        }
+
         <Modal />
       </>
   );
@@ -72,7 +75,7 @@ const AnimatedFlow = ({setIsLoaded}) => {
                     zoomOnScroll
                     onInit={()=>{
                       setTimeout(()=>{
-                        setIsLoaded(true)
+                        // setIsLoaded(true)
                       },1000)
                     }}
   >

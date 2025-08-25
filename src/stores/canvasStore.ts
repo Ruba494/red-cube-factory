@@ -8,6 +8,8 @@ export interface ISelectedNode {
     data:ISelectedNodeData
     ref:any
 }
+type ImgMap = Record<string, HTMLImageElement>;
+
 
 interface CanvasState {
     selectedNode: ISelectedNode | null
@@ -21,6 +23,15 @@ interface CanvasState {
 
     selectedTag: string | null
     setSelectedTag: (tag: string | null) => void
+
+    // global startup images
+    preloadedImages: ImgMap;
+    setPreloadedImages: (imgs: ImgMap) => void;
+
+
+    galleryPreloadedImages: Record<string, Record<string, HTMLImageElement>> | null;
+    setGalleryPreloadedImages: (accessor: string, imgs: Record<string, HTMLImageElement>) => void;
+
 }
 
 export const useCanvasStore = create<CanvasState>((set) => ({
@@ -35,4 +46,21 @@ export const useCanvasStore = create<CanvasState>((set) => ({
 
     selectedTag: null,
     setSelectedTag: (tag) => set({ selectedTag: tag }),
+
+
+    preloadedImages: null,
+    setPreloadedImages: (images) => set({ preloadedImages: images }),
+
+    galleryPreloadedImages: {},
+    setGalleryPreloadedImages: (accessor, imgs) =>
+        set((state) => {
+            const existing = state.galleryPreloadedImages[accessor] ?? {};
+            return {
+                galleryPreloadedImages: {
+                    ...state.galleryPreloadedImages,
+                    [accessor]: { ...existing, ...imgs },
+                },
+            };
+        }),
+
 }))

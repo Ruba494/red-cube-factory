@@ -16,7 +16,6 @@ export const TemplateLink = ({data,WithClickAction=true  ,type=NodeTypesEnum.tem
     const handleClick = (e,id) => {
         e.preventDefault()
         if(WithClickAction){
-            console.log('handleClick',type)
             setSelectedNode({data: {...data,type:type},ref:ref})
         }else {
             window.open(data.url, "_blank", "noreferrer");

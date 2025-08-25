@@ -8,6 +8,9 @@ import { motion } from "motion/react"
 import {TemplateLinkModalContent} from "./templateLinkModalContent";
 import { NodeTypesEnum} from "../../pages/constants/nodes";
 import {ISelectedNode, useCanvasStore} from "../../stores/canvasStore";
+import {PREVIEW_IMAGES, TEMPLATE_PREVIEW_IMAGES} from "../../pages/constants/images.ts";
+import {preloadImages} from "../../utils/preLoadImages.ts";
+import {getAsset} from "../../utils/getAsset.ts";
 
 interface IModalContentProps {
     selectedNode:ISelectedNode | null
@@ -77,15 +80,59 @@ export const Modal = () => {
 }
 
 
-const ModalContent = ({selectedNode,isOpened}:IModalContentProps) => {
-    if( selectedNode?.data?.type===NodeTypesEnum.templateNode || selectedNode?.data?.type===NodeTypesEnum.galleryNode) {
-        return <TemplateLinkModalContent  data={selectedNode?.data} isOpened={isOpened} type={selectedNode?.data?.type}/>
-    } else if( selectedNode?.data?.type===NodeTypesEnum.imageNode) {
-        return <>
-            <ImageNode data={selectedNode?.data} id={'---'} WithClickAction={false}/>
-            {isOpened&&<Info data={selectedNode?.data}/>}
-        </>
-    }else {
-        return null
+const ModalContent = ({ selectedNode, isOpened }: IModalContentProps) => {
+    const galleryPreloadedImages = useCanvasStore(s => s.galleryPreloadedImages);
+    const setGalleryPreloadedImages = useCanvasStore(s => s.setGalleryPreloadedImages);
+
+    const [isImagesLoaded, setIsImagesLoaded] = useState(false)
+    useEffect(() => {
+        if (!selectedNode?.data?.previewAccessor) return;
+
+        const { type, previewAccessor } = selectedNode.data;
+
+        if (type === NodeTypesEnum.galleryNode || type === NodeTypesEnum.templateNode) {
+            // if not already preloaded, start preloading in background
+            if (!galleryPreloadedImages?.[previewAccessor]) {
+                const images =
+                    type === NodeTypesEnum.galleryNode
+                        ? PREVIEW_IMAGES[previewAccessor]
+                        : TEMPLATE_PREVIEW_IMAGES[previewAccessor];
+
+                preloadImages(images?.map(img => getAsset(img)),()=>{
+
+                }, {
+                    width: 200,
+                }).then(preloaded => {
+                    setIsImagesLoaded(true)
+                    setGalleryPreloadedImages(previewAccessor,preloaded);
+                });
+            }
+        }
+    }, [selectedNode?.data]); // runs when selection changes
+
+    if (!selectedNode?.data) return null;
+
+    const type = selectedNode.data.type;
+
+    if (type === NodeTypesEnum.templateNode || type === NodeTypesEnum.galleryNode) {
+        return (
+            <TemplateLinkModalContent
+                data={selectedNode.data}
+                isOpened={isOpened}
+                type={type}
+                isImagesLoaded={isImagesLoaded}
+            />
+        );
     }
-}
+
+    if (type === NodeTypesEnum.imageNode) {
+        return (
+            <>
+                <ImageNode data={selectedNode.data} id="---" WithClickAction={false} />
+                {isOpened && <Info data={selectedNode.data} />}
+            </>
+        );
+    }
+
+    return null;
+};
