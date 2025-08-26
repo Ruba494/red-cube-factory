@@ -18,17 +18,21 @@ import {Modal} from "../components/canvasComponents/modal";
 
 export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const {setSelectedNode}=useCanvasStore()
+  const {setSelectedNode, visited,checkFirstVisit}=useCanvasStore()
   useEffect(() => {
-    if(isLoaded){
-      setTimeout(()=>{
+    checkFirstVisit(); // initialize visited on mount
+  }, []);
 
-        setSelectedNode({data: {type: NodeTypesEnum.onBoarding},ref:null})
+  useEffect(() => {
+    if (isLoaded && !visited) {
+      const timer = setTimeout(() => {
+        setSelectedNode({ data: { type: NodeTypesEnum.onBoarding }, ref: null });
+        useCanvasStore.getState().setVisited(); // mark as visited
+      }, 3000);
 
-      },3000)
+      return () => clearTimeout(timer);
     }
-  }, [isLoaded]);
+  }, [isLoaded, visited, setSelectedNode]);
 
     return (
       <>

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import {Card1} from "./onBoardingCards/Card1.tsx";
+import {Card2} from "./onBoardingCards/Card2.tsx";
+import {Card3} from "./onBoardingCards/Card3.tsx";
+import {Card4} from "./onBoardingCards/Card4.tsx";
+import {Card5} from "./onBoardingCards/Card5.tsx";
 
 const CARD_COLORS = [
-    { id: 1, component: <>Card 1</>, color: "#266678" },
-    { id: 2, component: <>Card 2</>, color: "#cb7c7a" },
-    { id: 3, component: <>Card 3</>, color: "#36a18b" },
-    { id: 4, component: <>Card 4</>, color: "#cda35f" },
-    { id: 5, component: <>Card 5</>, color: "#747474" },
+    { id: 1, title: 'Welcome ✨',component: Card1 ,color:'--tag-color-red'},
+    { id: 2, title: 'Tap & Open 📝',component: Card2, color:'--tag-color-blue' },
+    { id: 3, title: 'Play with Emojis 🎉',component: Card3 , color:'--tag-color-green'},
+    { id: 4, title: 'Find What You Need 🔍',component: Card4, color:'--tag-color-purple' },
+    { id: 5, title: 'Start Your Journey 🚀',component: Card5, color:'--tag-color-pink' },
 ];
 
 // Fixed scatter positions
@@ -52,12 +57,14 @@ export const CardStack = () => {
                     const scatter = scattered
                         ? SCATTER_PATTERN[card.id - 1]
                         : { x: 0, y: 0, rotate: 0 };
+                    const CardComponent = card.component; // capitalize
 
                     return (
                         <motion.li
                             key={card.id}
                             className={'stacked-cards-card-item'}
                             style={{
+                                border:`1px dashed var(${card.color})`,
                                 cursor: isTop ? "grab" : "auto",
                                 zIndex: cards.length - index,
                             }}
@@ -82,7 +89,16 @@ export const CardStack = () => {
                             transition={{ type: "spring", stiffness: 300, damping: 25 }}
                             onAnimationComplete={() => isTop && isAnimating && moveTopToEnd()}
                         >
-                            {card.component}
+                            <div className={'stacked-cards-card-item-content'} style={{color:`var(${card.color})`}}>
+                                <div className={'stacked-cards-card-item-content-header'}
+                                >{card.title}</div>
+                                <div className={'stacked-cards-card-item-content-content'}>
+
+                                    <CardComponent isTop={isTop}/>
+                                </div>
+
+                            </div>
+
                         </motion.li>
                     );
                 })}

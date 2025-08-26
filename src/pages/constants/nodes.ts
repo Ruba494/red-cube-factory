@@ -21,7 +21,7 @@ export interface INodeData extends IImageData,ILinkData {
 
 }
 
-interface INodePosition {
+export interface INodePosition {
     x: number
     y: number
 }

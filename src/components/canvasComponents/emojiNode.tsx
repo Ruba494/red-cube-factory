@@ -111,6 +111,7 @@ export const EmojiNode = ({ data }: IEmojiNodeProps) => {
     return (
         <div className="text-updater-node">
             <motion.div
+                className={`emoji-node`}
                 ref={emitterRef}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0 }}

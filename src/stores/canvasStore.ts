@@ -32,6 +32,10 @@ interface CanvasState {
     galleryPreloadedImages: Record<string, Record<string, HTMLImageElement>> | null;
     setGalleryPreloadedImages: (accessor: string, imgs: Record<string, HTMLImageElement>) => void;
 
+    visited:boolean
+    setVisited:()=>void
+    checkFirstVisit:()=>void
+
 }
 
 export const useCanvasStore = create<CanvasState>((set) => ({
@@ -63,4 +67,15 @@ export const useCanvasStore = create<CanvasState>((set) => ({
             };
         }),
 
+    visited: false, // default value
+    setVisited: () => set({ visited: true }),
+    checkFirstVisit: () => {
+        const visitedBefore = localStorage.getItem("visited");
+        if (!visitedBefore) {
+            localStorage.setItem("visited", "true");
+            set({ visited: false }); // first visit
+        } else {
+            set({ visited: true });
+        }
+    },
 }))
