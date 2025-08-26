@@ -1,0 +1,33 @@
+:root{
+  --card-width:600px;
+  --card-height:400px;
+}
+
+.stacked-cards{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  &-card{
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    margin:0 0 -40px -50px;
+    &-item{
+      position: absolute;
+      width: var(--card-width);
+      height: var(--card-height);
+      border-radius: 16px;
+      transform-origin: center center;
+      list-style: none;
+      background: white;
+      border: 1px dashed var(--color-ruba-red);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

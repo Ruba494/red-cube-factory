@@ -8,7 +8,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import {LoadingPage} from "../components/loading/loadingPage";
-import {initialEdges,initialNodes} from "./constants/nodes";
+import {initialEdges, initialNodes, NodeTypesEnum} from "./constants/nodes";
 import {useCanvasStore} from "../stores/canvasStore";
 import {useLayoutedElements} from "../utils/useLayoutedElements";
 import {nodeTypes} from "./constants";
@@ -18,6 +18,17 @@ import {Modal} from "../components/canvasComponents/modal";
 
 export const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const {setSelectedNode}=useCanvasStore()
+  useEffect(() => {
+    if(isLoaded){
+      setTimeout(()=>{
+
+        setSelectedNode({data: {type: NodeTypesEnum.onBoarding},ref:null})
+
+      },3000)
+    }
+  }, [isLoaded]);
 
     return (
       <>
@@ -31,7 +42,6 @@ export const Canvas = () => {
       </ReactFlowProvider>
       </div>
         }
-
         <Modal />
       </>
   );

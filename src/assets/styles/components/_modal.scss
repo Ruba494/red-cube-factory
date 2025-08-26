@@ -212,6 +212,13 @@
       height: max-content;
     }
   }
+  .on-boarding{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width:800px;
+  }
   .content{
     &-wrapper{
       &:has(.profile){

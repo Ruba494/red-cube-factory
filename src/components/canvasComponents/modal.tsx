@@ -11,6 +11,7 @@ import {ISelectedNode, useCanvasStore} from "../../stores/canvasStore";
 import {PREVIEW_IMAGES, TEMPLATE_PREVIEW_IMAGES} from "../../pages/constants/images.ts";
 import {preloadImages} from "../../utils/preLoadImages.ts";
 import {getAsset} from "../../utils/getAsset.ts";
+import {CardStack} from "../cardStack.tsx";
 
 interface IModalContentProps {
     selectedNode:ISelectedNode | null
@@ -35,29 +36,53 @@ export const Modal = () => {
 
     const handelModalExpand = (ref:any) => {
         setIsOpened(false)
-        let newRect =ref?.current? getPosition(modalRef.current, ref?.current):{
-            left:0,
-            top:0,
-            width:0,
-            height:0
-        };
-        gsap.set(modalRef.current, {
-            x: newRect?.left,
-            y: newRect?.top,
-            width: newRect?.width,
-            height: newRect?.height
-        });
-        let tl = gsap.timeline();
-        tl.to(overlayRef.current, 0.1, { autoAlpha: 1 });
-        tl.to(modalRef.current, 1, {
-            x: 0,
-            y: 0,
-            ease: "power2.inOut",
-            width: '100vw',
-            height: '100vh',
-            autoAlpha: 1,
-            onComplete:()=>{setIsOpened(true)}
-        });
+        if(ref){
+            let newRect =ref?.current? getPosition(modalRef.current, ref?.current):{
+                left:-200,
+                top:-20,
+                width:0,
+                height:0
+            };
+            gsap.set(modalRef.current, {
+                x: newRect?.left,
+                y: newRect?.top,
+                width: newRect?.width,
+                height: newRect?.height
+            });
+            let tl = gsap.timeline();
+            tl.to(overlayRef.current, 0.1, { autoAlpha: 1 });
+            tl.to(modalRef.current, 1, {
+                x: 0,
+                y: 0,
+                ease: "power2.inOut",
+                width: '100vw',
+                height: '100vh',
+                autoAlpha: 1,
+                onComplete:()=>{setIsOpened(true)}
+            });
+        }else {
+            //handel nodes without ref
+            gsap.set(modalRef.current, {
+                x: 0,
+                y: 0,
+                width: "100vw",
+                height: "100vh",
+            });
+
+            let tl = gsap.timeline();
+            tl.to(overlayRef.current, { autoAlpha: 1, duration: 0.2 });
+            tl.fromTo(
+                modalRef.current,
+                { autoAlpha: 0, scale: 0.9 },
+                {
+                    autoAlpha: 1,
+                    scale: 1,
+                    ease: "power2.out",
+                    duration: 0.5,
+                    onComplete: () => setIsOpened(true),
+                }
+            );
+        }
     }
 
     return <>
@@ -130,6 +155,14 @@ const ModalContent = ({ selectedNode, isOpened }: IModalContentProps) => {
             <>
                 <ImageNode data={selectedNode.data} id="---" WithClickAction={false} />
                 {isOpened && <Info data={selectedNode.data} />}
+            </>
+        );
+    }
+
+    if (type === NodeTypesEnum.onBoarding) {
+        return (
+            <>
+             <CardStack/>
             </>
         );
     }

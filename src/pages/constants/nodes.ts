@@ -7,13 +7,15 @@ export enum NodeTypesEnum {
     imageNode='image-node',
     templateNode='template-node',
     galleryNode='gallery-node',
-    emojiNode='emoji-node'
+    emojiNode='emoji-node',
+    onBoarding='on-boarding'
 }
 export type NodeTypes=
     NodeTypesEnum.imageNode |
     NodeTypesEnum.templateNode |
     NodeTypesEnum.galleryNode |
-    NodeTypesEnum.emojiNode ;
+    NodeTypesEnum.emojiNode |
+    NodeTypesEnum.onBoarding ;
 
 export interface INodeData extends IImageData,ILinkData {
 
