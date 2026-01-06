@@ -110,6 +110,8 @@ export const IMAGES: IImageData[]= [
         imageSrc: "/posts/202312.jpg",
         link:'https://www.instagram.com/p/C1r_Bc4NTT1/?igsh=eG1nc3R0dzVrcDA1'
     },
+
+
     {
         imageSrc: "/posts/202401.jpg",
         link:'https://www.instagram.com/p/C3Fsh-nN7wl/?igsh=N3NuZ3NzazQ2eGM4'
@@ -157,6 +159,55 @@ export const IMAGES: IImageData[]= [
         imageSrc: "/posts/202412.jpg",
         link:'https://www.instagram.com/p/DERvej3tKbE/?igsh=aWJnNml5eXJwN3Nv'
     },
+
+    {
+        imageSrc: "/posts/202501.jpg",
+        link:'https://www.instagram.com/p/DGG5w1Otg7Y/?igsh=MXhnaXhzNXY0OGlkcQ=='
+    },
+    {
+        imageSrc: "/posts/202502.jpg",
+        link:'https://www.instagram.com/p/DG9CjIttjxT/?igsh=MWZvNDFvZzh2dDMwYQ=='
+    },
+    {
+        imageSrc: "/posts/202503.jpg",
+        link:'https://www.instagram.com/p/DICRP1pM6XQ/?igsh=Y3N3a25udGp0bXRp'
+    },
+    {
+        imageSrc: "/posts/202504.jpg",
+        link:'https://www.instagram.com/p/DJOhTyvMnPo/?igsh=b3I3cDhnNHRnajY3'
+    },
+    {
+        imageSrc: "/posts/202505.jpg",
+        link:'https://www.instagram.com/p/DKufyadNUfd/?igsh=aXJveXZ1Nmd0cGsy'
+    },
+    {
+        imageSrc: "/posts/202506.jpg",
+        link:'https://www.instagram.com/p/DMgGp2GsL9M/?igsh=eWFwM3N2OTltaXM4'
+    }, {
+        imageSrc: "/posts/202507.jpg",
+        link:'https://www.instagram.com/p/DNdyoJasHkQ/?igsh=MXUxOWdvZHFicGE0Nw=='
+    },
+    {
+        imageSrc: "/posts/202508.jpg",
+        link:'https://www.instagram.com/p/DPMjtldiORG/?igsh=dHVlMzhoa3dqaDBl'
+    },
+    {
+        imageSrc: "/posts/202509.jpg",
+        link:'https://www.instagram.com/p/DQH-uOaCKG5/?igsh=dTlicndwemtwenls'
+    },
+    {
+        imageSrc: "/posts/202510.jpg",
+        link:'https://www.instagram.com/p/DRhDEFjiDgk/?igsh=NmU2bWU0ZzJzNzlw'
+    },
+    {
+        imageSrc: "/posts/202511.jpg",
+        link:'https://www.instagram.com/p/DSnV3h4CNdZ/?igsh=M2tvZDFtMXI5MA=='
+    },
+    {
+        imageSrc: "/posts/202512.jpg",
+        link:'https://www.instagram.com/p/DTKjz_cCEs-/?igsh=MXR5MjlnMHJpcTgxag=='
+    },
+
     {
         isProfile:true,
         imageSrc: "/ruba.png"
@@ -206,6 +257,20 @@ export const PREVIEW_IMAGES = {
         "/posts/202410.jpg",
         "/posts/202411.jpg",
         "/posts/202412.jpg",
+    ],
+    [LinksAccessorEnum.DIARY_2025]: [
+        "/posts/202501.jpg",
+        "/posts/202502.jpg",
+        "/posts/202503.jpg",
+        "/posts/202504.jpg",
+        "/posts/202505.jpg",
+        "/posts/202506.jpg",
+        "/posts/202507.jpg",
+        "/posts/202508.jpg",
+        "/posts/202509.jpg",
+        "/posts/202510.jpg",
+        "/posts/202511.jpg",
+        "/posts/202512.jpg",
     ],
 }
 
