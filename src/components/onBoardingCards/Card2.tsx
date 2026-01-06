@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 import {Tags} from "../Tags.tsx";
 import {LINKS} from "../../pages/constants/links.ts";
 
@@ -17,24 +18,40 @@ export const Card2 = ({isTop}) => {
     </div>
 }
 
-const TempTemplateLink = ({ data, index ,animate}) => {
-    const yOffset = 40; // diagonal distance between cards
-    const xOffset = 30; // diagonal distance between cards
+const TempTemplateLink = ({ data, index, animate }) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 480);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Responsive offsets
+    const yOffset = isMobile ? 25 : 40;
+    const xOffset = isMobile ? 20 : 30;
+    const xPosition = isMobile ? '20%' : '30%';
+    const yPosition = isMobile ? '100%' : '150%';
 
     return (
         <motion.div
             className="template-link"
             initial={{ opacity: 0, x: 0, y: 0 }}
-            animate={animate ?{
+            animate={animate ? {
                 opacity: 1,
-                x: `calc(30% + ${-index * xOffset}px)`, // 75px = half card width
-                y: `calc(150% + ${-index * yOffset}px)`, // 50px = half card height
+                x: `calc(${xPosition} + ${-index * xOffset}px)`,
+                y: `calc(${yPosition} + ${-index * yOffset}px)`,
                 transition: {
                     delay: index * 0.2,
                     type: "spring",
                     stiffness: 100,
                 },
-            }:{}}
+            } : {}}
             style={{ position: "absolute" }}
         >
             <div className="emoji">{data.emoji}</div>

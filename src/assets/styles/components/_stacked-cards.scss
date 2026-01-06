@@ -1,6 +1,53 @@
 :root{
-  --card-width:600px;
-  --card-height:400px;
+  --card-width: 600px;
+  --card-height: 400px;
+  --header-font-size: 60px;
+  --description-font-size: 25px;
+  --card-padding: 16px;
+  --card-content-padding: 12px;
+  --card-gap: 6px;
+  --card-border-radius: 16px;
+  --cube-size: 120px;
+  --tag-font-size: 24px;
+  --template-link-padding: 10px;
+  --template-link-width: auto;
+  --card-5-border-width: 8px;
+  --card-5-padding: 20px;
+  --svg-size: 40px;
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  :root {
+    --card-width: 500px;
+    --card-height: 350px;
+    --header-font-size: 48px;
+    --description-font-size: 20px;
+    --cube-size: 100px;
+    --tag-font-size: 20px;
+    --svg-size: 32px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  :root {
+    --card-width: 300px;
+    --card-height: 400px;
+    --header-font-size: 36px;
+    --description-font-size: 16px;
+    --card-padding: 12px;
+    --card-content-padding: 8px;
+    --card-gap: 8px;
+    --card-border-radius: 12px;
+    --cube-size: 80px;
+    --tag-font-size: 18px;
+    --template-link-padding: 8px;
+    --template-link-width:110px;
+    --card-5-border-width: 6px;
+    --card-5-padding: 16px;
+    --svg-size: 28px;
+  }
 }
 
 .stacked-cards{
@@ -20,7 +67,7 @@
       position: absolute;
       width: var(--card-width);
       height: var(--card-height);
-      border-radius: 16px;
+      border-radius: var(--card-border-radius);
       transform-origin: center center;
       list-style: none;
       background: white;
@@ -30,11 +77,12 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
-        padding: 16px;
+        padding: var(--card-padding);
+
         &-header{
           font-family: var(--pixel-font-familty);
           width: 100%;
-          font-size: 60px;
+          font-size: var(--header-font-size);
         }
         &-content{
           height: 100%;
@@ -42,11 +90,12 @@
             height: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
+            gap: var(--card-gap);
             align-items: center;
-            padding: 12px;
+            padding: var(--card-content-padding);
+
             .description{
-              font-size: 25px;
+              font-size: var(--description-font-size);
             }
           }
         }
@@ -58,7 +107,6 @@
 
 
   .card-1{
-    --cube-size:120px;
     --z-translate-100-px:calc(var(--cube-size) / 2);
     --scene-x-margin:0px;
   }
@@ -69,41 +117,48 @@
         display: flex;
         justify-content: center;
         transform: scale(1);
-        transition: transform 0.3s ease-in-out; /* Animate font-size over 0.3s with ease-in-out timing */
+        transition: transform 0.3s ease-in-out;
+
         &:hover{
           transform: scale(1.2);
         }
       }
     }
   }
+
   .card-2{
     grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 100%;
-    position: relative; /* Add this */
+    position: relative;
 
+    .templates-container{
+      position: relative;
+      width: 100%;
+      height: 100%;
 
-.templates-container{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  .template-link {
-    background: white;
-    border-radius: 12px;
-    padding: 10px;
-    border: 1px dashed var(--tag-color-blue);
-    .title{
-      color: var(--tag-color-blue);
+      .template-link {
+        background: white;
+        border-radius: 12px;
+        padding: var(--template-link-padding);
+        border: 1px dashed var(--tag-color-blue);
+        width: var(--template-link-width);
+
+        .title{
+          color: var(--tag-color-blue);
+        }
+        .description{
+          overflow-x: hidden;
+        }
+      }
     }
-  }
-}
   }
   .card-4{
     grid-template-columns: 1.5fr 1fr;
     .years-filter .navigation__list {
       .navigation__list-item .tags {
-        font-size: 24px;
-        line-height: 24px;
+        font-size: var(--tag-font-size);
+        line-height: var(--tag-font-size);
       }
       justify-content: center;
     }
@@ -111,15 +166,17 @@
   .card-5{
     grid-template-columns: 1fr auto;
     .template-link{
-      padding: 20px;
-      border: 8px solid var(--tag-color-pink);
+      padding: var(--card-5-padding);
+      border: var(--card-5-border-width) solid var(--tag-color-pink);
+
       &:hover{
         background: var(--tag-color-pink);
       }
     }
-    svg,svg *{
-      width: 40px;
-      height: 40px;
+
+    svg, svg *{
+      width: var(--svg-size);
+      height: var(--svg-size);
       fill: var(--tag-color-pink);
       stroke: var(--tag-color-pink);
     }

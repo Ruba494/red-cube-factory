@@ -14,22 +14,48 @@ const CARD_COLORS = [
     { id: 5, title: 'Start Your Journey 🚀',component: Card5, color:'--tag-color-pink' },
 ];
 
-// Fixed scatter positions
-const SCATTER_PATTERN = [
-    { x: -10, y: 0, rotate: -5 },
-    { x: 5, y: -5, rotate: 3 },
-    { x: -8, y: -10, rotate: -3 },
-    { x: 6, y: -15, rotate: 5 },
-    { x: -4, y: -20, rotate: -2 },
-];
+// Responsive scatter patterns
+const getScatterPattern = (isMobile: boolean) => {
+    if (isMobile) {
+        return [
+            { x: -8, y: 0, rotate: -4 },
+            { x: 4, y: -4, rotate: 2 },
+            { x: -6, y: -8, rotate: -2 },
+            { x: 5, y: -12, rotate: 4 },
+            { x: -3, y: -16, rotate: -1 },
+        ];
+    }
+    return [
+        { x: -10, y: 0, rotate: -5 },
+        { x: 5, y: -5, rotate: 3 },
+        { x: -8, y: -10, rotate: -3 },
+        { x: 6, y: -15, rotate: 5 },
+        { x: -4, y: -20, rotate: -2 },
+    ];
+};
 
-const CARD_OFFSET = 10;
-const SCALE_FACTOR = 0.06;
+const getCardSettings = (isMobile: boolean) => ({
+    offset: isMobile ? 6 : 10,
+    scaleFactor: isMobile ? 0.04 : 0.06,
+});
 
 export const CardStack = () => {
     const [cards, setCards] = useState(CARD_COLORS);
     const [scattered, setScattered] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile screen size
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 480);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -47,9 +73,12 @@ export const CardStack = () => {
         setIsAnimating(false);
     };
 
+    const SCATTER_PATTERN = getScatterPattern(isMobile);
+    const { offset: CARD_OFFSET, scaleFactor: SCALE_FACTOR } = getCardSettings(isMobile);
+
     return (
-        <div  className={'stacked-cards'}>
-            <ul  className={'stacked-cards-card'}>
+        <div className={'stacked-cards'}>
+            <ul className={'stacked-cards-card'}>
                 {cards.map((card, index) => {
                     const isTop = index === 0;
 
@@ -57,7 +86,7 @@ export const CardStack = () => {
                     const scatter = scattered
                         ? SCATTER_PATTERN[card.id - 1]
                         : { x: 0, y: 0, rotate: 0 };
-                    const CardComponent = card.component; // capitalize
+                    const CardComponent = card.component;
 
                     return (
                         <motion.li
@@ -78,7 +107,7 @@ export const CardStack = () => {
                             }}
                             animate={
                                 isTop && isAnimating
-                                    ? SCATTER_PATTERN[0]// swipe out
+                                    ? SCATTER_PATTERN[0] // swipe out
                                     : {
                                         x: scatter.x,
                                         y: index * -CARD_OFFSET + scatter.y,
@@ -86,12 +115,17 @@ export const CardStack = () => {
                                         rotate: scatter.rotate,
                                     }
                             }
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: isMobile ? 250 : 300,
+                                damping: isMobile ? 20 : 25
+                            }}
                             onAnimationComplete={() => isTop && isAnimating && moveTopToEnd()}
                         >
                             <div className={'stacked-cards-card-item-content'} style={{color:`var(${card.color})`}}>
-                                <div className={'stacked-cards-card-item-content-header'}
-                                >{card.title}</div>
+                                <div className={'stacked-cards-card-item-content-header'}>
+                                    {card.title}
+                                </div>
                                 <div className={'stacked-cards-card-item-content-content'}>
 
                                     <CardComponent isTop={isTop}/>
