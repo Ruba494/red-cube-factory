@@ -287,6 +287,10 @@ export const TEMPLATE_PREVIEW_IMAGES = {
         const index= i+1 <10 ? `0${i+1}`:i+1
         return `/templates/${LinksAccessorEnum.DIARY_2025}/${LinksAccessorEnum.DIARY_2025}-${index}.png`
         }),
+           [LinksAccessorEnum.DIARY_2026]:Array.from({ length: 16 }).map((_,i)=>{
+        const index= i+1 <10 ? `0${i+1}`:i+1
+        return `/templates/${LinksAccessorEnum.DIARY_2026}/${LinksAccessorEnum.DIARY_2026}-${index}.png`
+        }),
     [LinksAccessorEnum.WEEKLY_2021]:Array.from({ length: 12 }).map((_,i)=>{
         const index= i+1 <10 ? `0${i+1}`:i+1
         return `/templates/${LinksAccessorEnum.WEEKLY_2021}/${LinksAccessorEnum.WEEKLY_2021}-${index}.png`

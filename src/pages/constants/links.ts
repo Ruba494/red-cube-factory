@@ -17,6 +17,7 @@ export interface ILinkData {
     year?:number,
 }
 export enum LinksAccessorEnum {
+    DIARY_2026 ='DIARY_2026',
     DIARY_2025 ='DIARY_2025',
     DIARY_2024='DIARY_2024',
     DIARY_2023='DIARY_2023',
@@ -31,6 +32,7 @@ export type LinksAccessorTypes=
     LinksAccessorEnum.DIARY_2023 |
     LinksAccessorEnum.DIARY_2024 |
     LinksAccessorEnum.DIARY_2025 |
+    LinksAccessorEnum.DIARY_2026 |
     LinksAccessorEnum.MB_REVIEW |
     LinksAccessorEnum.WEEKLY_VERTICAL |
     LinksAccessorEnum.WEEKLY_2021 ;
@@ -58,6 +60,12 @@ const LinksTags: Record<LinksAccessorEnum, ITag[]>={
         {tag:'red-cube-factory', color:Colors.RED},
         {tag:'just memories and feelings', color:Colors.BLUE},
         {tag:'Grid', color:Colors.YELLOW},
+    ],
+     [LinksAccessorEnum.DIARY_2026] : [
+        {tag:'red-cube-factory', color:Colors.RED},
+        {tag:'green', color:Colors.GREEN},
+        {tag:'まる', color:Colors.BLUE ,lang:'jp'},
+        {tag:'NEW', color:Colors.YELLOW},
     ],
     [LinksAccessorEnum.WEEKLY_2021] : [
         {tag:'red-cube-factory', color:Colors.RED},
@@ -111,7 +119,7 @@ export const LINKS: ILinkData[] = [
         previewAccessor:LinksAccessorEnum.DIARY_2025,
         isOriginalContent:true,
         year:2025
-    },
+    }
 ]
 
 
@@ -140,6 +148,15 @@ export const TEMPLATES_LINKS: ILinkData[] = [
         url:'https://drive.google.com/file/d/1pk3r_el8wU2sMP7lhamwaxLc7jBpyoGi/view',
         description:LinksTags[LinksAccessorEnum.DIARY_2025],
         previewAccessor:LinksAccessorEnum.DIARY_2025,
+        isOriginalContent:true
+    }, 
+      {
+
+        emoji:'🔗',
+        title:'2026 template',
+        url:'https://drive.google.com/file/d/1Qbq-Vu83TGXsnVk5F002B35Dz_XC8IDY/view?usp=sharing',
+        description:LinksTags[LinksAccessorEnum.DIARY_2026],
+        previewAccessor:LinksAccessorEnum.DIARY_2026,
         isOriginalContent:true
     },  {
 
@@ -171,7 +188,8 @@ export const TEMPLATES_LINKS: ILinkData[] = [
 
 
 export enum NavigationsLabelEnum {
-    _2025 ='2025',
+    _2026 ='2026',
+     _2025 ='2025',
     _2024='2024',
     _2023='2023',
     _2022='2022',
@@ -190,4 +208,5 @@ export const NAVIGATION_YEARS:ITag[]=[
     {tag:NavigationsLabelEnum._2023,color:Colors.RED},
     {tag:NavigationsLabelEnum._2024,color:Colors.RED},
     {tag:NavigationsLabelEnum._2025,color:Colors.RED},
+    //  {tag:NavigationsLabelEnum._2026,color:Colors.GREEN},
 ]
